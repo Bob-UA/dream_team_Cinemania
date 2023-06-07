@@ -1,0 +1,93 @@
+@import url('../../fonts/fonts.css');
+
+:root{
+    --primary-background-color:#111111;
+    --secondary-background-color:#ffffff;
+    --primary-text-color: #ffffff;
+    --secondary-text-color:#F8F8F8;
+
+    --primary-font: 'roboto';
+    --font-weight-std:400;
+    --font-weight-medium:500;
+    --font-weight-large:700;
+}
+
+body{
+    font-family: var(--primary-font);
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.02em;
+    color: var(--primary-text-color);
+    background-color: var(--primary-background-color);
+}
+
+
+.title {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.88;
+    }
+
+.text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.43;
+    }
+
+/* mobile style */
+@media screen and (max-width: 767px) {
+    .section {
+    padding-top: 40px;
+    padding-bottom: 131px;
+    }
+    .container{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 320px;
+    padding-left: 20px;
+    padding-right: 20px;
+    }
+}
+
+/* Tablet style */
+@media screen and (min-width:768px)
+{
+    .section {
+    padding-top: 62px;
+}
+    .container{
+        margin-left: auto;
+        margin-right: auto;
+        width: 768px;
+        padding-left: 32px;
+        padding-right: 32px;
+    }   
+
+.title {
+    font-size: 44px;
+    line-height: 1.17;
+    }
+
+.text {
+    font-size: 14px;
+    line-height: 1.17;
+    }
+}
+
+/* Desktop style */
+@media screen and (min-width:1280px) {
+.section {
+    padding-top: 169px;
+    padding-bottom: 169px;
+}
+.container{
+    width: 1280px;
+}
+.title {
+    font-size: 64px;
+    }
+
+.text {
+    font-size: 16px;
+    }
+}
