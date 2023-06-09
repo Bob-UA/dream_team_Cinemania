@@ -1,0 +1,169 @@
+/* -----------MOBILE------------ */
+.hero {
+  padding: 40px 0;
+  margin: 0 auto;
+  background-image: linear-gradient(
+      86.77deg,
+      rgba(17, 17, 17, 1) 0%,
+      rgba(17, 17, 17, 0) 50%
+    ),
+    url(../../../images/home-mobile-1x.jpg);
+  max-width: 320px;
+  height: 100%;
+  background-size: contain;
+  background-position: 80px;
+  background-repeat: no-repeat;
+}
+
+@media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .hero {
+    background-image: linear-gradient(
+        86.77deg,
+        rgba(17, 17, 17, 1) 0%,
+        rgba(17, 17, 17, 0) 50%
+      ),
+      url(../../../images/home-mobile-2x.jpg);
+  }
+}
+
+.hero-text-container {
+  max-width: 166px;
+}
+
+.hero-title {
+  line-height: 1.18;
+  margin-bottom: 8px;
+  color: var(--secondary-text-color);
+}
+
+.hero-text {
+  line-height: 1.14;
+  margin-bottom: 20px;
+  color: var(--secondary-text-color);
+}
+
+.hero-stars {
+  margin-top: 5px;
+  margin-bottom: 21px;
+}
+
+.btn {
+  position: relative;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 74px;
+  background: linear-gradient(141.22deg, #ffc226 9.4%, #f84119 91.91%);
+  transition: all var(--animation-duration) ease-in-out;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  background: var(--primary-background-color);
+  border-radius: 74px;
+  opacity: 0;
+}
+
+.btn:hover,
+.btn:focus {
+  z-index: 1;
+  color: #f87719;
+}
+
+.btn:hover::before,
+.btn:focus::before {
+  opacity: 1;
+  z-index: -1;
+}
+@media screen and (max-width: 767px) {
+  /* ---------- MOBILE ONLY -------------- */
+  .mobile-hidden {
+    display: none;
+  }
+}
+
+/* ------------------TABLET-------------------- */
+@media screen and (min-width: 768px) {
+  .hero {
+    padding: 62px 0;
+    background-image: linear-gradient(
+        86.77deg,
+        #111111 0%,
+        rgba(17, 17, 17, 0) 50%
+      ),
+      url(../../../images/home-tablet-1x.jpg);
+    max-width: 768px;
+    background-position: 300px;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .hero {
+      background-image: linear-gradient(
+          86.77deg,
+          #111111 0%,
+          rgba(17, 17, 17, 0) 50%
+        ),
+        url(/images/home-tablet-2x.jpg);
+    }
+  }
+
+  .hero-text-container {
+    max-width: 357px;
+  }
+
+  .hero-text {
+    margin-bottom: 28px;
+  }
+
+  .hero-stars {
+    margin-bottom: 20px;
+  }
+}
+
+/* ---------------------DESKTOP--------------- */
+
+@media screen and (min-width: 1280px) {
+  .hero-text-container {
+    max-width: 464px;
+  }
+  .hero-text {
+    margin-bottom: 36px;
+  }
+
+  .hero-title {
+    margin-bottom: 16px;
+  }
+
+  .hero {
+    padding: 118px 0;
+    background-image: linear-gradient(
+        86.77deg,
+        #111111 0%,
+        rgba(17, 17, 17, 0) 50%
+      ),
+      url(../../../images/home-desktop-1x.jpg);
+    max-width: 1280px;
+    background-position: 437px;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .hero {
+      background-image: linear-gradient(
+          86.77deg,
+          #111111 0%,
+          rgba(17, 17, 17, 0) 50%
+        ),
+        url(../../../images/home-desktop-2x.jpg);
+    }
+  }
+}
