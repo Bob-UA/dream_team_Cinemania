@@ -9,6 +9,8 @@
 /* components */
 /* layout */
 @import url('./layout/header.css');
+@import url('./layout/weekly.css');
+@import url('./layout/upcoming.css');
 @import url('./layout/footer.css');
 
 /* pages */
