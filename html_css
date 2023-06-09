@@ -1,0 +1,6 @@
+[main 781ea93] added_weekly_and_upcoming
+ 6 files changed, 4 insertions(+)
+ create mode 100644 src/css/layout/upcoming.css
+ create mode 100644 src/css/layout/weekly.css
+ create mode 100644 src/partials/home/upcoming.html
+ create mode 100644 src/partials/home/weekly.html
