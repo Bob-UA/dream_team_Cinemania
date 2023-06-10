@@ -35,12 +35,13 @@ const API_KEY = '9d709850c7590845ffb60644b29d6f51';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const TRENDING_END_POINT = 'trending/movie/';                     // end-point  трендовых фильмов за день/неделю
 
-export async function getMoviesTrending(timeWindow = 'week') {
+export async function getMoviesTrending(timeWindow = 'week', page = 1) {
   try {
       return await axios(`${BASE_URL}${TRENDING_END_POINT}${timeWindow}?`,
           {
               params: {
-                  api_key : API_KEY,
+                api_key: API_KEY,
+                page : page,
               }
         });
    } catch (error) {
