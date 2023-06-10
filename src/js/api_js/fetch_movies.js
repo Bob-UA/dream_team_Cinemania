@@ -33,8 +33,14 @@ import axios from 'axios';
 
 const API_KEY = '9d709850c7590845ffb60644b29d6f51';
 const BASE_URL = 'https://api.themoviedb.org/3/';
-const TRENDING_END_POINT = 'trending/movie/';                     // end-point  трендовых фильмов за день/неделю
+const TRENDING_END_POINT = 'trending/movie/';                     // end-point  трендовых фільмів за день/тиждень
+const UPCOMING_END_POINT = 'movie/upcoming';                     // end-point  новінки
+const SEARCH_END_POINT = 'search/movie';                         // end-point  фільми за ключовим словом (+ рік)
 
+
+
+//-----------------------------------------------------------------------запит на трендові фільми
+//-----------------------------------------------------------------------timeWindow = 'week'/'day'
 export async function getMoviesTrending(timeWindow = 'week', page = 1) {
   try {
       return await axios(`${BASE_URL}${TRENDING_END_POINT}${timeWindow}?`,
@@ -48,7 +54,37 @@ export async function getMoviesTrending(timeWindow = 'week', page = 1) {
     handlerError(error);
   }
 }
+//-----------------------------------------------------------------------запит на нові фільми
+export async function getMoviesUpcoming(page = 1) {
+  try {
+    return await axios(`${BASE_URL}${UPCOMING_END_POINT}?`, {
+      params: {
+        api_key: API_KEY,
+        page: page,
+      },
+    });
+  } catch (error) {
+    handlerError(error);
+  }
+}
+//-----------------------------------------------------------------------запит за ключовим словом (+рік)
+export async function getMoviesBySearch(query='', page = 1, year='') {
+  try {
+    return await axios(`${BASE_URL}${SEARCH_END_POINT}?`, {
+      params: {
+        api_key: API_KEY,
+        page: page,
+        query: query,
+        year: year,
+      },
+    });
+  } catch (error) {
+    handlerError(error);
+  }
+}
 
+
+//-----------------------------------------------------------------------Обробник помилок
 export function handlerError(error) {
   if (error.response) {
     // The request was made and the server responded with a status code
