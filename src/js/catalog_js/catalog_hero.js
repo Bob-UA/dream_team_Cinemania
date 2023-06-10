@@ -33,7 +33,7 @@ async function showRandomMovie() {
     try {
         const results = await fetchMovies();
         const index = getRandom(0, results.length - 1);
-        if (results[index]) {
+        if (results[21]) {
             textContainer.innerHTML = createHeroMarkup(results[index]);
             heroSection.style.backgroundImage = `linear-gradient(
         86.77deg,
@@ -74,12 +74,13 @@ const createHeroMarkup = ({ title, vote_average, overview }) => {
 
 const createDefaultHeroMarkup = () => {
     return `<div class="hero-text-container">
-<h1 class="title hero-title">${title}</h1>
-    <p class="hero-stars">${vote_average}</p>
+<h1 class="title hero-title">Let’s Make Your Own Cinema</h1>
       <p class="text hero-text">
-        ${overview}
+        Is a guide to creating a personalized movie theater experience. You'll
+        need a projector, screen, and speakers. <span class="mobile-hidden"> Decorate your space, choose your
+        films, and stock up on snacks for the full experience.</span>
       </p>
-    </div>
+      </div>
       <ul class="btn-list">
         <li>
           <a href="../../catalog.html"><button class="btn">Get Started</button></a>
