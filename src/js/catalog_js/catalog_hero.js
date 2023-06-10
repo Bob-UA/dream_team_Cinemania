@@ -83,4 +83,3 @@ const createDefaultHeroMarkup = () => {
         </li>
       </ul>`
 }
-console.log(textContainer)
