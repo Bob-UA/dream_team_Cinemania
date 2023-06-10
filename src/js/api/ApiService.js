@@ -39,6 +39,28 @@ const SEARCH_END_POINT = 'search/movie';                         // end-point  �
 const DETAILS_END_POINT = 'movie/';                              // end-point детальна інформація про фільм
 const GENRES_END_POINT = 'genre/movie/list';                      // end-point жанрів
 
+let arrayOfGenres = (await getMoviesGenres()).data.genres;
+
+// console.log(arrayOfGenres);
+// console.log('   ');
+
+
+let a = (await getMoviesTrending()).data.results[2].genre_ids;
+console.log(a)
+
+//-----------------------------------------------------------------------запит на ым'я жанрів по їх id
+
+export async function getNameOfGenreById(array) {
+  let res = [];
+  arrayOfGenres.map((gen) => {
+    array.map(item => {
+      if (gen.id === item) res.push(gen.name)
+    });
+  })
+  
+  console.log(res);
+}
+
 //-----------------------------------------------------------------------запит на трендові фільми
 //-----------------------------------------------------------------------timeWindow = 'week'/'day'
 export async function getMoviesTrending(timeWindow = 'week', page = 1) {
@@ -120,6 +142,24 @@ export async function getMoviesGenres() {
     handlerError(error);
   }
 }
+//----------------------------------------------------------------------
+export async function getMoviesGenresIdToName(genre_id) {
+  try {
+    const resp = await axios(`${BASE_URL}${GENRES_END_POINT}?`, {
+      params: {
+        api_key: API_KEY,
+      },
+    }
+    );
+    resp.data.genres.find((item) => {
+      item.id === genre.id
+    })
+    return resp;
+  } catch (error) {
+    handlerError(error);
+  }
+}
+
 
 //-----------------------------------------------------------------------Обробник помилок
 export function handlerError(error) {
