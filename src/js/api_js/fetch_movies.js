@@ -37,6 +37,7 @@ const TRENDING_END_POINT = 'trending/movie/';                     // end-point  
 const UPCOMING_END_POINT = 'movie/upcoming';                     // end-point  новінки
 const SEARCH_END_POINT = 'search/movie';                         // end-point  фільми за ключовим словом (+ рік)
 const DETAILS_END_POINT = 'movie/';                              // end-point детальна інформація про фільм
+const GENRES_END_POINT = 'genre/movie/list';                      // end-point жанрів
 
 //-----------------------------------------------------------------------запит на трендові фільми
 //-----------------------------------------------------------------------timeWindow = 'week'/'day'
@@ -94,7 +95,31 @@ export async function getMoviesDetails(movie_id) {
     handlerError(error);
   }
 }
-
+//-----------------------------------------------------------------запит на повну інформацію про можливий трейлер фільма на YouTube
+export async function getMoviesVideos(movie_id) {
+  try {
+    return await axios(`${BASE_URL}${DETAILS_END_POINT}${movie_id}/videos?`, {
+      params: {
+        api_key: API_KEY,
+        movie_id: movie_id,
+      },
+    });
+  } catch (error) {
+    handlerError(error);
+  }
+}
+//-----------------------------------------------------------------запит на список жанрів
+export async function getMoviesGenres() {
+  try {
+    return await axios(`${BASE_URL}${GENRES_END_POINT}?`, {
+      params: {
+        api_key: API_KEY,
+      },
+    });
+  } catch (error) {
+    handlerError(error);
+  }
+}
 
 //-----------------------------------------------------------------------Обробник помилок
 export function handlerError(error) {
