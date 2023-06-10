@@ -1,0 +1,38 @@
+.section-weekly {
+    
+}
+
+.weekly {
+    
+    
+}
+
+.weekly-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.weekly-title {
+    font-weight: var(--font-weight-medium);
+    font-size: 16px;
+    line-height: 1.18;
+    color: #FFFFFF;
+}
+
+.weekly-see-all {
+    font-weight: var(--font-weight-medium);
+    font-size: 16px;
+    line-height: 1.18;
+    color: #F87719;
+}
+
+.weekly-list-img {
+    width: 280px;
+}
+
+.weekly-list-title {}
+
+.weekly-list-genre {}
+
+.weekly-list-raiting {}
