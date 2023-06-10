@@ -36,21 +36,19 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 const TRENDING_END_POINT = 'trending/movie/';                     // end-point  трендовых фільмів за день/тиждень
 const UPCOMING_END_POINT = 'movie/upcoming';                     // end-point  новінки
 const SEARCH_END_POINT = 'search/movie';                         // end-point  фільми за ключовим словом (+ рік)
-
-
+const DETAILS_END_POINT = 'movie/';                              // end-point детальна інформація про фільм
 
 //-----------------------------------------------------------------------запит на трендові фільми
 //-----------------------------------------------------------------------timeWindow = 'week'/'day'
 export async function getMoviesTrending(timeWindow = 'week', page = 1) {
   try {
-      return await axios(`${BASE_URL}${TRENDING_END_POINT}${timeWindow}?`,
-          {
-              params: {
-                api_key: API_KEY,
-                page : page,
-              }
-        });
-   } catch (error) {
+    return await axios(`${BASE_URL}${TRENDING_END_POINT}${timeWindow}?`, {
+      params: {
+        api_key: API_KEY,
+        page: page,
+      },
+    });
+  } catch (error) {
     handlerError(error);
   }
 }
@@ -67,7 +65,8 @@ export async function getMoviesUpcoming(page = 1) {
     handlerError(error);
   }
 }
-//-----------------------------------------------------------------------запит за ключовим словом (+рік)
+//-----------------------------------------------------------------------запит на детальну інформацію про фільм
+//-----------------------------------------------------------------------якщо рік не вказувати - за весь доступний період
 export async function getMoviesBySearch(query='', page = 1, year='') {
   try {
     return await axios(`${BASE_URL}${SEARCH_END_POINT}?`, {
@@ -76,6 +75,19 @@ export async function getMoviesBySearch(query='', page = 1, year='') {
         page: page,
         query: query,
         year: year,
+      },
+    });
+  } catch (error) {
+    handlerError(error);
+  }
+}
+//-----------------------------------------------------------------------детальна інформація про фільм за id
+export async function getMoviesDetails(movie_id) {
+  try {
+    return await axios(`${BASE_URL}${DETAILS_END_POINT}${movie_id}?`, {
+      params: {
+        api_key: API_KEY,
+        movie_id: movie_id,
       },
     });
   } catch (error) {
@@ -103,8 +115,5 @@ export function handlerError(error) {
   }
   console.log(error.config);
 
- alert(
-  'there`s something wrong, please see the messages in the console')
-  
- 
+  alert('there`s something wrong, please see the messages in the console');
 }
