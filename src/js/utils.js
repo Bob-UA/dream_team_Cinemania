@@ -1,4 +1,8 @@
 export const defaultHeroStyles = `@media screen and (min-width: 320px) {
+  .hero-text{
+    max-height: 80px;
+     -webkit-line-clamp: unset;
+}
   .hero {
     background-image: linear-gradient(
         86.77deg,
@@ -21,6 +25,9 @@ export const defaultHeroStyles = `@media screen and (min-width: 320px) {
   }
 }
 @media screen and (min-width: 768px) {
+  .hero-text{
+    max-height: 64px;
+}
   .hero {
     background-image: linear-gradient(
         86.77deg,
@@ -44,6 +51,10 @@ export const defaultHeroStyles = `@media screen and (min-width: 320px) {
   }
 }
 @media screen and (min-width: 1280px) {
+  .hero-text{
+    max-height: 76px;
+}
+
   .hero {
     background-image: linear-gradient(
         86.77deg,
