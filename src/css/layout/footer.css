@@ -1,0 +1,31 @@
+.text-footer {
+  color: #b7b7b7;
+  text-align: center;
+}
+.footer-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-part {
+  margin-left: 5px;
+  margin-right: 10px;
+}
+.icon-heart {
+  width: 14px;
+  height: 13px;
+}
+.footer-btn {
+  background-color: transparent;
+  border: transparent;
+  text-decoration: underline;
+}
+.footer-span {
+  margin-left: 10px;
+}
+@media screen and (min-width: 768px) {
+  .text-footer {
+    display: flex;
+    justify-content: center;
+  }
+}
