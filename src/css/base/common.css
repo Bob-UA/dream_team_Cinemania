@@ -5,9 +5,6 @@
     --secondary-background-color:#ffffff;
     --primary-text-color: #ffffff;
     --secondary-text-color:#F8F8F8;
-    
-    
-    
 
     --primary-font: 'roboto';
     --font-weight-std:400;
@@ -26,11 +23,6 @@ body{
     color: var(--primary-text-color);
     background-color: var(--primary-background-color);
 }
-
-.white {
-    background-color: var(--secondary-background-color);
-}
-
 
 
 .title {
@@ -76,7 +68,7 @@ body{
     color: var(--secondary-text-color);
 }
 
-.container{
+    .container{
     margin-left: auto;
     margin-right: auto;
     max-width: 320px;
@@ -84,7 +76,7 @@ body{
     padding-right: 20px;
     }
 
-.section {
+    .section {
     padding-top: 40px;
     padding-bottom: 131px;
     }
@@ -102,8 +94,6 @@ body{
     padding-top: 62px;
 }
     .container{
-        max-width: none;
-        max-width: none;
         max-width: none;
         width: 768px;
         padding-left: 32px;
