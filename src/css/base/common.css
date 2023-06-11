@@ -1,20 +1,16 @@
 @import url('../../fonts/fonts.css');
-
 :root{
     --primary-background-color:#111111;
     --secondary-background-color:#ffffff;
     --primary-text-color: #ffffff;
     --secondary-text-color:#F8F8F8;
-
     --primary-font: 'roboto';
     --font-weight-std:400;
     --font-weight-medium:500;
     --font-weight-large:700;
-
     --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --animation-duration: 250ms;
 }
-
 body{
     font-family: var(--primary-font);
     font-size: 14px;
@@ -23,20 +19,16 @@ body{
     color: var(--primary-text-color);
     background-color: var(--primary-background-color);
 }
-
-
 .title {
     font-weight: 700;
     font-size: 32px;
     line-height: 1.88;
     }
-
 .text {
     font-weight: 400;
     font-size: 14px;
     line-height: 1.43;
     }
-
 .button{
     position: relative;
     padding: 24px, 12px;
@@ -44,8 +36,6 @@ body{
     border-radius: 74px;
     border: none;
 }
-
-
 .button:after {
     content: 'button';
     position: absolute;
@@ -58,22 +48,13 @@ body{
     opacity: 1;
     transition: all var(--animation-duration) ease-in-out;
 } 
-
 .button:hover:after {
     opacity: 0;
 }
-
 .button:hover, .button:focus {
     background-color: var(--primary-background-color);
     color: var(--secondary-text-color);
 }
-
-/* mobile style */
-@media screen and (max-width: 767px) {
-    .section {
-    padding-top: 40px;
-    padding-bottom: 131px;
-    }
     .container{
     margin-left: auto;
     margin-right: auto;
@@ -81,8 +62,13 @@ body{
     padding-left: 20px;
     padding-right: 20px;
     }
+    .section {
+    padding-top: 40px;
+    padding-bottom: 131px;
+    }
+/* mobile style */
+@media screen and (max-width: 767px) {
 }
-
 /* Tablet style */
 @media screen and (min-width:768px)
 {
@@ -90,24 +76,20 @@ body{
     padding-top: 62px;
 }
     .container{
-        margin-left: auto;
-        margin-right: auto;
+        max-width: none;
         width: 768px;
         padding-left: 32px;
         padding-right: 32px;
     }   
-
 .title {
     font-size: 44px;
     line-height: 1.17;
     }
-
 .text {
     font-size: 14px;
     line-height: 1.17;
     }
 }
-
 /* Desktop style */
 @media screen and (min-width:1280px) {
 .section {
@@ -120,7 +102,6 @@ body{
 .title {
     font-size: 64px;
     }
-
 .text {
     font-size: 16px;
     }
