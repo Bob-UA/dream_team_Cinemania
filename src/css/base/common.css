@@ -68,12 +68,6 @@ body{
     color: var(--secondary-text-color);
 }
 
-/* mobile style */
-@media screen and (max-width: 767px) {
-    .section {
-    padding-top: 40px;
-    padding-bottom: 131px;
-    }
     .container{
     margin-left: auto;
     margin-right: auto;
@@ -81,6 +75,16 @@ body{
     padding-left: 20px;
     padding-right: 20px;
     }
+
+    .section {
+    padding-top: 40px;
+    padding-bottom: 131px;
+    }
+
+/* mobile style */
+@media screen and (max-width: 767px) {
+
+
 }
 
 /* Tablet style */
@@ -90,8 +94,7 @@ body{
     padding-top: 62px;
 }
     .container{
-        margin-left: auto;
-        margin-right: auto;
+        max-width: none;
         width: 768px;
         padding-left: 32px;
         padding-right: 32px;
