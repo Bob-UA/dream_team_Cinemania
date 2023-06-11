@@ -35,12 +35,33 @@ async function showRandomMovie() {
         const index = getRandom(0, results.length - 1);
         if (results[index]) {
             textContainer.innerHTML = createHeroMarkup(results[index]);
-            heroSection.style.backgroundImage = `linear-gradient(
-        86.77deg,
-        #111111 20%,
-        rgba(17, 17, 17, 0) 60%
+            const style = document.createElement('style');
+            style.innerHTML = `
+  .hero {
+    background-image: linear-gradient(
+        86.77deg, #111111 30.38%, rgba(17, 17, 17, 0) 65.61%
       ),
-      url(${IMG_URL}${results[index].backdrop_path})`
+      url(${IMG_URL}${results[index].backdrop_path});
+  }
+
+@media screen and (min-width: 768px) {
+  .hero {
+    background-image: linear-gradient(
+        81.57deg, #111111 12.76%, rgba(17, 17, 17, 0) 72.65%
+      ),
+      url(${IMG_URL}${results[index].backdrop_path});
+  }
+}
+@media screen and (min-width: 1280px) {
+
+  .hero {
+    background-image: linear-gradient(
+        83.06deg, #111111 11.91%, rgba(17, 17, 17, 0) 73.11%
+      ),
+      url(${IMG_URL}${results[index].backdrop_path});
+  }
+}`;
+            document.head.appendChild(style);
         }
         else {
             textContainer.innerHTML = createDefaultHeroMarkup();
