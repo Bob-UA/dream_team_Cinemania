@@ -1,0 +1,1 @@
+import "../../js/catalog_js/components/movies_cards"
