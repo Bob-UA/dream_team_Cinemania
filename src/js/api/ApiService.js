@@ -24,7 +24,18 @@
 
 // Перелік жанрів	https://developers.themoviedb.org/3/genres/get-movie-list
 // https://api.themoviedb.org/3/genre/movie/list
+//-----------------------------------------------------------------------------------------------------------------------------
 
+// const resp = await getMoviesTrending('day', 4);            // resp.data.results    масив
+// const resp = await getMoviesUpcoming(5);                   // resp.data.results    масив
+// const resp = await getMoviesBySearch('pirates',5,2023);    // resp.data.results    масив
+
+// const resp = await getMoviesDetails(2023);                  // resp.data      не массив!!!
+// const resp = await getMoviesVideos(2023);                   // resp.results   не массив!!!
+// const resp = await getMoviesGenres();                       // resp.data.genres    масив 
+
+
+ //-----------------------------------------------------------------------------------------------------------------------------
 
 // Ключ API
 // 9d709850c7590845ffb60644b29d6f51
@@ -43,14 +54,20 @@ let arrayOfGenres = (await getMoviesGenres()).data.genres;
 
 // console.log(arrayOfGenres);
 // console.log('   ');
+// let a = (await getMoviesTrending()).data.results[2].genre_ids;
+// // console.log(a)
+
+// const resp = await getMoviesUpcoming(5); // resp.data.results    масив
+// console.log(resp.data.results);
 
 
-let a = (await getMoviesTrending()).data.results[2].genre_ids;
-console.log(a)
 
-//-----------------------------------------------------------------------запит на ым'я жанрів по їх id
+// //-----------------------------------------------------------------------запит на ым'я жанрів по їх id
 
-export async function getNameOfGenreById(array) {
+// console.log(a);
+// console.log(getNameOfGenreById(a).join(', '));
+
+export function getNameOfGenreById(array) {
   let res = [];
   arrayOfGenres.map((gen) => {
     array.map(item => {
@@ -58,7 +75,8 @@ export async function getNameOfGenreById(array) {
     });
   })
   
-  console.log(res);
+//  console.log(res);
+  return (res);
 }
 
 //-----------------------------------------------------------------------запит на трендові фільми
@@ -142,24 +160,6 @@ export async function getMoviesGenres() {
     handlerError(error);
   }
 }
-//----------------------------------------------------------------------
-export async function getMoviesGenresIdToName(genre_id) {
-  try {
-    const resp = await axios(`${BASE_URL}${GENRES_END_POINT}?`, {
-      params: {
-        api_key: API_KEY,
-      },
-    }
-    );
-    resp.data.genres.find((item) => {
-      item.id === genre.id
-    })
-    return resp;
-  } catch (error) {
-    handlerError(error);
-  }
-}
-
 
 //-----------------------------------------------------------------------Обробник помилок
 export function handlerError(error) {
@@ -182,3 +182,6 @@ export function handlerError(error) {
 
 //alert('there`s something wrong, please see the messages in the console');
 }
+
+
+

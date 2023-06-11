@@ -5,9 +5,9 @@ import Pagination from 'tui-pagination';
 const moviesList = document.querySelector('.gallery');
 const resp = await getMoviesTrending('week');
 
-console.log(resp);
-console.log(resp.data);
-console.log(resp.data.results);
+// console.log(resp);
+// console.log(resp.data);
+// console.log(resp.data.results);
 
 
 
@@ -29,7 +29,7 @@ function creatMarkupMoviesList(data) {
 }
 //------------------------------------------------------------------------------------------Пагинация
 const container = document.getElementById('tui-pagination-container');
-console.log(container);
+// console.log(container);
 const options = {
     page: 1,
     totalItems: 20000,
