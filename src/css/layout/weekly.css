@@ -3,8 +3,20 @@
 }
 
 .weekly {
+     
+}
+
+.weekly-js-list{
     
-    
+}
+
+.weekly-list {
+    width: 280px;
+    height: 406px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    background-size: 100%;
 }
 
 .weekly-head {
@@ -36,3 +48,53 @@
 .weekly-list-genre {}
 
 .weekly-list-raiting {}
+
+@media (min-width: 768px) {
+    .weekly-list {
+        width: 224px;
+        height: 325px;
+            
+    }
+    
+    .weekly-head {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 52px;
+        margin-bottom: 24px;
+    }
+
+    .weekly-title {
+        font-size: 24px;
+        line-height: 1.16;
+    }
+
+    .weekly-see-all {
+        font-size: 24px;
+        line-height: 1.16;
+    }
+
+    .weekly-list-img {
+        
+    }
+
+    .weekly-list-title {
+        font-size: 12px;
+        line-height: 1.5;
+        color: #FFFFFF;
+    }
+
+    .weekly-list-genre {
+        font-size: 12px;
+        line-height: 1.5;
+        color: #B7B7B7;
+    }
+
+    .weekly-list-raiting {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+}
+
+@media (min-width: 1280px) {
+
+}
