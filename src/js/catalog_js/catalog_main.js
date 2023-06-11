@@ -9,7 +9,14 @@ if (!weeklyMovies.data) {
     galleryMovies.innerHTML = '';
 }
 
-galleryMovies.innerHTML = await createMarkupMovies(weeklyMovies.data.results);
+try {
+    galleryMovies.innerHTML = await createMarkupMovies(
+      weeklyMovies.data.results
+    );
+
+} catch (error) {
+    console.log(error);    
+}
 
 async function createMarkupMovies(arr) {
     const moviesMarkupPromises = arr.map(async ({
