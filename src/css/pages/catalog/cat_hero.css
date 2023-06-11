@@ -3,22 +3,50 @@
   margin: 0 auto;
   height: 380px;
   max-width: 320px;
-  background-size: cover;
-  background-position: 0px;
-  background-repeat: no-repeat;
 }
 
-.section{
-    padding-top: 0;
+.img-container {
+  position: absolute;
+  background-image: linear-gradient(
+    87.41deg,
+    #111111 33.93%,
+    rgba(17, 17, 17, 0) 78.91%
+  );
+  width: 320px;
+  height: 380px;
+  right: 0px;
+  top: 0px;
 }
 
-.hero-container{
-    padding-top: 40px;
+.hero-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 380px;
+  object-fit: cover;
+  object-position: 18%;
+  z-index: -1;
+}
+
+.section {
+  padding-top: 0;
+}
+
+.hero-container {
+  position: relative;
+  padding-top: 40px;
+}
+
+.hero-content {
+  position: absolute;
+  z-index: 1;
 }
 
 .hero-text-container {
-  max-width: 242px;
+  max-width: 177px;
   margin-bottom: 20px;
+  z-index: 100;
 }
 
 .hero-title {
@@ -32,7 +60,7 @@
   margin-bottom: 20px;
   color: var(--secondary-text-color);
   display: -webkit-box;
-  -webkit-line-clamp: 4; 
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -97,6 +125,7 @@
   opacity: 1;
   z-index: -1;
 }
+
 @media screen and (max-width: 767px) {
   /* ---------- MOBILE ONLY -------------- */
   .mobile-hidden {
@@ -107,18 +136,32 @@
 /* ------------------TABLET-------------------- */
 @media screen and (min-width: 768px) {
   .hero {
-    height: 367px;
+    height: 432px;
     max-width: 768px;
-    background-size: contain;
-    background-position: 200px;
   }
 
-  .hero-container{
+  .img-container {
+    background-image: linear-gradient(
+      81.57deg,
+      #111111 12.76%,
+      rgba(17, 17, 17, 0) 72.65%
+    );
+    width: 482px;
+    height: 432px;
+  }
+
+  .hero-img {
+    width: 482px;
+    height: 432px;
+    object-position: 40%;
+  }
+
+  .hero-container {
     padding-top: 62px;
   }
 
   .hero-text-container {
-    max-width: 357px;
+    max-width: 295px;
   }
 
   .hero-text {
@@ -134,13 +177,32 @@
 
 @media screen and (min-width: 1280px) {
   .hero-text-container {
-    max-width: 450px;
+    max-width: 385px;
   }
   .hero-text {
     margin-bottom: 36px;
   }
-.hero-container{
+
+  .hero-container {
     padding-top: 118px;
+    height: 720px;
+  }
+
+  .img-container {
+    background-image: linear-gradient(
+      83.06deg,
+      #111111 11.91%,
+      rgba(17, 17, 17, 0) 73.11%
+    );
+    width: 802px;
+    height: 720px;
+  }
+
+  .hero-img {
+    width: 802px;
+    height: 720px;
+    object-position: 33%;
+    border: 1px solid #111111;
   }
 
   .hero-title {
@@ -148,9 +210,8 @@
   }
 
   .hero {
-    height: 660px;
+    height: 720px;
     max-width: 1280px;
-    background-position: 200px;
   }
 
   .btn-list {
