@@ -24,7 +24,18 @@
 
 // Перелік жанрів	https://developers.themoviedb.org/3/genres/get-movie-list
 // https://api.themoviedb.org/3/genre/movie/list
+//-----------------------------------------------------------------------------------------------------------------------------
 
+// const resp = await getMoviesTrending('day', 4);            // resp.data.results    масив
+// const resp = await getMoviesUpcoming(5);                   // resp.data.results    масив
+// const resp = await getMoviesBySearch('pirates',5,2023);    // resp.data.results    масив
+
+// const resp = await getMoviesDetails(2023);                  // resp.data      не массив!!!
+// const resp = await getMoviesVideos(2023);                   // resp.results   не массив!!!
+// const resp = await getMoviesGenres();                       // resp.data.genres    масив 
+
+
+ //-----------------------------------------------------------------------------------------------------------------------------
 
 // Ключ API
 // 9d709850c7590845ffb60644b29d6f51
@@ -38,6 +49,35 @@ const UPCOMING_END_POINT = 'movie/upcoming';                     // end-point  �
 const SEARCH_END_POINT = 'search/movie';                         // end-point  фільми за ключовим словом (+ рік)
 const DETAILS_END_POINT = 'movie/';                              // end-point детальна інформація про фільм
 const GENRES_END_POINT = 'genre/movie/list';                      // end-point жанрів
+
+let arrayOfGenres = (await getMoviesGenres()).data.genres;
+
+// console.log(arrayOfGenres);
+// console.log('   ');
+// let a = (await getMoviesTrending()).data.results[2].genre_ids;
+// // console.log(a)
+
+// const resp = await getMoviesUpcoming(5); // resp.data.results    масив
+// console.log(resp.data.results);
+
+
+
+// //-----------------------------------------------------------------------запит на ым'я жанрів по їх id
+
+// console.log(a);
+// console.log(getNameOfGenreById(a).join(', '));
+
+export function getNameOfGenreById(array) {
+  let res = [];
+  arrayOfGenres.map((gen) => {
+    array.map(item => {
+      if (gen.id === item) res.push(gen.name)
+    });
+  })
+  
+//  console.log(res);
+  return (res);
+}
 
 //-----------------------------------------------------------------------запит на трендові фільми
 //-----------------------------------------------------------------------timeWindow = 'week'/'day'
@@ -142,3 +182,6 @@ export function handlerError(error) {
 
 //alert('there`s something wrong, please see the messages in the console');
 }
+
+
+

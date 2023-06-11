@@ -96,6 +96,7 @@ body{
     .container{
         max-width: none;
         max-width: none;
+        max-width: none;
         width: 768px;
         padding-left: 32px;
         padding-right: 32px;
