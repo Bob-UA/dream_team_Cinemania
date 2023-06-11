@@ -13,14 +13,17 @@
 // Фільми за ключовим словом ( + за роком)	https://developers.themoviedb.org/3/search/search-movies
 // https://api.themoviedb.org/3/search/movie
 
+
 // Детальна інформація про фільм	https://developers.themoviedb.org/3/movies/get-movie-details
 // https://api.themoviedb.org/3/movie/{movie_id}
+
 
 // Повна інформація про можливий трейлер фільма на YouTube	https://developers.themoviedb.org/3/movies/get-movie-videos
 //  https://api.themoviedb.org/3/movie/{movie_id}/videos
 
 // Перелік жанрів	https://developers.themoviedb.org/3/genres/get-movie-list
 // https://api.themoviedb.org/3/genre/movie/list
+
 
 // Ключ API
 // 9d709850c7590845ffb60644b29d6f51
@@ -29,11 +32,11 @@ import axios from 'axios';
 
 const API_KEY = '9d709850c7590845ffb60644b29d6f51';
 const BASE_URL = 'https://api.themoviedb.org/3/';
-const TRENDING_END_POINT = 'trending/movie/'; // end-point  трендовых фільмів за день/тиждень
-const UPCOMING_END_POINT = 'movie/upcoming'; // end-point  новінки
-const SEARCH_END_POINT = 'search/movie'; // end-point  фільми за ключовим словом (+ рік)
-const DETAILS_END_POINT = 'movie/'; // end-point детальна інформація про фільм
-const GENRES_END_POINT = 'genre/movie/list'; // end-point жанрів
+const TRENDING_END_POINT = 'trending/movie/';                     // end-point  трендовых фільмів за день/тиждень
+const UPCOMING_END_POINT = 'movie/upcoming';                     // end-point  новінки
+const SEARCH_END_POINT = 'search/movie';                         // end-point  фільми за ключовим словом (+ рік)
+const DETAILS_END_POINT = 'movie/';                              // end-point детальна інформація про фільм
+const GENRES_END_POINT = 'genre/movie/list';                      // end-point жанрів
 
 //-----------------------------------------------------------------------запит на трендові фільми
 //-----------------------------------------------------------------------timeWindow = 'week'/'day'
@@ -64,7 +67,7 @@ export async function getMoviesUpcoming(page = 1) {
 }
 //-----------------------------------------------------------------------запит на детальну інформацію про фільм
 //-----------------------------------------------------------------------якщо рік не вказувати - за весь доступний період
-export async function getMoviesBySearch(query = '', page = 1, year = '') {
+export async function getMoviesBySearch(query='', page = 1, year='') {
   try {
     return await axios(`${BASE_URL}${SEARCH_END_POINT}?`, {
       params: {
@@ -136,5 +139,5 @@ export function handlerError(error) {
   }
   console.log(error.config);
 
-  //alert('there`s something wrong, please see the messages in the console');
+//alert('there`s something wrong, please see the messages in the console');
 }
