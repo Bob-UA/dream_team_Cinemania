@@ -33,20 +33,21 @@ function serviceMovie(page = 1) {
         })
 }
 
-// function weeklyTrends(page = 1) {
-//     return fetch(`${BASIC_URL}${ENDPOINT}?api_key=${API_KEY}&page=${page}&results=${results}`)
-//         .then(resp => {
-//             if (!resp.ok) {
-//                 throw new Error(resp.statusText);
-//             }
+//  function weeklyTrends(page = 1) {
+//      return fetch(`${BASIC_URL}${ENDPOINT}?api_key=${API_KEY}&page=${page}&results=${results}`)
+//          .then(resp => {
+//              if (!resp.ok) {
+//                  throw new Error(resp.statusText);
+//              }
         
-//             return resp.json()
-//         })
-// }
+//              return resp.json()
+//          })
+//  }
 
 
 serviceMovie()
   .then(data => {
+    console.log(data);
     list.insertAdjacentHTML('beforeEnd', createMarkUp(data.results))
   })
 
