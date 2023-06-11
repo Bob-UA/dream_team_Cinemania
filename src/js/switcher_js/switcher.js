@@ -42,25 +42,54 @@ document.addEventListener('click', function(event) {
     backdrop.style.display = 'none';
   }
 });
+// =========================Переключатель темы====================================================
 
-// =========================Переключатель темы======================================================
 const body = document.querySelector('body');
 const toggle = document.querySelector('.toggle');
 const logoText = document.querySelector('.logo_text');
+const savedTheme = localStorage.getItem('theme');
+
+
+if (savedTheme === 'light') {
+  enableLightTheme();
+} else {
+  enableDarkTheme();
+}
 
 toggle.addEventListener('click', () => {
-  toggle.classList.toggle('active');
-  body.classList.toggle('white');
   if (body.classList.contains('white')) {
-    document.documentElement.style.setProperty('--primary-text-color', '#282828');
+    enableDarkTheme();
+    localStorage.setItem('theme', 'dark');
   } else {
-    document.documentElement.style.setProperty('--primary-text-color', '#ffffff');
+    enableLightTheme();
+    localStorage.setItem('theme', 'light');
   }
 });
 
+function enableLightTheme() {
+  body.classList.add('white');
+  toggle.classList.add('active');
+  document.documentElement.style.setProperty('--primary-background-color', '#111111');
+  document.documentElement.style.setProperty('--primary-text-color', '#282828');
+  setBackdropColor('light');
+}
 
+function enableDarkTheme() {
+  body.classList.remove('white');
+  toggle.classList.remove('active');
+  document.documentElement.style.setProperty('--secondary-background-color', '#ffffff');
+  document.documentElement.style.setProperty('--primary-text-color', '#ffffff');
+  setBackdropColor('dark');
+}
 
-
+function setBackdropColor(theme) {
+  const backdrop = document.getElementById('backdrop');
+  if (theme === 'light') {
+    backdrop.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+  } else {
+    backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+  }
+}
 
 
 
