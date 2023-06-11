@@ -1,4 +1,4 @@
-export const defaultHeroStyles = `@media screen and (min-width: 320px) {
+export const defaultHeroStyles = `
   .hero-text{
     max-height: 80px;
      -webkit-line-clamp: unset;
@@ -23,7 +23,7 @@ export const defaultHeroStyles = `@media screen and (min-width: 320px) {
         url(../../../images/home-mobile-2x.jpg);
     }
   }
-}
+
 @media screen and (min-width: 768px) {
   .hero-text{
     max-height: 64px;

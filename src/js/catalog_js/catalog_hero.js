@@ -33,7 +33,7 @@ async function showRandomMovie() {
     try {
         const results = await fetchMovies();
         const index = getRandom(0, results.length - 1);
-        if (results[21]) {
+        if (results[index]) {
             textContainer.innerHTML = createHeroMarkup(results[index]);
             heroSection.style.backgroundImage = `linear-gradient(
         86.77deg,

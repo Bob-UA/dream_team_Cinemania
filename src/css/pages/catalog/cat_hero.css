@@ -1,7 +1,6 @@
 /* -----------MOBILE------------ */
 .hero {
   margin: 0 auto;
-  /* padding: 40px 0; */
   height: 380px;
   max-width: 320px;
   background-size: cover;
@@ -15,7 +14,6 @@
 
 .hero-container{
     padding-top: 40px;
-    max-height: 210px;
 }
 
 .hero-text-container {
