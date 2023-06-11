@@ -4,7 +4,6 @@ import { getMoviesGenres } from "../api/ApiService";
 // Блок Перелік фільмів
 const galleryMovies = document.querySelector('.gallery-movies');
 const weeklyMovies = await getMoviesTrending();
-console.log(weeklyMovies.data.results);
 
 if (!weeklyMovies.data) {
     galleryMovies.innerHTML = '';
@@ -22,7 +21,6 @@ async function createMarkupMovies(arr) {
     }) => {
         const year = release_date.substr(0, 4);
         const genres = await getGenresNames(genre_ids);
-        console.log(genres);
         return `<li class="gallery-movies-item">
         <a href="https://image.tmdb.org/t/p/original/${poster_path}">
         <img class="gallery-movies-img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" data-id="${id}" loading="lazy">
