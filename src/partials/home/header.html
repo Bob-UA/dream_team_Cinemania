@@ -1,19 +1,50 @@
-<header class="header">
-  <section class="section">
-    <div class="container">
-        <nav class="nav">
-        <ul class="nav-list">
-          <li class="nav-item">
-            <a href="./index.html" class="nav-link">Home</a>
-          </li>
-          <li class="nav-item">
-            <a href="./catalog.html" class="nav-link">Catalog</a>
-          </li>
-          <li class="nav-item">
-            <a href="./my_library.html" class="nav-link">My library</a>
-          </li>
-        </ul>
-      </nav>
+<section class="header">
+  <div class="container">
+    <div class="header-wrap">
+      <div class="header-nav-wrap">
+        <a href="../../index.html" class="header-logo-box">
+          <svg class="logo">
+          <use href="../../images/sprite.svg#icon-Logo"></use>
+          </svg>
+          <span class="logo_text">Cinemania</span>
+        </a>
+          <ul class="nav">
+            <li><a class="nav_list" href="../../index.html">HOME</a></li>
+            <li><a class="nav_list" href="../../catalog.html">CATALOG</a></li>
+            <li><a class="nav_list" href="../../my_library.html">MY LIBRARY</a></li>
+          </ul>
+        <span class="menu" id="menu">MENU</span>
+      </div>
+<!-- ============================switcher=========================================== -->
+    <div class="toggle">
+      <div class="toggle-icon">
+      <svg class="moon-icon">
+          <use href="../../images/sprite.svg#icon-Moon"></use>
+      </svg>
+      <svg class="sun-icon">
+          <use href="../../images/sprite.svg#icon-Sun"></use>
+      </svg>
+      </div>
     </div>
-  </section>
-</header>
+</div>
+  </div>
+</section>
+<!-- ===========================mobile menu================================================== -->
+<div class="backdrop" id="backdrop"></div>
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <a href="../../index.html" class="modal-logo">
+      <svg class="logo">
+        <use href="../../images/sprite.svg#icon-Logo"></use>
+      </svg>
+    </a>
+    <nav class="modal-nav">
+      <ul class="nav-list">
+        <li><a class="mobile-nav-list" href="../../index.html">HOME</a></li>
+        <li><a class="mobile-nav-list" href="../../catalog.html">CATALOG</a></li>
+        <li><a class="mobile-nav-list" href="../../my_library.html">MY LIBRARY</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+

@@ -5,6 +5,9 @@
     --secondary-background-color:#ffffff;
     --primary-text-color: #ffffff;
     --secondary-text-color:#F8F8F8;
+    
+    
+    
 
     --primary-font: 'roboto';
     --font-weight-std:400;
@@ -23,6 +26,11 @@ body{
     color: var(--primary-text-color);
     background-color: var(--primary-background-color);
 }
+
+.white {
+    background-color: var(--secondary-background-color);
+}
+
 
 
 .title {
