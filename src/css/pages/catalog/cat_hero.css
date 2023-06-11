@@ -1,0 +1,159 @@
+/* -----------MOBILE------------ */
+.hero {
+  margin: 0 auto;
+  height: 380px;
+  max-width: 320px;
+  background-size: cover;
+  background-position: 0px;
+  background-repeat: no-repeat;
+}
+
+.section{
+    padding-top: 0;
+}
+
+.hero-container{
+    padding-top: 40px;
+}
+
+.hero-text-container {
+  max-width: 242px;
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  line-height: 1.18;
+  margin-bottom: 8px;
+  color: var(--secondary-text-color);
+}
+
+.hero-text {
+  line-height: 1.14;
+  margin-bottom: 20px;
+  color: var(--secondary-text-color);
+  display: -webkit-box;
+  -webkit-line-clamp: 4; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hero-stars {
+  margin-top: 5px;
+  margin-bottom: 21px;
+}
+
+.btn-list {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  position: relative;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 74px;
+  background: linear-gradient(141.22deg, #ffc226 9.4%, #f84119 91.91%);
+  transition: all var(--animation-duration) ease-in-out;
+}
+
+.btn-details {
+  padding: 12px 24px;
+  border-radius: 74px;
+  border: 1px solid #ffffff;
+  background: transparent;
+  color: #ffffff;
+  transition: color var(--animation-duration) ease-in-out,
+    border var(--animation-duration) ease-in-out;
+}
+
+.btn-details:hover,
+.btn-details:focus {
+  border: 1px solid #f87719;
+  color: #f87719;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  background: var(--primary-background-color);
+  border-radius: 74px;
+  opacity: 0;
+  transition: all var(--animation-duration) ease-in-out;
+}
+
+.btn:hover,
+.btn:focus {
+  z-index: 1;
+  color: #f87719;
+}
+
+.btn:hover::before,
+.btn:focus::before {
+  opacity: 1;
+  z-index: -1;
+}
+@media screen and (max-width: 767px) {
+  /* ---------- MOBILE ONLY -------------- */
+  .mobile-hidden {
+    display: none;
+  }
+}
+
+/* ------------------TABLET-------------------- */
+@media screen and (min-width: 768px) {
+  .hero {
+    height: 367px;
+    max-width: 768px;
+    background-size: contain;
+    background-position: 200px;
+  }
+
+  .hero-container{
+    padding-top: 62px;
+  }
+
+  .hero-text-container {
+    max-width: 357px;
+  }
+
+  .hero-text {
+    margin-bottom: 28px;
+  }
+
+  .hero-stars {
+    margin-bottom: 20px;
+  }
+}
+
+/* ---------------------DESKTOP--------------- */
+
+@media screen and (min-width: 1280px) {
+  .hero-text-container {
+    max-width: 450px;
+  }
+  .hero-text {
+    margin-bottom: 36px;
+  }
+.hero-container{
+    padding-top: 118px;
+  }
+
+  .hero-title {
+    margin-bottom: 16px;
+  }
+
+  .hero {
+    height: 660px;
+    max-width: 1280px;
+    background-position: 200px;
+  }
+
+  .btn-list {
+    gap: 14px;
+  }
+}
