@@ -9,14 +9,7 @@ if (!weeklyMovies.data) {
     galleryMovies.innerHTML = '';
 }
 
-try {
-    galleryMovies.innerHTML = await createMarkupMovies(
-      weeklyMovies.data.results
-    );
-
-} catch (error) {
-    console.log(error);    
-}
+galleryMovies.innerHTML = await createMarkupMovies(weeklyMovies.data.results);
 
 async function createMarkupMovies(arr) {
     const moviesMarkupPromises = arr.map(async ({
@@ -56,4 +49,3 @@ async function getGenresNames(arr) {
     }
     return genres;
 }
-
