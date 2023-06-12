@@ -27,6 +27,7 @@
 
 .gallery-movies-item {
     position: relative;
+    background-color: black;
 }
 
 .gallery-movies-overlay {
@@ -91,6 +92,7 @@
     }
 
     .gallery-movies-description {
+        width: 200px;
         bottom: 12px;
         left: 12px;
     }
