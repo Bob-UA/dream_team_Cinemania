@@ -59,6 +59,7 @@ async function displayFilmInformation(film) {
       <div class="film-details">
         <h2 class="upcoming-film-title">${film.title}</h2>
         <ul class="upcoming-movie-list">
+        <ul class="left-movie-list">
           <li class="info-movie-item">
             <p class="card-subtitle">Release date</p>
             <p class="date">${formatDate(film.release_date)}</p>
@@ -71,6 +72,8 @@ async function displayFilmInformation(film) {
               <p class="rating">${vote_count}</p>
             </div>
           </li>
+          </ul>
+          <ul class="right-movie-list">
           <li class="info-movie-item">
             <p class="card-subtitle">Popularity</p>
             <p class="info-data-item">${formatPopularity(popularity)}</p>
@@ -79,6 +82,7 @@ async function displayFilmInformation(film) {
             <p class="card-subtitle">Genre</p>
             <p class="info-data-item">${genres}</p>
           </li>
+        </ul>
         </ul>
         <p class="about-subtitle">About</p>
         <p class="item-description">${overview}</p>

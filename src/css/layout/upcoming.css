@@ -24,23 +24,17 @@
   text-transform: uppercase;
 }
 
-.info-movie-list {
-  display: flex;
-  flex-direction: column;
+.upcoming-movie-list {
   margin-bottom: 20px;
 }
 
 .info-movie-item {
   display: flex;
-  flex-direction: row;
   margin-bottom: 12px;
 }
 
 .card-subtitle {
   width: 154px;
-}
-
-.card-subtitle {
   font-size: 16px;
   line-height: 1.1;
   color: #b7b7b7;
@@ -64,8 +58,8 @@
   width: 108px;
   display: flex;
   flex-direction: row;
-  font-size: 12px;
-  line-height: 1.17;
+  font-size: 14px;
+  line-height: 1.1;
   color: #111111;
 }
 .rating {
@@ -85,14 +79,14 @@
   color: #b7b7b7;
 }
 .info-data-item {
-  width: 108px;
-  font-size: 14px;
-  line-height: 1.14;
+  font-size: 16px;
+  line-height: 1.1;
   color: #ffffff;
+  width: 110px;
 }
 .about-subtitle {
   width: 124px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   text-transform: uppercase;
 }
 .item-description {
@@ -105,26 +99,6 @@
 
 .item-description::-webkit-scrollbar {
   display: none;
-}
-
-.upcoming-movie-list {
-  margin-bottom: 20px;
-}
-
-.btn {
-  position: relative;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 74px;
-  background: linear-gradient(141.22deg, #ffc226 9.4%, #f84119 91.91%);
-  transition: all var(--animation-duration) ease-in-out;
-  margin-bottom: 40px;
-}
-
-.btn:hover,
-.btn:focus {
-  color: #fff;
-  background-color: #000;
 }
 
 @media screen and (min-width: 768px) {
