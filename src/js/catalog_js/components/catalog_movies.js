@@ -1,18 +1,37 @@
-import { getMoviesTrending } from '../../api/ApiService';
-import { getMoviesGenres } from '../../api/ApiService';
+import { getMoviesTrending, getMoviesGenres, getMoviesBySearch } from '../../api/ApiService';
 import { markup } from './movies_cards';
 
-// Блок Перелік фільмів
+const formSearch = document.querySelector('.search-movie');
 const galleryMovies = document.querySelector('.gallery-movies');
 const containerResults = document.querySelector('.no-results');
 const weeklyMovies = await getMoviesTrending();
 
-if (!weeklyMovies.data) {
-  galleryMovies.innerHTML = '';
-  containerResults.hidden = false;
-}  
-
 galleryMovies.innerHTML = await createMarkupMovies(weeklyMovies.data.results);
+
+formSearch.addEventListener('submit', onSearchSubmit);
+
+async function onSearchSubmit(evt) {
+    evt.preventDefault();
+    galleryMovies.innerHTML = '';
+    const { search } = evt.currentTarget.elements;
+    const query = search.value.trim();
+    
+    if (query == '' || !query) {
+      containerResults.hidden = false;
+      formSearch.reset();
+      return;
+    }
+
+    const dataMovies = await getMoviesBySearch(query);
+    if(dataMovies.data.results.length == 0) {
+      containerResults.hidden = false;
+      formSearch.reset();
+      return;
+    }
+
+    galleryMovies.innerHTML = await createMarkupMovies(dataMovies.data.results);
+    formSearch.reset();
+}
 
 async function createMarkupMovies(arr) {
   const moviesMarkupPromises = arr.map(
@@ -37,6 +56,9 @@ async function getGenresNames(arr) {
       }
     }
   }
+  
   return genres;
 }
+
+
 
