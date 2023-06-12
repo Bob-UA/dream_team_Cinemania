@@ -11,6 +11,7 @@
   width: 280px;
   height: 402px;
   border-radius: 5px;
+  object-fit: cover;
 }
 
 .upcoming-film-title {
@@ -32,11 +33,11 @@
 .info-movie-item {
   display: flex;
   flex-direction: row;
-  gap: 12px;
+  margin-bottom: 12px;
 }
 
 .card-subtitle {
-  width: 124px;
+  width: 154px;
 }
 
 .card-subtitle {
@@ -46,9 +47,10 @@
 }
 
 .about-subtitle {
-  font-size: 14px;
-  line-height: 1.16;
+  font-size: 16px;
+  line-height: 1.1;
   color: #b7b7b7;
+  margin-bottom: 16px;
 }
 
 .date {
@@ -94,13 +96,10 @@
   text-transform: uppercase;
 }
 .item-description {
-  max-height: 159px;
-  max-width: 331px;
-  margin-bottom: 16px;
-  overflow: auto;
+  margin-bottom: 20px;
   font-weight: 400;
-  font-size: 12px;
-  line-height: 1.67;
+  font-size: 14px;
+  line-height: 1.4;
   color: #f8f8f8;
 }
 
@@ -108,110 +107,75 @@
   display: none;
 }
 
-@media screen and (min-width: 767px) {
-  .modal-movie-info {
-    max-width: 280px;
-  }
+.upcoming-movie-list {
+  margin-bottom: 20px;
+}
+
+.btn {
+  position: relative;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 74px;
+  background: linear-gradient(141.22deg, #ffc226 9.4%, #f84119 91.91%);
+  transition: all var(--animation-duration) ease-in-out;
+  margin-bottom: 40px;
+}
+
+.btn:hover,
+.btn:focus {
+  color: #fff;
+  background-color: #000;
 }
 
 @media screen and (min-width: 768px) {
-  .modal-movie-info {
-    max-width: 704px;
-    max-height: 488px;
-    padding: 44px;
-  }
-  .close-pop-up {
-    top: 24px;
-    right: 24px;
-  }
-
-  .modal-movie-info_container {
-    flex-direction: row;
-    gap: 16px;
-  }
-
-  .img-wrap {
-    width: 294px;
-    height: 400px;
-    border-radius: 5px;
-  }
-
-  .card-title {
-    margin-bottom: 24px;
+  .upcoming-title {
+    padding-top: 44px;
     font-size: 24px;
-    line-height: 1.17;
   }
 
-  .card-subtitle {
-    color: #b7b7b7;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1.1;
+  .upcoming-img {
+    width: 704px;
+    height: 400px;
+    margin-bottom: 32px;
+  }
+  .upcoming-film-title {
+    margin-bottom: 24px;
+    font-size: 28px;
   }
 
-  .about-subtitle {
-    margin-bottom: 16px;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1.1;
-    text-transform: uppercase;
-    color: #b7b7b7;
+  .upcoming-movie-list {
+    display: flex;
+    gap: 118px;
   }
 
-  .item-description {
-    font-size: 14px;
-    line-height: 1.4;
-    color: #f8f8f8;
+  .btn {
+    margin-bottom: 77px;
   }
 }
 
 @media screen and (min-width: 1279px) {
-  .modal-movie-info {
-    max-width: 846px;
-    max-height: 598px;
-    padding: 60px;
-  }
-
-  .modal-movie-info_container {
-    gap: 20px;
-  }
-
-  .img-wrap {
-    width: 375px;
-    height: 478px;
-    border-radius: 5px;
-  }
-
-  .card-title {
+  .upcoming-film-title {
+    margin-top: 0;
     margin-bottom: 28px;
-    line-height: 1.33;
   }
 
-  .card-subtitle,
-  .about-subtitle {
-    font-size: 16px;
-    line-height: 1.19;
+  .upcoming-img {
+    width: 805px;
+    height: 458px;
+    margin-bottom: 0;
   }
 
-  .rating-wraper {
-    font-size: 14px;
-    line-height: 1.14;
+  .film-card {
+    display: flex;
+    gap: 16px;
   }
 
-  .slesh {
-    line-height: 1.19;
-  }
-
-  .info-data-item {
-    width: 160px;
-    font-size: 16px;
-    line-height: 1.19;
+  .upcoming-movie-list {
+    display: block;
   }
 
   .item-description {
-    margin-bottom: 24px;
-    max-width: 331px;
-    max-height: 159px;
-    line-height: 1.43;
+    width: 390px;
+    height: 160px;
   }
 }

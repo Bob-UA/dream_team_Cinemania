@@ -3,7 +3,6 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 const UPCOMING_END_POINT = 'movie/upcoming';
 const GENRES_END_POINT = 'genre/movie/list';
 
-// Отримати рандомний фільм з API
 async function getRandomFilm() {
   const upcomingURL = `${BASE_URL}${UPCOMING_END_POINT}?api_key=${API_KEY}`;
   const response = await fetch(upcomingURL);
@@ -19,13 +18,25 @@ async function getRandomFilm() {
   displayFilmInformation(film);
 }
 
-// Показати повідомлення, якщо фільми не знайдено
 function showNoFilmsMessage() {
   const moviesContainer = document.getElementById('movies-container');
   moviesContainer.innerHTML = '<p>На жаль, фільми не знайдено.</p>';
 }
 
-// Відобразити інформацію про фільм
+function toggleLibraryStatus(filmId, libraryButton) {
+  const myLibrary = JSON.parse(localStorage.getItem('myLibrary')) || {};
+
+  if (myLibrary[filmId]) {
+    delete myLibrary[filmId];
+    libraryButton.textContent = 'Add to my library';
+  } else {
+    myLibrary[filmId] = true;
+    libraryButton.textContent = 'Remove from my library';
+  }
+
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
+
 async function displayFilmInformation(film) {
   const genresURL = `${BASE_URL}${GENRES_END_POINT}?api_key=${API_KEY}`;
   const genresResponse = await fetch(genresURL);
@@ -42,21 +53,27 @@ async function displayFilmInformation(film) {
   const moviesContainer = document.getElementById('movies-container');
   moviesContainer.innerHTML = `
     <div class="film-card">
-      <img class="upcoming-img" src="https://image.tmdb.org/t/p/original/${film.backdrop_path}" alt="${film.title}" />
+      <img class="upcoming-img" src="https://image.tmdb.org/t/p/original/${
+        film.backdrop_path
+      }" alt="${film.title}" />
       <div class="film-details">
         <h2 class="upcoming-film-title">${film.title}</h2>
         <ul class="upcoming-movie-list">
           <li class="info-movie-item">
             <p class="card-subtitle">Release date</p>
-            <p class="date">${film.release_date}</p>
+            <p class="date">${formatDate(film.release_date)}</p>
           </li>
           <li class="info-movie-item">
             <p class="card-subtitle">Vote / Votes</p>
-            <p class="info-data-item">${vote_average} / ${vote_count}</p>
+            <div class="rating-wraper">
+              <p class="rating">${vote_average}</p>
+              <p class="slesh">/</p>
+              <p class="rating">${vote_count}</p>
+            </div>
           </li>
           <li class="info-movie-item">
             <p class="card-subtitle">Popularity</p>
-            <p class="info-data-item">${popularity}</p>
+            <p class="info-data-item">${formatPopularity(popularity)}</p>
           </li>
           <li class="info-movie-item">
             <p class="card-subtitle">Genre</p>
@@ -65,31 +82,22 @@ async function displayFilmInformation(film) {
         </ul>
         <p class="about-subtitle">About</p>
         <p class="item-description">${overview}</p>
-
-        <button onclick="toggleLibraryStatus(${film.id}, this)" class="my-library-btn" type="button">Add to my library</button>
+        <button id="libraryButton" data-film-id="${
+          film.id
+        }" class="btn my-library-btn" type="button">Add to my library</button>
       </div>
     </div>
   `;
   updateLibraryButton(film.id);
+  document.getElementById('libraryButton').onclick = function () {
+    toggleLibraryStatus(film.id, this);
+  };
 }
 
-// Змінити статус фільму в My library
-function toggleLibraryStatus(filmId, libraryButton) {
-  const myLibrary = JSON.parse(localStorage.getItem('myLibrary')) || {};
-  if (myLibrary[filmId]) {
-    delete myLibrary[filmId];
-    libraryButton.textContent = 'Add to my library';
-  } else {
-    myLibrary[filmId] = true;
-    libraryButton.textContent = 'Remove from my library';
-  }
-  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-}
-
-// Оновити статус кнопки в My library
 function updateLibraryButton(filmId) {
   const myLibrary = JSON.parse(localStorage.getItem('myLibrary')) || {};
-  const libraryButton = document.querySelector('.my-library-btn');
+  const libraryButton = document.getElementById('libraryButton');
+
   if (myLibrary[filmId]) {
     libraryButton.textContent = 'Remove from my library';
   } else {
@@ -97,5 +105,16 @@ function updateLibraryButton(filmId) {
   }
 }
 
-// Викликати функцію для отримання рандомного фільму
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}.${month}.${year}`;
+}
+
+function formatPopularity(popularity) {
+  return Number(popularity).toFixed(1);
+}
+
 getRandomFilm();
