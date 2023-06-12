@@ -12,7 +12,6 @@
     #111111 33.93%,
     rgba(17, 17, 17, 0) 78.91%
   );
-  border: 1px solid #111111;
   width: 320px;
   height: 380px;
   right: 0px;
@@ -25,6 +24,7 @@
   right: 0;
   width: 320px;
   height: 380px;
+  border: 1px solid #111111;
   object-fit: cover;
   object-position: 18%;
   z-index: -1;
