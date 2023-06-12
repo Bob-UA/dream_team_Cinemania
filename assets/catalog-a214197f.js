@@ -1,4 +1,4 @@
-import"./my_library-e3d26169.js";import{g as u,a as v}from"./catalog_hero-eb3644cc.js";function d(t,e,i,a,s){return`<li class="gallery-movies-item" data-id="${i}">
+import"./my_library-e3d26169.js";import{g as u,a as v}from"./catalog_hero-e1d24f9f.js";function d(t,e,i,a,s){return`<li class="gallery-movies-item" data-id="${i}">
         <img class="gallery-movies-img" src="https://image.tmdb.org/t/p/original/${t}" alt="${e}" loading="lazy">
         <div class="gallery-movies-overlay"></div>
             <div class="gallery-movies-description">
