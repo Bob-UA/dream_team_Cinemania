@@ -1,6 +1,6 @@
 import { getMoviesTrending } from '../../api/ApiService';
 import { getMoviesGenres } from '../../api/ApiService';
-import { murkup } from './movies_cards';
+import { markup } from './movies_cards';
 
 // Блок Перелік фільмів
 const galleryMovies = document.querySelector('.gallery-movies');
@@ -17,7 +17,7 @@ async function createMarkupMovies(arr) {
     async ({ poster_path, title, genre_ids, id, release_date }) => {
       const year = release_date.substr(0, 4);
       const genres = await getGenresNames(genre_ids);
-      return murkup(poster_path, title, id, genres, year);
+      return markup(poster_path, title, id, genres, year);
     }
   );
 
