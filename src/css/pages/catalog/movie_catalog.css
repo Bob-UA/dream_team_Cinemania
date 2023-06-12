@@ -25,13 +25,13 @@
 }
 
 .gallery-movies-description {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-    }
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
 
 .gallery-movies-title {
-    color: var(--primary-text-color);
+    color: #FFFFFF;
     text-transform: uppercase;
     font-style: normal;
     font-weight: var(--font-weight-medium);
@@ -49,14 +49,14 @@
     line-height: 1.67;
 }
 
-    .gallery-movies {
-        row-gap: 16px;
-    }
+.gallery-movies {
+    row-gap: 16px;
+}
 
-    .gallery-movies-item {
-        width: 280px;
-        height: 420px;
-    }
+.gallery-movies-item {
+    width: 280px;
+    height: 420px;
+}
 
 
 @media screen and (min-width:768px) {
