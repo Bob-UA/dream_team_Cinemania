@@ -29,6 +29,7 @@ async function onSearchSubmit(evt) {
       return;
     }
 
+    containerResults.hidden = true;
     galleryMovies.innerHTML = await createMarkupMovies(dataMovies.data.results);
     formSearch.reset();
 }
@@ -56,7 +57,7 @@ async function getGenresNames(arr) {
       }
     }
   }
-  
+
   return genres;
 }
 
