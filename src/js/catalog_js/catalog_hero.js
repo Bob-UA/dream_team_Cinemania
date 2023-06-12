@@ -6,13 +6,13 @@ const IMG_URL = 'https://image.tmdb.org/t/p/original/';
 const API_KEY = '9d709850c7590845ffb60644b29d6f51';
 const ENDPOINT = '/trending/movie/day';
 const textContainer = document.querySelector('.hero-container')
-const heroSection = document.querySelector('.hero')
 
 function getRandom(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
 showRandomMovie()
 
 async function fetchMovies() {
@@ -35,12 +35,6 @@ async function showRandomMovie() {
         const index = getRandom(0, results.length - 1);
         if (results[index]) {
             textContainer.innerHTML = createHeroMarkup(results[index]);
-            heroSection.style.backgroundImage = `linear-gradient(
-        86.77deg,
-        #111111 20%,
-        rgba(17, 17, 17, 0) 60%
-      ),
-      url(${IMG_URL}${results[index].backdrop_path})`
         }
         else {
             textContainer.innerHTML = createDefaultHeroMarkup();
@@ -54,8 +48,8 @@ async function showRandomMovie() {
 }
 
 
-const createHeroMarkup = ({ title, vote_average, overview }) => {
-    return ` <div class="hero-text-container">
+const createHeroMarkup = ({backdrop_path, title, vote_average, overview }) => {
+    return ` <div class="hero-content"><div class="hero-text-container">
     <h1 class="title hero-title">${title}</h1>
     <p class="hero-stars">${vote_average}</p>
       <p class="text hero-text">
@@ -69,7 +63,9 @@ const createHeroMarkup = ({ title, vote_average, overview }) => {
          <li>
           <a href=""><button class="btn-details">More details</button></a>
         </li>
-      </ul>`;
+      </ul></div>
+      <div class="img-container"><img class="hero-img" src="${IMG_URL}${backdrop_path}" alt="${title}"></div>
+      `;
 };
 
 const createDefaultHeroMarkup = () => {
