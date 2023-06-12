@@ -38,8 +38,6 @@ function onCloseModalWithESC(e) {
 // function open modal windows and draw markup
 async function addModal(e) {
   const isVideosIMG = e.target.classList.contains('js-modal-info');
-
-  console.log(isVideosIMG);
   if (!isVideosIMG) {
     return;
   }
@@ -75,13 +73,9 @@ async function addModal(e) {
       const storageData = JSON.stringify(dataFromStorage);
       storageDataSTR = convertArrObjectToStr(storageData);
     }
-
-    console.log(storageDataSTR);
-    console.log('dataFromStorage', dataFromStorage);
     const movieStr = JSON.stringify(movie);
 
     const addMovie = updateLocalStorageData(movieStr, storageDataSTR);
-    console.log('addMovie', addMovie);
     btnRefs.addBtn.classList.toggle('hide');
     btnRefs.removeBtm.classList.toggle('hide');
     saveMovieInStorage(STORAGE_KEY, addMovie);
@@ -136,7 +130,7 @@ function updateLocalStorageData(newData, oldData) {
   if (oldData) {
     return JSON.parse(`[${oldData}, ${newData}]`);
   }
-  return JSON.parse(`[{${newData}}]`);
+  return JSON.parse(`[${newData}]`);
 }
 
 // remove modal window

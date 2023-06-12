@@ -1,8 +1,6 @@
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 
 export async function createMovieInfoPopUpMarkup(movie) {
-  console.log(movie);
-
   const {
     poster_path,
     title,
