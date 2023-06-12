@@ -12,6 +12,7 @@
     #111111 33.93%,
     rgba(17, 17, 17, 0) 78.91%
   );
+  border: 1px solid #111111;
   width: 320px;
   height: 380px;
   right: 0px;
@@ -204,7 +205,6 @@
     width: 802px;
     height: 720px;
     object-position: 33%;
-    border: 1px solid #111111;
   }
 
   .hero-title {
