@@ -1,4 +1,4 @@
-import"./switcher-d521ed33.js";import{g as v,a as u}from"./catalog_hero-eb3644cc.js";function d(s,e,t,i,a){return`<li class="gallery-movies-item">
+import"./my_library-ab8d4378.js";import{g as v,a as u}from"./catalog_hero-eb3644cc.js";function d(s,e,t,i,a){return`<li class="gallery-movies-item">
         <a href="https://image.tmdb.org/t/p/original/${s}">
         <img class="gallery-movies-img" src="https://image.tmdb.org/t/p/original/${s}" alt="${e}" data-id="${t}" loading="lazy">
         <div class="gallery-movies-overlay"></div>
