@@ -258,6 +258,18 @@
     margin-bottom: 24px;
     font-size: 24px;
     line-height: 1.17;
+    max-height: 30px;
+    overflow-y: auto;
+  }
+
+  .modal-info-data-item.genres {
+    max-height: 16px;
+    overflow-y: auto;
+  }
+
+  .modal-card-title::-webkit-scrollbar,
+  .modal-info-data-item.genres::-webkit-scrollbar {
+    display: none;
   }
 
   .modal-card-subtitle,
@@ -300,6 +312,14 @@
   .modal-card-title {
     margin-bottom: 28px;
     line-height: 1.33;
+    max-height: 70px;
+    height: auto;
+    overflow-y: none;
+  }
+
+  .modal-info-data-item.genres {
+    max-height: 60px;
+    overflow-y: none;
   }
 
   .modal-card-subtitle,
