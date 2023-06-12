@@ -122,12 +122,12 @@
     gap: 118px;
   }
 
-  .btn {
+  .my-library-btn {
     margin-bottom: 77px;
   }
 }
 
-@media screen and (min-width: 1279px) {
+@media screen and (min-width: 1280px) {
   .upcoming-film-title {
     margin-top: 0;
     margin-bottom: 28px;
@@ -138,6 +138,7 @@
     height: 458px;
     margin-bottom: 0;
   }
+
 
   .film-card {
     display: flex;
@@ -150,6 +151,13 @@
 
   .item-description {
     width: 390px;
-    height: 160px;
+  }
+.film-details{
+  position: relative;
+}
+  .film-details .my-library-btn{
+    bottom: 0;
+    position: absolute;
+    margin-bottom: 0;
   }
 }

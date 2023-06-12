@@ -81,12 +81,12 @@ async function displayFilmInformation(film) {
           </li>
           <li class="info-movie-item">
             <p class="card-subtitle">Genre</p>
-            <p class="info-data-item">${genres}</p>
+            <p class="info-data-item">${cutStringLength(genres)}</p>
           </li>
         </ul>
         </ul>
         <p class="about-subtitle">About</p>
-        <p class="item-description">${overview}</p>
+        <p class="item-description">${cutStrOverview(overview)}</p>
         <button id="libraryButton" data-film-id="${
           film.id
         }" class="btn my-library-btn" type="button">Add to my library</button>
@@ -120,6 +120,20 @@ function formatDate(dateString) {
 
 function formatPopularity(popularity) {
   return Number(popularity).toFixed(1);
+}
+
+function cutStringLength(str) {
+  if (str.length > 22) {
+    return str.substring(0, 22)+"..."
+  };
+  return str
+}
+
+function cutStrOverview(str) {
+  if (str.length > 420) {
+    return str.substring(0, 420) + '...';
+  }
+  return str
 }
 
 getRandomFilm();
