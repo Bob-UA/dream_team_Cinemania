@@ -1,3 +1,18 @@
+.no-results {
+    text-align: center;
+}
+
+.text-no-results {
+    font-weight: var(--font-weight-std);
+    font-size: 20px;
+    line-height: 1.4;
+    color: var(--primary-text-color);
+}
+
+.text-no-results:not(:last-child) {
+    margin-bottom: 4px;
+}
+
 .gallery-movies {
     display: flex;
     flex-wrap: wrap;
@@ -60,6 +75,11 @@
 
 
 @media screen and (min-width:768px) {
+    .text-no-results {
+        font-size: 24px;
+        line-height: 1.33;
+    }    
+
     .gallery-movies {
         row-gap: 28px;
         column-gap: 16px;
@@ -83,6 +103,11 @@
 
 /* Desktop style */
 @media screen and (min-width:1280px) {
+    .text-no-results {
+        font-size: 32px;
+        line-height: 1.12;
+    }  
+
     .gallery-movies {
         row-gap: 32px;
         column-gap: 15px;
