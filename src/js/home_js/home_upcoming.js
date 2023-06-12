@@ -20,7 +20,8 @@ async function getRandomFilm() {
 
 function showNoFilmsMessage() {
   const moviesContainer = document.getElementById('movies-container');
-  moviesContainer.innerHTML = '<p>На жаль, фільми не знайдено.</p>';
+  moviesContainer.innerHTML =
+    '<p>OOPS... We are very sorry!But we couldn’t find the film.</p>';
 }
 
 function toggleLibraryStatus(filmId, libraryButton) {
