@@ -1,0 +1,155 @@
+.upcoming-title {
+  color: var(--primary-text-color);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.1;
+  padding-top: 32px;
+  padding-bottom: 24px;
+}
+
+.upcoming-img {
+  width: 280px;
+  height: 402px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.upcoming-film-title {
+  color: var(--primary-text-color);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.1;
+  margin-top: 24px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.upcoming-movie-list {
+  margin-bottom: 20px;
+}
+
+.info-movie-item {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.card-subtitle {
+  width: 154px;
+  font-size: 16px;
+  line-height: 1.1;
+  color: #b7b7b7;
+}
+
+.about-subtitle {
+  font-size: 16px;
+  line-height: 1.1;
+  color: #b7b7b7;
+  margin-bottom: 16px;
+}
+
+.date {
+  color: #f87719;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+.rating-wraper {
+  width: 108px;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  line-height: 1.1;
+  color: #111111;
+}
+.rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 33px;
+  padding: 1px 4px;
+  margin-right: 4px;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+.slesh {
+  margin-right: 4px;
+  font-size: 16px;
+  line-height: 1;
+  color: #b7b7b7;
+}
+.info-data-item {
+  font-size: 16px;
+  line-height: 1.1;
+  color: #ffffff;
+  width: 110px;
+}
+.about-subtitle {
+  width: 124px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.item-description {
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #f8f8f8;
+}
+
+.item-description::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .upcoming-title {
+    padding-top: 44px;
+    font-size: 24px;
+  }
+
+  .upcoming-img {
+    width: 704px;
+    height: 400px;
+    margin-bottom: 32px;
+  }
+  .upcoming-film-title {
+    margin-bottom: 24px;
+    font-size: 28px;
+  }
+
+  .upcoming-movie-list {
+    display: flex;
+    gap: 118px;
+  }
+
+  .btn {
+    margin-bottom: 77px;
+  }
+}
+
+@media screen and (min-width: 1279px) {
+  .upcoming-film-title {
+    margin-top: 0;
+    margin-bottom: 28px;
+  }
+
+  .upcoming-img {
+    width: 805px;
+    height: 458px;
+    margin-bottom: 0;
+  }
+
+  .film-card {
+    display: flex;
+    gap: 16px;
+  }
+
+  .upcoming-movie-list {
+    display: block;
+  }
+
+  .item-description {
+    width: 390px;
+    height: 160px;
+  }
+}
