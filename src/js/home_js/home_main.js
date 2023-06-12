@@ -1,7 +1,13 @@
-
-import { getMoviesBySearch, getMoviesDetails, getMoviesGenres, getMoviesTrending, getMoviesUpcoming, getMoviesVideos } from "../api/ApiService";
-
-
+import '../catalog_js/components/catalog_hero';
+import '../switcher_js/switcher';
+import {
+  getMoviesBySearch,
+  getMoviesDetails,
+  getMoviesGenres,
+  getMoviesTrending,
+  getMoviesUpcoming,
+  getMoviesVideos,
+} from '../api/ApiService';
 
 // const {data} = await getMoviesTrending('day', 4);
 // const {data} = await getMoviesUpcoming(5);
@@ -10,7 +16,4 @@ import { getMoviesBySearch, getMoviesDetails, getMoviesGenres, getMoviesTrending
 // const { data } = await getMoviesVideos(2023);
 // const data = await getMoviesGenres();
 
-
 // console.log(data);
-
-

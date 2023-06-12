@@ -1,0 +1,1 @@
+import '../switcher_js/switcher';
