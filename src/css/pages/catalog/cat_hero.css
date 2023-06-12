@@ -82,7 +82,7 @@
   border: none;
   border-radius: 74px;
   background: linear-gradient(141.22deg, #ffc226 9.4%, #f84119 91.91%);
-  transition: all var(--animation-duration) ease-in-out;
+  transition: all var(--animation-duration) var(--timing-function);
 }
 
 .btn-details {
@@ -91,8 +91,8 @@
   border: 1px solid #ffffff;
   background: transparent;
   color: #ffffff;
-  transition: color var(--animation-duration) ease-in-out,
-    border var(--animation-duration) ease-in-out;
+  transition: color var(--animation-duration) var(--timing-function),
+    border var(--animation-duration) var(--timing-function);
 }
 
 .btn-details:hover,
@@ -111,7 +111,7 @@
   background: var(--primary-background-color);
   border-radius: 74px;
   opacity: 0;
-  transition: all var(--animation-duration) ease-in-out;
+  transition: all var(--animation-duration) var(--timing-function);
 }
 
 .btn:hover,
@@ -179,6 +179,7 @@
   .hero-text-container {
     max-width: 385px;
   }
+
   .hero-text {
     margin-bottom: 36px;
   }

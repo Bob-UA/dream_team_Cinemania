@@ -1,10 +1,7 @@
-import axios from 'axios';
 import { defaultHeroStyles } from '../../utils';
+import { getMoviesTrending } from '../../api/ApiService';
 
-const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original/';
-const API_KEY = '9d709850c7590845ffb60644b29d6f51';
-const ENDPOINT = '/trending/movie/day';
 const textContainer = document.querySelector('.hero-container');
 
 function getRandom(min, max) {
@@ -15,23 +12,10 @@ function getRandom(min, max) {
 
 showRandomMovie();
 
-async function fetchMovies() {
-  try {
-    const response = await axios.get(`${BASE_URL}${ENDPOINT}`, {
-      params: {
-        api_key: `${API_KEY}`,
-        page: 1,
-      },
-    });
-    return response.data.results;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 async function showRandomMovie() {
   try {
-    const results = await fetchMovies();
+    const dayMovies = await getMoviesTrending('day');
+    const results = await dayMovies.data.results;
     const index = getRandom(0, results.length - 1);
     if (results[index]) {
       textContainer.innerHTML = createHeroMarkup(results[index]);

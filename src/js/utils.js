@@ -1,8 +1,10 @@
 export const defaultHeroStyles = `
   .hero-text{
     max-height: 80px;
+    max-width: 160px;
      -webkit-line-clamp: unset;
 }
+
   .hero {
     background-image: linear-gradient(
         86.77deg, #111111 30.38%, rgba(17, 17, 17, 0) 65.61%
@@ -26,8 +28,13 @@ export const defaultHeroStyles = `
 @media screen and (min-width: 768px) {
   .hero-text{
     max-height: 64px;
-    max-width: 357px
+    max-width: 357px;
 }
+
+.hero-text-container{
+max-width: 357px;
+}
+
   .hero {
     background-image: linear-gradient(
         81.57deg, #111111 12.76%, rgba(17, 17, 17, 0) 72.65%
@@ -51,7 +58,12 @@ export const defaultHeroStyles = `
 @media screen and (min-width: 1280px) {
   .hero-text{
     max-height: 76px;
+    max-width: 455px;
 }
+
+.hero-text-container {
+    max-width: 464px;
+  }
 
   .hero {
     background-image: linear-gradient(
