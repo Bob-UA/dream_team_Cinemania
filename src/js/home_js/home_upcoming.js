@@ -123,8 +123,8 @@ function formatPopularity(popularity) {
 }
 
 function cutStringLength(str) {
-  if (str.length > 22) {
-    return str.substring(0, 22)+"..."
+  if (str.length > 30) {
+    return str.substring(0, 30)+"..."
   };
   return str
 }
