@@ -1,5 +1,6 @@
 import { getMoviesTrending } from '../../api/ApiService';
 import { getMoviesGenres } from '../../api/ApiService';
+import { murkup } from './movies_cards';
 
 // Блок Перелік фільмів
 const galleryMovies = document.querySelector('.gallery-movies');
@@ -16,18 +17,7 @@ async function createMarkupMovies(arr) {
     async ({ poster_path, title, genre_ids, id, release_date }) => {
       const year = release_date.substr(0, 4);
       const genres = await getGenresNames(genre_ids);
-      return `<li class="gallery-movies-item">
-        <a href="https://image.tmdb.org/t/p/original/${poster_path}">
-        <img class="gallery-movies-img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" data-id="${id}" loading="lazy">
-        <div class="gallery-movies-overlay"></div>
-            <div class="gallery-movies-description">
-                <h3 class="gallery-movies-title">${title}</h3>
-                <p class="gallery-movies-details">${genres.join(
-                  ', '
-                )} | ${year}</p>
-            </div>
-        </a>
-        </li>`;
+      return murkup(poster_path, title, id, genres, year);
     }
   );
 
