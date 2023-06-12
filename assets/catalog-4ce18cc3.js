@@ -1,4 +1,4 @@
-import"./my_library-33b9fdca.js";import{g as k,a as I,b as w,c as $}from"./catalog_hero-4a6e4021.js";function C(t){return t.length>20?t.substring(0,20)+"...":t}function B(t,e,o,n,a){if(!t)return;let c="";return n.length?c=C(n.slice(0,2).join(", ")):c="There are no genres",`<li class="gallery-movies-item" data-id="${o}">
+import"./my_library-6c19f58e.js";import{g as k,a as I,b as w,c as $}from"./catalog_hero-4a6e4021.js";function C(t){return t.length>20?t.substring(0,20)+"...":t}function B(t,e,o,n,a){if(!t)return;let c="";return n.length?c=C(n.slice(0,2).join(", ")):c="There are no genres",`<li class="gallery-movies-item" data-id="${o}">
         <img class="gallery-movies-img" src="https://image.tmdb.org/t/p/original/${t}" alt="${e}" loading="lazy">
         <div class="gallery-movies-overlay js-modal-info" data-id="${o}"></div>
             <div class="gallery-movies-description">
@@ -25,7 +25,7 @@ import"./my_library-33b9fdca.js";import{g as k,a as I,b as w,c as $}from"./catal
               </li>
               <li class="modal-info-movie-item">
                 <p class="modal-card-subtitle">Genre</p>
-                <p class="modal-info-data-item">${r}</p>
+                <p class="modal-info-data-item  genres">${r}</p>
               </li>
             </ul>
             <p class="modal-about-subtitle">About</p>
