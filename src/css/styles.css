@@ -13,6 +13,7 @@
 @import url('./layout/upcoming.css');
 @import url('./layout/footer.css');
 @import url('./layout/modal_oops.css');
+@import url('./layout/modal_movie_info.css');
 
 /* pages */
 /* catalog page */
@@ -21,7 +22,6 @@
 @import url('./pages/catalog/cat_search.css');
 @import url('./pages/catalog/movie_catalog.css');
 @import url('./pages/catalog/pagination.css');
-
 
 /* library page */
 @import url('./pages/library/lib_header.css');
