@@ -1,4 +1,5 @@
 import '../catalog_js/components/catalog_hero';
+import '../home_js/home_upcoming';
 import '../switcher_js/switcher';
 import {
   getMoviesBySearch,
