@@ -43,7 +43,7 @@ export async function createMovieInfoPopUpMarkup(movie) {
               </li>
               <li class="modal-info-movie-item">
                 <p class="modal-card-subtitle">Genre</p>
-                <p class="modal-info-data-item">${genreAll}</p>
+                <p class="modal-info-data-item  genres">${genreAll}</p>
               </li>
             </ul>
             <p class="modal-about-subtitle">About</p>
