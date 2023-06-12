@@ -1,5 +1,6 @@
 import { getMoviesTrending } from '../../api/ApiService';
 import { getMoviesGenres } from '../../api/ApiService';
+import { starRatingCalc } from '../../home_js/components';
 import { murkup } from './movies_cards';
 
 // Блок Перелік фільмів
@@ -14,10 +15,10 @@ galleryMovies.innerHTML = await createMarkupMovies(weeklyMovies.data.results);
 
 async function createMarkupMovies(arr) {
   const moviesMarkupPromises = arr.map(
-    async ({ poster_path, title, genre_ids, id, release_date }) => {
+    async ({ poster_path, title, genre_ids, id, release_date, vote_average }) => {
       const year = release_date.substr(0, 4);
       const genres = await getGenresNames(genre_ids);
-      return murkup(poster_path, title, id, genres, year);
+      return murkup(poster_path, title, id, genres, year, vote_average);
     }
   );
 
