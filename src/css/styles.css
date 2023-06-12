@@ -13,6 +13,7 @@
 @import url('./layout/upcoming.css');
 @import url('./layout/footer.css');
 @import url('./layout/modal_oops.css');
+@import url('./layout/team-modal.css');
 
 /* pages */
 /* catalog page */
@@ -21,9 +22,11 @@
 @import url('./pages/catalog/cat_search.css');
 @import url('./pages/catalog/movie_catalog.css');
 @import url('./pages/catalog/pagination.css');
+@import url('./pages/catalog/cat_team-modal.css');
 
 
 /* library page */
 @import url('./pages/library/lib_header.css');
 @import url('./pages/library/lib_hero.css');
 @import url('./pages/library/my_movies.css');
+@import url('./pages/library/lib_team-modal.css');
