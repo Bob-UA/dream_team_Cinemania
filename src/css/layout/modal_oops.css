@@ -1,0 +1,117 @@
+.close-oops {
+  display: block;
+  width: 7px;
+  height: 7px;
+  fill: var(--secondary-background-color);
+  transition-property: fill;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
+}
+.backdrop-oops {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.backdrop-oops.is-hidden {
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-oops {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  width: 75%;
+  max-height: 289px;
+  overflow-y: scroll;
+  background-color: var(--primary-background-color);
+  box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
+  border-radius: 16px;
+  padding-left: 33px;
+  padding-right: 33pv;
+  padding-top: 39px;
+  padding-bottom: 8px;
+}
+
+.close-modal-oops {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background-color: var(--color-text-footer);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  color: var(--color-white);
+  transition-property: background-color, border;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
+}
+.camera {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 159px;
+  height: 153px;
+}
+
+.text-modal-oops {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.17;
+}
+
+@media screen and (min-width: 768px) {
+  .camera {
+    position: absolute;
+    right: 10px;
+    top: 124px;
+    width: 296px;
+    height: 260px;
+  }
+
+  .modal-oops {
+    width: 609px;
+    height: 400px;
+    border-radius: 16px;
+    padding-left: 44px;
+    padding-right: 10pv;
+    padding-top: 124px;
+    padding-bottom: 16px;
+  }
+  .text-modal-oops {
+    font-size: 24px;
+  }
+  .close-oops {
+    width: 10.5px;
+    height: 10.5px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .camera {
+    width: 337px;
+    height: 363px;
+    right: 1px;
+    top: 77px;
+  }
+
+  .modal-oops {
+    width: 700px;
+    border-radius: 20px;
+    padding-left: 50px;
+    padding-right: 0pv;
+    padding-top: 77px;
+    padding-bottom: 5px;
+  }
+}
