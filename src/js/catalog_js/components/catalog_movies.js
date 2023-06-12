@@ -4,11 +4,13 @@ import { markup } from './movies_cards';
 
 // Блок Перелік фільмів
 const galleryMovies = document.querySelector('.gallery-movies');
+const containerResults = document.querySelector('.no-results');
 const weeklyMovies = await getMoviesTrending();
 
 if (!weeklyMovies.data) {
   galleryMovies.innerHTML = '';
-}
+  containerResults.hidden = false;
+}  
 
 galleryMovies.innerHTML = await createMarkupMovies(weeklyMovies.data.results);
 
@@ -37,3 +39,4 @@ async function getGenresNames(arr) {
   }
   return genres;
 }
+
