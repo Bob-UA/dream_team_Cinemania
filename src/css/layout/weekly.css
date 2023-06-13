@@ -1,3 +1,11 @@
+:root {
+    --primary-background-color: #111111;
+    --font-size-weekly-title: 16px;
+    --line-height-weekly-title: 1.18;
+}
+
+
+
 .section-weekly {
     
 }
@@ -12,7 +20,6 @@
 
 .weekly-list {
     position: relative;
-    
 }
 
 .weekly-head {
@@ -23,9 +30,9 @@
 
 .weekly-title {
     font-weight: var(--font-weight-medium);
-    font-size: 16px;
-    line-height: 1.18;
-    color: #FFFFFF;
+    font-size: var(--font-size-weekly-title);
+    line-height: var(--line-height-weekly-title);
+    color: var(--primary-text-color);
 }
 
 .weekly-see-all {
@@ -60,7 +67,7 @@
 .weekly-list-title {
     font-size: 12px;
     line-height: 1.66;
-    color: #FFFFFF;
+    color: var(--primary-text-color);
 }
 
 .weekly-list-overlay-desc {
@@ -72,12 +79,6 @@
     font-size: 12px;
     line-height: 1.66;
     color: #B7B7B7;
-}
-
-.weekly-list-raiting {
-    font-size: 12px;
-    line-height: 1.66;
-    color: #F84119;
 }
 
 @media (min-width: 768px) {
