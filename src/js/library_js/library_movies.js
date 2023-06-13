@@ -87,6 +87,6 @@ if (savedMovies && savedMovies.length > 0) {
   // Вставка повідомлення про відсутність фільмів
   libraryElement.innerHTML = `
     <p>OOPS... We are very sorry! You don’t have any movies at your library.</p>
-    <button onclick="location.href='search.html'">Search movie</button>
+    <button class="btn" onclick="location.href='../../index.html'">Search movie</button>
   `;
 }
