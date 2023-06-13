@@ -1,5 +1,6 @@
 /* -----------MOBILE------------ */
 .hero {
+  padding-top: 0;
   margin: 0 auto;
   height: 380px;
   max-width: 320px;
