@@ -1,34 +1,77 @@
 .star-rating-hero {
-    margin-bottom: 30px;
-    width: 136px;
-    height: 24px;
+    margin-bottom: 21px;
+    height: 16px;
 }
 .star-rating-card {
-    width: 106px;
-    height: 18px;
+    
+    height: 14px;
     float: right;
     
     margin-left: 5px;   
-    margin-top: 5px;
-    padding-bottom: 5px;
-    /*margin-top: auto;*/
+    margin-right: 5px;   
+
+    
+    
+    
     
 }
 
-.star-rating-container{
-    /*max-height: 100%;*/
-    
+.gallery-movies-description {
+width: 100%-20px;
 }
 
+/* .star-rating-container{
+   
+    
+}   */
 
 /*----------------------------------------------------------Tablet */
 @media screen and (min-width: 768px) {
-  
+.star-rating-hero {
+    margin-bottom: 21px;
+    height: 20px;
+}
+.star-rating-card {
+    height: 10px;
+    float: right;
+    
+    margin-top: 5px;
+    
+    
+    
+}
+
+/* .star-rating-container{
+    max-height: 100%;
+    
+}   */
 
 }
 
 /*----------------------------------------------------------Desktop */
 @media screen and (min-width: 1280px) {
+
+.star-rating-hero {
+    margin-bottom: 30px;
+    width: 136px;
+    height: 24px;
+}
+.star-rating-card {
+    height: 18px;
+    float: right;
+    
+    margin-left: 5px;   
+    margin-top: 5px;
+    
+    
+    
+}
+
+/* .star-rating-container{
+    max-height: 100%;
+    
+} */
+
 
 
 

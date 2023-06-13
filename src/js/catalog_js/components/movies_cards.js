@@ -21,10 +21,13 @@ export function murkup(poster_path, title, id, genres, year, vote_average) {
                   
                   </p>
 
+
+                  
                   
                   
 
             </div>
+            
         </a>
         </li>`;
 }
