@@ -10,17 +10,18 @@ export function murkup(poster_path, title, id, genres, year, vote_average) {
                 <h3 class="gallery-movies-title">${title}</h3>
                 
     
-                <p class="gallery-movies-details star-rating-container">
+                <div class="gallery-movies-wrap">
+                <p class="gallery-movies-details">
                 
                   
                 ${genres.join(',  ')} | ${year}
 
-                <img src="${starRatingCalc(
-                  vote_average
-                )}" alt="raiting" class="star-rating-card"/>
-                  
-                  </p>
+                </p>
 
+                <img src="${starRatingCalc(vote_average)}" alt="raiting" class="star-rating-card"/>
+                
+                  </div>
+                  
 
                   
                   

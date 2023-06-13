@@ -5,25 +5,17 @@
 .star-rating-card {
     
     height: 14px;
-    float: right;
+    margin-bottom: 6px;
     
-    margin-left: 5px;   
-    margin-right: 5px;   
-
-    
-    
-    
-    
+    /* float: right; */
 }
-
-.gallery-movies-description {
-width: 100%-20px;
+.gallery-movies-wrap {
+    display: flex;
+    gap: 7px;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-right: 13px;
 }
-
-/* .star-rating-container{
-   
-    
-}   */
 
 /*----------------------------------------------------------Tablet */
 @media screen and (min-width: 768px) {
@@ -33,18 +25,8 @@ width: 100%-20px;
 }
 .star-rating-card {
     height: 10px;
-    float: right;
-    
-    margin-top: 5px;
-    
-    
-    
+   
 }
-
-/* .star-rating-container{
-    max-height: 100%;
-    
-}   */
 
 }
 
@@ -53,26 +35,16 @@ width: 100%-20px;
 
 .star-rating-hero {
     margin-bottom: 30px;
-    width: 136px;
     height: 24px;
 }
 .star-rating-card {
     height: 18px;
-    float: right;
+    /* float: right; */
     
-    margin-left: 5px;   
-    margin-top: 5px;
+ 
     
     
     
 }
-
-/* .star-rating-container{
-    max-height: 100%;
-    
-} */
-
-
-
 
 }
