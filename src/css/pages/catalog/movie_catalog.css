@@ -1,3 +1,7 @@
+.catalog-movies {
+    padding-bottom: 0;
+}
+
 .no-results {
     text-align: center;
 }
@@ -19,9 +23,8 @@
 }
 
 .gallery-movies-img {
-    display: block;
-    max-width: 100%;
-    height: auto;
+    width: 280px;
+    height: 420px;
     border-radius: 5px;
 }
 
@@ -95,6 +98,11 @@
         column-gap: 16px;
     }
 
+    .gallery-movies-img {
+        width: 224px;
+        height: 336px;
+    }
+
     .gallery-movies-item {
         width: 224px;
         height: 336px;
@@ -114,6 +122,10 @@
 
 /* Desktop style */
 @media screen and (min-width:1280px) {
+    .catalog-movies {
+        margin-bottom: 60px;
+    }
+
     .text-no-results {
         font-size: 32px;
         line-height: 1.12;
@@ -122,6 +134,11 @@
     .gallery-movies {
         row-gap: 32px;
         column-gap: 15px;
+    }
+
+    .gallery-movies-img {
+        width: 395px;
+        height: 592px;
     }
 
     .gallery-movies-item {
@@ -145,3 +162,4 @@
         margin-bottom: 3px;
     }
 }
+
