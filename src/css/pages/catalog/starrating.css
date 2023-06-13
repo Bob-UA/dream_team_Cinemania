@@ -8,14 +8,23 @@
     margin-bottom: 6px;
     
 }
+/* .gallery-movies-description {
+    width: 100%;
+} */
 .gallery-movies-wrap {
+    
     display: flex;
     gap: 7px;
     align-items: flex-end;
     justify-content: space-between;
-    margin-right: 13px;
+    
 }
 
+.gallery-movies-details{
+    text-align: left;
+}
+
+            
 /*----------------------------------------------------------Tablet */
 @media screen and (min-width: 768px) {
 .star-rating-hero {

@@ -1,6 +1,7 @@
 import { defaultHeroStyles } from '../../utils';
 import { getMoviesTrending } from '../../api/ApiService';
 import { getMoviesVideos } from '../../api/ApiService';
+import { starRatingCalc } from '../../home_js/components';
 
 
 const IMG_URL = 'https://image.tmdb.org/t/p/original/';
@@ -48,7 +49,7 @@ function createMarkUpForTrailer(id){
 const createHeroMarkup = ({ backdrop_path, title, vote_average, overview }) => {
   return ` <div class="hero-content"><div class="hero-text-container">
     <h1 class="title hero-title">${title}</h1>
-    <p class="hero-stars">${vote_average}</p>
+    <img class="star-rating-hero" src="${starRatingCalc(vote_average)}" alt="raiting" />
       <p class="text hero-text">
         ${overview}
       </p>

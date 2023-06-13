@@ -1,4 +1,5 @@
 import { getMoviesTrending, getMoviesGenres, getMoviesBySearch } from '../../api/ApiService';
+import { starRatingCalc } from '../../home_js/components';
 import { markup } from './movies_cards';
 
 const formSearch = document.querySelector('.search-movie');
@@ -36,10 +37,18 @@ async function onSearchSubmit(evt) {
 
 async function createMarkupMovies(arr) {
   const moviesMarkupPromises = arr.map(
-    async ({ poster_path, title, genre_ids, id, release_date }) => {
+    async ({
+      poster_path,
+      title,
+      genre_ids,
+      id,
+      release_date,
+      vote_average,
+    }) => {
       const year = release_date.substr(0, 4);
       const genres = await getGenresNames(genre_ids);
-      return markup(poster_path, title, id, genres, year);
+      const starRating = starRatingCalc(vote_average);
+      return markup(poster_path, title, id, genres, year, starRating);
     }
   );
 

@@ -28,3 +28,4 @@ export function starRatingCalc(rating) {
 
 
 // <img class="star-rating" src="${starRating}" alt="raiting" />
+// <img class="star-rating-hero" src="${starRatingCalc(vote_average)}" alt="raiting" />
