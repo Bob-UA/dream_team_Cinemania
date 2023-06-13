@@ -214,6 +214,11 @@
   display: none;
 }
 
+.remove-btn-home.hide,
+.add-btn-home.hide {
+  display: none;
+}
+
 .modal-btn-title {
   color: currentColor;
   z-index: 1;

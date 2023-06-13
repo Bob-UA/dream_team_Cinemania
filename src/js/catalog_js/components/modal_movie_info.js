@@ -8,7 +8,6 @@ const STORAGE_KEY = 'MY_LIBRARY';
 
 // add eventListeners for click in target element and click on close button
 refs.gallaryContainer.addEventListener('click', addModal);
-refs.closeModalBtn.addEventListener('click', removeModal);
 
 // check if click on the backdrop and remove listener
 function onBackdropClick(event) {
@@ -41,6 +40,7 @@ async function addModal(e) {
 
   refs.backdropMovieInfoContainer.addEventListener('click', onBackdropClick);
   window.addEventListener('keydown', onCloseModalWithESC);
+  refs.closeModalBtn.addEventListener('click', removeModal);
 
   const movieID = +e.target.dataset.id;
   const { data } = await moviesInfo(movieID);
@@ -138,6 +138,7 @@ function updateLocalStorageData(newData, oldData) {
 function removeModal() {
   refs.modal.classList.toggle('is-hidden');
   refs.movieInfoContainer.innerHTML = '';
+  refs.closeModalBtn.removeEventListener('click', removeModal);
 }
 
 // get movie by the ID

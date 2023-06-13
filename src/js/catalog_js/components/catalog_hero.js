@@ -93,6 +93,8 @@ async function addModal(e) {
 
   refs.backdropMovieInfoContainer.addEventListener('click', onBackdropClick);
   window.addEventListener('keydown', onCloseModalWithESC);
+  refs.closeModalBtn.addEventListener('click', removeModal);
+
   const movieID = +e.target.dataset.id;
   const { data } = await moviesInfo(movieID);
   const movie = data;
@@ -189,6 +191,7 @@ function updateLocalStorageData(newData, oldData) {
 function removeModal() {
   refs.modal.classList.toggle('is-hidden');
   refs.movieInfoContainer.innerHTML = '';
+  refs.closeModalBtn.removeEventListener('click', removeModal);
 }
 
 // get movie by the ID
