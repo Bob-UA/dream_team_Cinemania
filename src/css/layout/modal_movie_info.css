@@ -191,7 +191,6 @@
   left: 1px;
   background-color: var(--primary-background-color);
   border-radius: 74px;
-  transition: all var(--animation-duration) var(--timing-function);
 }
 
 .modal-my-library-btn:hover,
