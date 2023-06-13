@@ -54,9 +54,12 @@ async function displayFilmInformation(film) {
   const moviesContainer = document.getElementById('movies-container');
   moviesContainer.innerHTML = `
     <div class="film-card">
+    <div class="img-wrapper">
       <img class="upcoming-img" src="https://image.tmdb.org/t/p/original/${
         film.backdrop_path
       }" alt="${film.title}" />
+      <div class="img-container"></div>
+      </div>
       <div class="film-details">
         <h2 class="upcoming-film-title">${film.title}</h2>
         <ul class="upcoming-movie-list">
