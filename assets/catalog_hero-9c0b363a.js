@@ -113,4 +113,4 @@ max-width: 357px;
         <li>
           <a href="../../catalog.html"><button class="btn">Get Started</button></a>
         </li>
-      </ul>`;export{F as a,yn as b,wn as c,bn as d,cn as g};
+      </ul>`;export{yn as a,wn as b,bn as c,F as d,cn as g};
