@@ -1,12 +1,16 @@
 import { getMoviesTrending, getMoviesGenres, getMoviesBySearch } from '../../api/ApiService';
 import { markup } from './movies_cards';
+import Pagination from 'tui-pagination';
+import '../../../css/pages/catalog/tui-pagination.css';
+// import 'tui-pagination/dist/tui-pagination.css'
 
 const formSearch = document.querySelector('.search-movie');
 const galleryMovies = document.querySelector('.gallery-movies');
 const containerResults = document.querySelector('.no-results');
-const weeklyMovies = await getMoviesTrending();
+// const weeklyMovies = await getMoviesTrending();
+let query;
 
-galleryMovies.innerHTML = await createMarkupMovies(weeklyMovies.data.results);
+initializePage('weekly');
 
 formSearch.addEventListener('submit', onSearchSubmit);
 
@@ -14,7 +18,7 @@ async function onSearchSubmit(evt) {
     evt.preventDefault();
     galleryMovies.innerHTML = '';
     const { search } = evt.currentTarget.elements;
-    const query = search.value.trim();
+    query = search.value.trim();
     
     if (query == '' || !query) {
       containerResults.hidden = false;
@@ -30,7 +34,7 @@ async function onSearchSubmit(evt) {
     }
 
     containerResults.hidden = true;
-    galleryMovies.innerHTML = await createMarkupMovies(dataMovies.data.results);
+    initializePage('query', query);
     formSearch.reset();
 }
 
@@ -61,5 +65,65 @@ async function getGenresNames(arr) {
   return genres;
 }
 
+async function initializePage(type, query) {
+  let response;
+  let totalResults
+  if(type == 'weekly') {
+    response = await getMoviesTrending();
+    totalResults = response.data.total_results;
+  } else if (type == 'query') {
+    response = await getMoviesBySearch(query);
+    totalResults = response.data.total_results;
+  }
 
+  galleryMovies.innerHTML = await createMarkupMovies(response.data.results);  
+
+  if (totalResults > 10000) {
+    totalResults = 10000;
+  }
+
+  const container = document.getElementById('tui-pagination-container');
+  const options = {
+    totalItems: totalResults,
+    itemsPerPage: 20,
+    visiblePages: 3,
+    page: 1,
+    centerAlign: false,
+    firstItemClassName: 'tui-first-child',
+    lastItemClassName: 'tui-last-child',
+    template: {
+      page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+      currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      moveButton:
+          '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
+              '<span class="tui-ico-{{type}}">{{type}}</span>' +
+          '</a>',
+      disabledMoveButton:
+          '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
+              '<span class="tui-ico-{{type}}">{{type}}</span>' +
+          '</span>',
+      moreButton:
+          '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
+              '<span class="tui-ico-ellip">...</span>' +
+          '</a>'
+    },
+  };
+  const instance = new Pagination(container, options);
+
+  instance.on('beforeMove', async evt => {
+    const { page } = evt;
+
+    if(type == 'weekly') {
+      response = await getMoviesTrending('week', page);
+    } else if (type == 'query') {
+      response = await getMoviesBySearch(query, page);
+    }
+
+    if (response) {
+      galleryMovies.innerHTML = await createMarkupMovies(response.data.results);
+    } else {
+      return false;
+    }
+  });
+}
 
