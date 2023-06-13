@@ -28,3 +28,5 @@
 @import url('./pages/library/lib_header.css');
 @import url('./pages/library/lib_hero.css');
 @import url('./pages/library/my_movies.css');
+
+@import url('./pages/catalog/starrating.css');
