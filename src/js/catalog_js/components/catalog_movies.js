@@ -30,7 +30,7 @@ async function onSearchSubmit(evt) {
     }
 
     containerResults.hidden = true;
-    galleryMovies.innerHTML = await createMarkupMovies(dataMovies.data.results);
+    console.log(galleryMovies.innerHTML = await createMarkupMovies(dataMovies.data.results));
     formSearch.reset();
 }
 

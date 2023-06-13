@@ -1,8 +1,13 @@
 import { defaultHeroStyles } from '../../utils';
 import { getMoviesTrending } from '../../api/ApiService';
+import { getMoviesVideos } from '../../api/ApiService';
+
 
 const IMG_URL = 'https://image.tmdb.org/t/p/original/';
 const textContainer = document.querySelector('.hero-container');
+const trailerContainer = document.querySelector('.player_container');
+
+
 
 function getRandom(min, max) {
   min = Math.ceil(min);
@@ -18,6 +23,11 @@ async function showRandomMovie() {
     const results = await dayMovies.data.results;
     const index = getRandom(0, results.length - 1);
     if (results[index]) {
+      const getTrailerKey = await getMoviesVideos(results[index].id);
+      const randomElement = getRandom(0, getTrailerKey.data.results.length - 1);
+      trailerContainer.innerHTML = createMarkUpForTrailer(
+      getTrailerKey.data.results[randomElement].key
+      );
       textContainer.innerHTML = createHeroMarkup(results[index]);
     } else {
       textContainer.innerHTML = createDefaultHeroMarkup();
@@ -28,6 +38,11 @@ async function showRandomMovie() {
   } catch (error) {
     console.error(error);
   }
+}
+
+
+function createMarkUpForTrailer(id){
+  return `<iframe class="iframe_video_player" src="https://www.youtube.com/embed/${id}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
 }
 
 const createHeroMarkup = ({ backdrop_path, title, vote_average, overview }) => {
