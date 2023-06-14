@@ -21,7 +21,6 @@ function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-showRandomMovie();
 
 async function showRandomMovie() {
   try {
@@ -234,22 +233,4 @@ async function moviesInfo(movieID) {
   const movies = await getMoviesDetails(movieID);
   return movies;
 }
-
-async function showRandomMovie() {
-  try {
-    const dayMovies = await getMoviesTrending('day');
-    const results = await dayMovies.data.results;
-    const index = getRandom(0, results.length - 1);
-    if (results[index]) {
-      const markup = createHeroMarkup(results[index]);
-      textContainer.insertAdjacentHTML('beforeend', markup);
-    } else {
-      textContainer.innerHTML = createDefaultHeroMarkup();
-      const style = document.createElement('style');
-      style.innerHTML = defaultHeroStyles;
-      document.head.appendChild(style);
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
+й
