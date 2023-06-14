@@ -3,18 +3,23 @@ import { getMoviesTrending } from '../../api/ApiService';
 import { getMoviesVideos } from '../../api/ApiService';
 import { starRatingCalc } from '../../home_js/components';
 
-
 import { getMoviesDetails } from '../../api/ApiService';
 import { createMovieInfoPopUpMarkup } from '../../catalog_js/components/creatMovieInfoPopUpMarkup';
 
 import refs from '../../catalog_js/components/modal_movie_refs';
 const IMG_URL = 'https://image.tmdb.org/t/p/original/';
-const textContainer = document.querySelector('.hero-container');
-const trailerContainer = document.querySelector('.player_container');
 
-
+const trailerRefs = {
+  trailerBackdrop: document.querySelector('.player_backdrop'),
+  trailerContainer: document.querySelector('.player_container'),
+  textContainer: document.querySelector('.hero-container'),
+};
 
 const STORAGE_KEY = 'MY_LIBRARY';
+let movie = {};
+let movieID = null;
+let results = [];
+let index = null;
 
 function getRandom(min, max) {
   min = Math.ceil(min);
@@ -22,21 +27,16 @@ function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-
 async function showRandomMovie() {
   try {
     const dayMovies = await getMoviesTrending('day');
-    const results = await dayMovies.data.results;
-    const index = getRandom(0, results.length - 1);
+    results = await dayMovies.data.results;
+    index = getRandom(0, results.length - 1);
+
     if (results[index]) {
-      const getTrailerKey = await getMoviesVideos(results[index].id);
-      const randomElement = getRandom(0, getTrailerKey.data.results.length - 1);
-      trailerContainer.innerHTML = createMarkUpForTrailer(
-      getTrailerKey.data.results[randomElement].key
-      );
-      textContainer.innerHTML = createHeroMarkup(results[index]);
+      trailerRefs.textContainer.innerHTML = createHeroMarkup(results[index]);
     } else {
-      textContainer.innerHTML = createDefaultHeroMarkup();
+      trailerRefs.textContainer.innerHTML = createDefaultHeroMarkup();
       const style = document.createElement('style');
       style.innerHTML = defaultHeroStyles;
       document.head.appendChild(style);
@@ -46,9 +46,40 @@ async function showRandomMovie() {
   }
 }
 
+function createMarkUpForTrailer(id) {
+  return `<button type="button" class="close-modal-oops" data-modal-oops-close>
+            <svg class="close-oops">
+              <use href="/images/icon.svg#icon-close" ></use>
+            </svg>
+          </button>
+          <iframe class="iframe_video_player" 
+              src="https://www.youtube.com/embed/${id}" 
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay;
+              clipboard-write; encrypted-media;
+              gyroscope; picture-in-picture;
+              web-share"
+              allowfullscreen>
+          </iframe>`;
+}
 
-function createMarkUpForTrailer(id){
-  return `<iframe class="iframe_video_player" src="https://www.youtube.com/embed/${id}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+function createMarkUpForError() {
+  return `<button type="button" class="close-modal-oops" data-modal-oops-close>
+      <svg class="close-oops">
+        <use href="/images/icon.svg#icon-close" ></use>
+      </svg>
+    </button>
+    <h1 class="text-modal-oops">
+      OOPS... <br> We are very sorry! <br>
+      But we couldn’t find the trailer.
+    </h1>
+    <picture class="camera">
+      <source srcset="/images/modal-camera-mobile-1x.jpg 1x, /images/modal-camera-mobile-2x.jpg 2x" media="(max-width: 767px)" />
+      <source srcset="/images/modal-camera-tablet-1x.jpg 1x, /images/modal-camera-tablet-2x.jpg 2x" media="(min-width: 768px)" />
+      <source srcset="/images/modal-camera-desktop-1x.jpg 1x, /images/modal-camera-desktop-2x.jpg 2x" media="(min-width: 1280px)" />
+      <img src="/images/modal-camera-mobile-1x.jpg" alt="camera" />
+    </picture>
+  </div>`;
 }
 
 const createHeroMarkup = ({
@@ -60,14 +91,16 @@ const createHeroMarkup = ({
 }) => {
   return ` <div class="hero-content"><div class="hero-text-container">
     <h1 class="title hero-title">${title}</h1>
-    <img class="star-rating-hero" src=".${starRatingCalc(vote_average)}" alt="raiting" />
+    <img class="star-rating-hero" src=".${starRatingCalc(
+      vote_average
+    )}" alt="raiting" />
       <p class="text hero-text">
         ${overview}
       </p>
     </div>
       <ul class="btn-list">
         <li>
-          <a href=""><button class="btn">Watch trailer</button></a>
+          <button class="btn js-trailer-btn" data-id="${id}">Watch trailer</button>
         </li>
          <li>
          <button class="btn-details js-details-btn" data-id="${id}">More details</button>
@@ -94,7 +127,32 @@ const createDefaultHeroMarkup = () => {
 };
 
 await showRandomMovie();
+const trailerBtnRef = document.querySelector('.js-trailer-btn');
 const detailsBtnRef = document.querySelector('.js-details-btn');
+
+trailerBtnRef.addEventListener('click', onShowTrailerModal);
+const trailerCloseBtn = document.querySelector('.close-modal-oops');
+
+async function onShowTrailerModal() {
+  trailerRefs.trailerBackdrop.addEventListener('click', onBackdropClickTrailer);
+  window.addEventListener('keydown', onCloseModalWithESCTrailer);
+  trailerCloseBtn.addEventListener('click', removeModalTrailer);
+
+  const treilerID = results[index].id;
+  const getTrailerKey = await getMoviesVideos(treilerID);
+  let trailerMarkup = '';
+  if (+getTrailerKey.status === 200) {
+    const randomElement = getRandom(0, getTrailerKey.data.results.length - 1);
+    trailerMarkup = createMarkUpForTrailer(
+      getTrailerKey.data.results[randomElement].key
+    );
+  } else {
+    trailerMarkup = createMarkUpForError();
+  }
+  trailerRefs.trailerContainer.innerHTML = trailerMarkup;
+  trailerRefs.trailerBackdrop.classList.toggle('is-hidden');
+}
+
 detailsBtnRef.addEventListener('click', addModal);
 
 // check if click on the backdrop and remove listener
@@ -119,6 +177,27 @@ function onCloseModalWithESC(e) {
   }
 }
 
+function onBackdropClickTrailer(event) {
+  if (event.currentTarget === event.target) {
+    trailerRefs.trailerBackdrop.classList.add('is-hidden');
+    trailerRefs.trailerContainer.innerHTML = '';
+    trailerRefs.trailerBackdrop.removeEventListener(
+      'click',
+      onBackdropClickTrailer
+    );
+  }
+}
+
+// check if was press ESC button and remove listener
+function onCloseModalWithESCTrailer(e) {
+  const ESC_KEY = 'Escape';
+  if (e.code == ESC_KEY) {
+    trailerRefs.trailerBackdrop.classList.add('is-hidden');
+    trailerRefs.trailerContainer.innerHTML = '';
+    window.removeEventListener('keydown', onCloseModalWithESCTrailer);
+  }
+}
+
 // function open modal windows and draw markup
 async function addModal(e) {
   const isVideosIMG = e.target.classList.contains('js-details-btn');
@@ -130,9 +209,9 @@ async function addModal(e) {
   window.addEventListener('keydown', onCloseModalWithESC);
   refs.closeModalBtn.addEventListener('click', removeModal);
 
-  const movieID = +e.target.dataset.id;
+  movieID = +e.target.dataset.id;
   const { data } = await moviesInfo(movieID);
-  const movie = data;
+  movie = data;
 
   const markupMovieInfo = await createMovieInfoPopUpMarkup(movie);
   refs.movieInfoContainer.insertAdjacentHTML('beforeend', markupMovieInfo);
@@ -156,38 +235,65 @@ async function addModal(e) {
   }
 
   // add listener for add movie to storage (library)
-  btnRefs.addBtn.addEventListener('click', () => {
-    let storageDataSTR = '';
-    if (dataFromStorage) {
-      const storageData = JSON.stringify(dataFromStorage);
-      storageDataSTR = convertArrObjectToStr(storageData);
-    }
-    const movieStr = JSON.stringify(movie);
-
-    const addMovie = updateLocalStorageData(movieStr, storageDataSTR);
-    btnRefs.addBtn.classList.toggle('hide');
-    btnRefs.removeBtm.classList.toggle('hide');
-    saveMovieInStorage(STORAGE_KEY, addMovie);
-  });
+  btnRefs.addBtn.addEventListener('click', onAddMovieToStorage);
 
   // add listener for remove movie from storage (library)
-  btnRefs.removeBtm.addEventListener('click', () => {
-    btnRefs.addBtn.classList.toggle('hide');
-    btnRefs.removeBtm.classList.toggle('hide');
-    const newDataRemove = dataFromStorage
-      .map(movie => {
-        if (movie.id === movieID) {
-          return;
-        }
+  btnRefs.removeBtm.addEventListener('click', onRemoveMovieFromStorage);
+}
+
+function onAddMovieToStorage() {
+  const btnRefs = {
+    addBtn: document.querySelector('.add-btn'),
+    removeBtm: document.querySelector('.remove-btn'),
+  };
+  const dataFromStorage = getMoviesFromStorage(STORAGE_KEY);
+  let storageDataSTR = '';
+  let newDataAdd = [];
+  if (dataFromStorage && movieID) {
+    newDataAdd = storageStatus(dataFromStorage);
+    const storageData = JSON.stringify(newDataAdd);
+    storageDataSTR = convertArrObjectToStr(storageData);
+  }
+  const movieStr = JSON.stringify(movie);
+
+  const addMovie = updateLocalStorageData(movieStr, storageDataSTR);
+  btnRefs.addBtn.classList.toggle('hide');
+  btnRefs.removeBtm.classList.toggle('hide');
+  saveMovieInStorage(STORAGE_KEY, addMovie);
+  btnRefs.addBtn.removeEventListener('click', onAddMovieToStorage);
+  btnRefs.removeBtm.addEventListener('click', onRemoveMovieFromStorage);
+}
+
+function onRemoveMovieFromStorage() {
+  const btnRefs = {
+    addBtn: document.querySelector('.add-btn'),
+    removeBtm: document.querySelector('.remove-btn'),
+  };
+
+  const dataFromStorage = getMoviesFromStorage(STORAGE_KEY);
+  btnRefs.addBtn.classList.toggle('hide');
+  btnRefs.removeBtm.classList.toggle('hide');
+  const newDataRemove = storageStatus(dataFromStorage);
+
+  saveMovieInStorage(STORAGE_KEY, newDataRemove);
+  btnRefs.removeBtm.removeEventListener('click', onRemoveMovieFromStorage);
+  btnRefs.addBtn.addEventListener('click', onAddMovieToStorage);
+}
+
+//get new data from storage after adding or removing
+function storageStatus(data) {
+  return data
+    .map(movie => {
+      if (movie.id === movieID) {
+        return;
+      }
+      return movie;
+    })
+    .filter(movie => {
+      if (movie) {
         return movie;
-      })
-      .filter(movie => {
-        if (movie) {
-          return movie;
-        }
-      });
-    saveMovieInStorage(STORAGE_KEY, newDataRemove);
-  });
+      }
+    });
 }
 
 // get movies from storage
@@ -227,6 +333,13 @@ function removeModal() {
   refs.modal.classList.toggle('is-hidden');
   refs.movieInfoContainer.innerHTML = '';
   refs.closeModalBtn.removeEventListener('click', removeModal);
+}
+
+function removeModalTrailer() {
+  trailerRefs.trailerBackdrop.classList.add('is-hidden');
+  trailerRefs.trailerContainer.innerHTML = '';
+
+  trailerCloseBtn.removeEventListener('click', removeModalTrailer);
 }
 
 // get movie by the ID

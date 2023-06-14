@@ -4,6 +4,7 @@ const UPCOMING_END_POINT = 'movie/upcoming';
 const GENRES_END_POINT = 'genre/movie/list';
 
 const STORAGE_KEY = 'MY_LIBRARY';
+let movie = {};
 
 async function getRandomFilm() {
   const upcomingURL = `${BASE_URL}${UPCOMING_END_POINT}?api_key=${API_KEY}`;
@@ -107,63 +108,38 @@ async function displayFilmInformation(film) {
     </div>
   `;
 
-  const movie = film;
-  const btnRefs = {
+  movie = film;
+  const upComingBtnRefs = {
     addBtn: document.querySelector('.add-btn-home'),
     removeBtm: document.querySelector('.remove-btn-home'),
   };
 
-  const dataFromStorage = getMoviesFromStorage(STORAGE_KEY);
+  const dataFromStorage = getMoviesFromStorageHome(STORAGE_KEY);
 
   if (dataFromStorage) {
     dataFromStorage.map(movieData => {
       if (movieData.id === movie.id) {
-        btnRefs.addBtn.classList.add('hide');
-        btnRefs.removeBtm.classList.remove('hide');
+        upComingBtnRefs.addBtn.classList.add('hide');
+        upComingBtnRefs.removeBtm.classList.remove('hide');
         return;
       }
     });
   }
 
   // add listener for add movie to storage (library)
-  btnRefs.addBtn.addEventListener('click', () => {
-    let storageDataSTR = '';
-    if (dataFromStorage) {
-      const storageData = JSON.stringify(dataFromStorage);
-      storageDataSTR = convertArrObjectToStr(storageData);
-    }
-    const movieStr = JSON.stringify(movie);
+  upComingBtnRefs.addBtn.addEventListener('click', onAddMovieToStorageHome);
 
-    const addMovie = updateLocalStorageData(movieStr, storageDataSTR);
-    btnRefs.addBtn.classList.toggle('hide');
-    btnRefs.removeBtm.classList.toggle('hide');
-    saveMovieInStorage(STORAGE_KEY, addMovie);
-  });
-
-  // add listener for remove movie from storage (library)
-  btnRefs.removeBtm.addEventListener('click', () => {
-    btnRefs.addBtn.classList.toggle('hide');
-    btnRefs.removeBtm.classList.toggle('hide');
-    const newDataRemove = dataFromStorage
-      .map(movieData => {
-        if (movieData.id === movie.id) {
-          return;
-        }
-        return movieData;
-      })
-      .filter(movieData => {
-        if (movieData) {
-          return movieData;
-        }
-      });
-    saveMovieInStorage(STORAGE_KEY, newDataRemove);
-  });
-
-  // updateLibraryButton(film.id);
-  // document.getElementById('libraryButton').onclick = function () {
-  //   toggleLibraryStatus(film.id, this);
-  // };
+  // add listener for remove movie to storage (library)
+  upComingBtnRefs.removeBtm.addEventListener(
+    'click',
+    onRemoveMovieFromStorageHome
+  );
 }
+
+// updateLibraryButton(film.id);
+// document.getElementById('libraryButton').onclick = function () {
+//   toggleLibraryStatus(film.id, this);
+// };
 
 // function updateLibraryButton(filmId) {
 //   const myLibrary = JSON.parse(localStorage.getItem('myLibrary')) || {};
@@ -176,8 +152,62 @@ async function displayFilmInformation(film) {
 //   }
 // }
 
+function onAddMovieToStorageHome() {
+  const upComingBtnRefs = {
+    addBtn: document.querySelector('.add-btn-home'),
+    removeBtm: document.querySelector('.remove-btn-home'),
+  };
+  const dataFromStorage = getMoviesFromStorageHome(STORAGE_KEY);
+  let storageDataSTR = '';
+  let newDataAdd = [];
+  if (dataFromStorage) {
+    newDataAdd = storageStatusHome(dataFromStorage);
+    const storageData = JSON.stringify(newDataAdd);
+    storageDataSTR = convertArrObjectToStr(storageData);
+  }
+  const movieStr = JSON.stringify(movie);
+
+  const addMovie = updateLocalStorageData(movieStr, storageDataSTR);
+  upComingBtnRefs.addBtn.classList.toggle('hide');
+  upComingBtnRefs.removeBtm.classList.toggle('hide');
+  saveMovieInStorageHome(STORAGE_KEY, addMovie);
+  // upComingBtnRefs.addBtn.removeEventListener('click', onAddMovieToStorageHome);
+  // upComingBtnRefs.removeBtm.addEventListener('click', onRemoveMovieFromStorage);
+}
+
+function onRemoveMovieFromStorageHome() {
+  const upComingBtnRefs = {
+    addBtn: document.querySelector('.add-btn-home'),
+    removeBtm: document.querySelector('.remove-btn-home'),
+  };
+
+  const dataFromStorage = getMoviesFromStorageHome(STORAGE_KEY);
+  upComingBtnRefs.addBtn.classList.toggle('hide');
+  upComingBtnRefs.removeBtm.classList.toggle('hide');
+  const newDataRemove = storageStatusHome(dataFromStorage);
+
+  saveMovieInStorageHome(STORAGE_KEY, newDataRemove);
+  // upComingBtnRefs.removeBtm.removeEventListener(
+  //   'click',
+  //   onRemoveMovieFromStorageHome
+  // );
+  // upComingBtnRefs.addBtn.addEventListener('click', onAddMovieToStorageHome);
+}
+
+//get new data from storage after adding or removing
+function storageStatusHome(data) {
+  return data
+    .map(movieData => {
+      if (movieData.id === movie.id) {
+        return;
+      }
+      return movieData;
+    })
+    .filter(movieData => movieData);
+}
+
 // get movies from storage
-function getMoviesFromStorage(key) {
+function getMoviesFromStorageHome(key) {
   try {
     const serializedState = localStorage.getItem(key);
     return serializedState === null ? undefined : JSON.parse(serializedState);
@@ -187,7 +217,7 @@ function getMoviesFromStorage(key) {
 }
 
 // save movie in storage
-function saveMovieInStorage(key, value) {
+function saveMovieInStorageHome(key, value) {
   try {
     const serializedState = JSON.stringify(value);
     localStorage.setItem(key, serializedState);

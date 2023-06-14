@@ -3,6 +3,8 @@ import { getMoviesDetails } from '../../api/ApiService';
 import { createMovieInfoPopUpMarkup } from './creatMovieInfoPopUpMarkup';
 
 const STORAGE_KEY = 'MY_LIBRARY';
+let movie = {};
+let movieID = null;
 
 //  refs.detailsBtnModal.addEventListener('click', addModal);
 
@@ -42,9 +44,9 @@ async function addModal(e) {
   window.addEventListener('keydown', onCloseModalWithESC);
   refs.closeModalBtn.addEventListener('click', removeModal);
 
-  const movieID = +e.target.dataset.id;
+  movieID = +e.target.dataset.id;
   const { data } = await moviesInfo(movieID);
-  const movie = data;
+  movie = data;
 
   const markupMovieInfo = await createMovieInfoPopUpMarkup(movie);
   refs.movieInfoContainer.insertAdjacentHTML('beforeend', markupMovieInfo);
@@ -68,38 +70,65 @@ async function addModal(e) {
   }
 
   // add listener for add movie to storage (library)
-  btnRefs.addBtn.addEventListener('click', () => {
-    let storageDataSTR = '';
-    if (dataFromStorage) {
-      const storageData = JSON.stringify(dataFromStorage);
-      storageDataSTR = convertArrObjectToStr(storageData);
-    }
-    const movieStr = JSON.stringify(movie);
-
-    const addMovie = updateLocalStorageData(movieStr, storageDataSTR);
-    btnRefs.addBtn.classList.toggle('hide');
-    btnRefs.removeBtm.classList.toggle('hide');
-    saveMovieInStorage(STORAGE_KEY, addMovie);
-  });
+  btnRefs.addBtn.addEventListener('click', onAddMovieToStorage);
 
   // add listener for remove movie from storage (library)
-  btnRefs.removeBtm.addEventListener('click', () => {
-    btnRefs.addBtn.classList.toggle('hide');
-    btnRefs.removeBtm.classList.toggle('hide');
-    const newDataRemove = dataFromStorage
-      .map(movie => {
-        if (movie.id === movieID) {
-          return;
-        }
+  btnRefs.removeBtm.addEventListener('click', onRemoveMovieFromStorage);
+}
+
+function onAddMovieToStorage() {
+  const btnRefs = {
+    addBtn: document.querySelector('.add-btn'),
+    removeBtm: document.querySelector('.remove-btn'),
+  };
+  const dataFromStorage = getMoviesFromStorage(STORAGE_KEY);
+  let storageDataSTR = '';
+  let newDataAdd = [];
+  if (dataFromStorage && movieID) {
+    newDataAdd = storageStatus(dataFromStorage);
+    const storageData = JSON.stringify(newDataAdd);
+    storageDataSTR = convertArrObjectToStr(storageData);
+  }
+  const movieStr = JSON.stringify(movie);
+
+  const addMovie = updateLocalStorageData(movieStr, storageDataSTR);
+  btnRefs.addBtn.classList.toggle('hide');
+  btnRefs.removeBtm.classList.toggle('hide');
+  saveMovieInStorage(STORAGE_KEY, addMovie);
+  // btnRefs.addBtn.removeEventListener('click', onAddMovieToStorage);
+  // btnRefs.removeBtm.addEventListener('click', onRemoveMovieFromStorage);
+}
+
+function onRemoveMovieFromStorage() {
+  const btnRefs = {
+    addBtn: document.querySelector('.add-btn'),
+    removeBtm: document.querySelector('.remove-btn'),
+  };
+
+  const dataFromStorage = getMoviesFromStorage(STORAGE_KEY);
+  btnRefs.addBtn.classList.toggle('hide');
+  btnRefs.removeBtm.classList.toggle('hide');
+  const newDataRemove = storageStatus(dataFromStorage);
+
+  saveMovieInStorage(STORAGE_KEY, newDataRemove);
+  // btnRefs.removeBtm.removeEventListener('click', onRemoveMovieFromStorage);
+  // btnRefs.addBtn.addEventListener('click', onAddMovieToStorage);
+}
+
+//get new data from storage after adding or removing
+function storageStatus(data) {
+  return data
+    .map(movie => {
+      if (movie.id === movieID) {
+        return;
+      }
+      return movie;
+    })
+    .filter(movie => {
+      if (movie) {
         return movie;
-      })
-      .filter(movie => {
-        if (movie) {
-          return movie;
-        }
-      });
-    saveMovieInStorage(STORAGE_KEY, newDataRemove);
-  });
+      }
+    });
 }
 
 // get movies from storage
