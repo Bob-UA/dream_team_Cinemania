@@ -1,3 +1,7 @@
+.upcoming-section {
+  padding-bottom: 40px;
+}
+
 .upcoming-title {
   font-weight: 500;
   font-size: 16px;
@@ -99,6 +103,10 @@
 }
 
 @media screen and (min-width: 768px) {
+  .upcoming-section {
+    padding-bottom: 77px;
+  }
+
   .upcoming-title {
     padding-top: 44px;
     font-size: 24px;
@@ -136,13 +144,13 @@
     display: flex;
     gap: 118px;
   }
-
-  .btn {
-    margin-bottom: 77px;
-  }
 }
 
 @media screen and (min-width: 1279px) {
+  .upcoming-section {
+    padding-bottom: 100px;
+  }
+
   .upcoming-film-title {
     margin-top: 0;
     margin-bottom: 28px;
