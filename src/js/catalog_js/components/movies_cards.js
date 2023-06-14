@@ -5,7 +5,7 @@ function cutStringLength(str) {
   return str
 }
 
-export function markup(poster_path, title, id, genres, year) {
+export function markup(poster_path, title, id, genres, year, starRating) {
   if(!poster_path) {
     return;
   }
@@ -21,7 +21,10 @@ export function markup(poster_path, title, id, genres, year) {
         <div class="gallery-movies-overlay js-modal-info" data-id="${id}"></div>
             <div class="gallery-movies-description">
                 <h3 class="gallery-movies-title">${title}</h3>
+                <div class="gallery-movies-wrap">
                 <p class="gallery-movies-details">${str} | ${year}</p>
+                <img src="${starRating}" alt="raiting" class="star-rating-card"/>
+                </div>
             </div>
         </li>`;
 }
