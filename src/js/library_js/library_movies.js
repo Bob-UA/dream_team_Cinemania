@@ -1,92 +1,94 @@
-function markup(poster_path, title, id, genres, year) {
-  return `<li class="gallery-movies-item" data-id="${id}">
-        <img class="gallery-movies-img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" loading="lazy">
-        <div class="gallery-movies-overlay"></div>
-            <div class="gallery-movies-description">
-                <h3 class="gallery-movies-title">${title}</h3>
-                <p class="gallery-movies-details">${genres.join(
-                  ', '
-                )} | ${year}</p>
-            </div>
-        </li>`;
+function markup(poster_path, title, id, genres, release_date) {
+  const genreNames = genres.map(genre => genre.name);
+  const year = release_date ? release_date.split('-')[0] : '';
+
+  return `
+    <li class="gallery-movies-item" data-id="${id}" data-genres="${genreNames.join(
+    ','
+  )}">
+      <img class="gallery-movies-img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" loading="lazy">
+      <div class="gallery-movies-overlay"></div>
+      <div class="gallery-movies-description">
+        <h3 class="gallery-movies-title">${title}</h3>
+        <p class="gallery-movies-details">${genreNames.join(', ')} | ${year}</p>
+      </div>
+    </li>
+  `;
 }
 
-// Перевірка наявності фільмів у localStorage
-const savedMovies = JSON.parse(localStorage.getItem('movies'));
+const moviesPerPage = 9;
+let currentPage = 1;
+const libraryElement = document.getElementById('my-library');
 
-// Беремо елемент для вставки
-const libraryElement = document.querySelector('#my-library');
+const savedMovies = JSON.parse(localStorage.getItem('MY_LIBRARY')) || [];
 
-if (savedMovies && savedMovies.length > 0) {
-  let currentPage = 1;
-  const moviesPerPage = 9;
-
-  function renderMovies() {
-    // Створення списку фільмів
-    let moviesList = '';
-
-    for (
-      let i = (currentPage - 1) * moviesPerPage;
-      i < currentPage * moviesPerPage && i < savedMovies.length;
-      i++
-    ) {
-      const movie = savedMovies[i];
-      const { poster_path, title, id, genre_ids, release_date } = movie;
-      moviesList += markup(poster_path, title, id, genre_ids, release_date);
+if (savedMovies.length > 0) {
+  libraryElement.innerHTML = `
+    <select id="genre-filter">
+      <option value="">Genre</option>
+      <option value="Romance">Romance</option>
+      <option value="Detective">Detective</option>
+      <option value="Thriller">Thriller</option>
+      <option value="Action">Action</option>
+      <option value="Documentary">Documentary</option>
+      <option value="Horror">Horror</option>
+    </select>
+    <ul class="gallery-movies"></ul>
+    ${
+      savedMovies.length > moviesPerPage
+        ? '<button class="btn" id="load-more">Load More</button>'
+        : ''
     }
+  `;
 
-    // Вставка списку фільмів у контейнер
-    libraryElement.innerHTML = `
-      <div>
-        <label for="genre-filter">Filter by genre:</label>
-        <select id="genre-filter">
-          <option value="">All</option>
-          <option value="18">Romance</option>
-          <option value="80">Detective</option>
-          <option value="53">Thriller</option>
-          <option value="28">Action</option>
-          <option value="99">Documentary</option>
-          <option value="27">Horror</option>
-        </select>
-      </div>
-      <ul class="gallery-movies">
-        ${moviesList}
-      </ul>
-    `;
+  const loadMoreBtn = document.getElementById('load-more');
 
-    // Додавання кнопки "Load more", якщо є ще фільми для виводу
-    if (currentPage * moviesPerPage < savedMovies.length) {
-      libraryElement.innerHTML += `<button class="btn" id="load-more">Load more</button>`;
+  function renderMovies(movies = savedMovies) {
+    const moviesList = libraryElement.querySelector('.gallery-movies');
+    const moviesToRender = movies.slice(0, currentPage * moviesPerPage);
+    moviesList.innerHTML = moviesToRender
+      .map(movie => {
+        const { poster_path, title, id, genres, release_date } = movie;
+        return markup(poster_path, title, id, genres, release_date);
+      })
+      .join('');
+
+    if (moviesToRender.length === movies.length && loadMoreBtn) {
+      loadMoreBtn.style.display = 'none';
     }
+  }
 
-    // Додавання обробника подій для кнопки "Load more"
-    const loadMoreButton = document.querySelector('#load-more');
-    if (loadMoreButton) {
-      loadMoreButton.addEventListener('click', () => {
-        currentPage++;
-        renderMovies();
-      });
-    }
-
-    // Додавання обробника подій для фільтру
-    const genreFilter = document.querySelector('#genre-filter');
-    genreFilter.addEventListener('change', e => {
-      const value = e.target.value;
-      const movieItems = document.querySelectorAll('.gallery-movies-item');
-      movieItems.forEach(item => {
-        item.style.display =
-          item.dataset.genres.includes(value) || value === ''
-            ? 'block'
-            : 'none';
-      });
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', () => {
+      currentPage++;
+      renderMovies();
     });
   }
 
+  document.querySelector('#genre-filter').addEventListener('change', e => {
+    const selectedGenre = e.target.value;
+    if (selectedGenre === '') {
+      renderMovies();
+    } else {
+      const filteredMovies = savedMovies.filter(movie => {
+        return movie.genres.some(genre => genre.name === selectedGenre);
+      });
+      if (filteredMovies.length > 0) {
+        currentPage = 1; // reset to page 1 for new filter
+        renderMovies(filteredMovies);
+      } else {
+        libraryElement.innerHTML = `
+          <p>OOPS... We are very sorry! There are no movies of selected genre in your library.</p>
+          <button class="btn" onclick="window.location.href='../../index.html'">Search movie</button>
+        `;
+      }
+    }
+  });
+
   renderMovies();
 } else {
-  // Вставка повідомлення про відсутність фільмів
   libraryElement.innerHTML = `
     <p>OOPS... We are very sorry! You don’t have any movies at your library.</p>
-    <button class="btn" onclick="location.href='../../index.html'">Search movie</button>
+    <button class="btn" onclick="window.location.href='search.html'">Search movie</button>
   `;
 }
