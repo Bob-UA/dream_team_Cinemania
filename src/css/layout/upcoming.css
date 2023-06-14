@@ -6,7 +6,6 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.1;
-  padding-top: 32px;
   padding-bottom: 24px;
 }
 
@@ -108,7 +107,6 @@
   }
 
   .upcoming-title {
-    padding-top: 44px;
     font-size: 24px;
   }
 
