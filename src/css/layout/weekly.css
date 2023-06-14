@@ -88,6 +88,7 @@
 .weekly-list:not(:first-child) {
   display: none;
 }
+
 @media (min-width: 768px) {
   .tablet {
     display: block;
