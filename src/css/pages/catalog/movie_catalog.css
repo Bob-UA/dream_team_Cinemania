@@ -1,4 +1,10 @@
+.catalog-movies {
+    padding-top: 16px;
+    padding-bottom: 0;
+}
+
 .no-results {
+    padding-top: 48px;
     text-align: center;
 }
 
@@ -85,6 +91,14 @@
 
 
 @media screen and (min-width:768px) {
+    .catalog-movies {
+        padding-top: 36px;
+    }
+
+    .no-results {
+        padding-top: 80px;
+    }
+
     .text-no-results {
         font-size: 24px;
         line-height: 1.33;
@@ -114,6 +128,14 @@
 
 /* Desktop style */
 @media screen and (min-width:1280px) {
+    .catalog-movies {
+        padding-top: 48px;
+    }
+
+    .no-results {
+        padding-top: 120px;
+    }
+
     .text-no-results {
         font-size: 32px;
         line-height: 1.12;
