@@ -1,11 +1,27 @@
 <section class="section">
     <div class="container">
-        <h1 class="title">
-        Тут має бути блок з пошуковою строкою
-        </h1>
-        <form class="search-movie" action="submit">
-            <input type="text" name="search" placeholder="Search">
-            <button>Search</button>
-        </form>
+        <form class="catalog__form" id="search-form">
+            <div class="catalog__form_wrapper">
+              <input
+                class="catalog__form-input"
+                type="text"
+                name="search"
+                id="searchQuery"
+                placeholder="Search"
+                autocomplete="off"
+              />
+      
+              <button
+                class="catalog__form-button"
+                type="submit"
+                aria-label="search button"
+              >
+        
+                <svg class="search__icon" width="18" height="18">
+                  <use href="./images/sprite.svg#icon-searh_white" ></use>
+                </svg>
+              </button>
+            </div>
+          </form>
     </div>
 </section>

@@ -9,33 +9,7 @@ const weeklyMovies = await getMoviesTrending();
 
 galleryMovies.innerHTML = await createMarkupMovies(weeklyMovies.data.results);
 
-formSearch.addEventListener('submit', onSearchSubmit);
-
-async function onSearchSubmit(evt) {
-    evt.preventDefault();
-    galleryMovies.innerHTML = '';
-    const { search } = evt.currentTarget.elements;
-    const query = search.value.trim();
-    
-    if (query == '' || !query) {
-      containerResults.hidden = false;
-      formSearch.reset();
-      return;
-    }
-
-    const dataMovies = await getMoviesBySearch(query);
-    if(dataMovies.data.results.length == 0) {
-      containerResults.hidden = false;
-      formSearch.reset();
-      return;
-    }
-
-    containerResults.hidden = true;
-    console.log(galleryMovies.innerHTML = await createMarkupMovies(dataMovies.data.results));
-    formSearch.reset();
-}
-
-async function createMarkupMovies(arr) {
+ export async function createMarkupMovies(arr) {
   const moviesMarkupPromises = arr.map(
     async ({
       poster_path,
