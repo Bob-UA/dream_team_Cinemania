@@ -1,8 +1,8 @@
-import"./switcher-0dc0b702.js";import{g as R,e as _}from"./catalog_hero-5dd838cb.js";const $="9d709850c7590845ffb60644b29d6f51",L="https://api.themoviedb.org/3/",k="movie/upcoming",N="genre/movie/list",y="MY_LIBRARY";async function O(){const e=`${L}${k}?api_key=${$}`,s=await(await fetch(e)).json();if(s.results.length===0){B();return}const a=Math.floor(Math.random()*s.results.length),n=s.results[a];E(n)}function B(){const e=document.getElementById("movies-container");e.innerHTML="<p>OOPS... We are very sorry!But we couldn’t find the film.</p>"}async function E(e){const t=`${L}${N}?api_key=${$}`,a=await(await fetch(t)).json(),n=e.genre_ids.map(o=>{const i=a.genres.find(f=>f.id===o);return i?i.name:""}),{vote_average:c,vote_count:m,popularity:u,overview:g}=e,p=n.join(", "),d=document.getElementById("movies-container");d.innerHTML=`
+import"./switcher-b8bf2432.js";import{g as R,e as _}from"./catalog_hero-b3d506d9.js";const $="9d709850c7590845ffb60644b29d6f51",L="https://api.themoviedb.org/3/",k="movie/upcoming",N="genre/movie/list",y="MY_LIBRARY";async function O(){const e=`${L}${k}?api_key=${$}`,s=await(await fetch(e)).json();if(s.results.length===0){B();return}const a=Math.floor(Math.random()*s.results.length),n=s.results[a];E(n)}function B(){const e=document.getElementById("movies-container");e.innerHTML="<p>OOPS... We are very sorry!But we couldn’t find the film.</p>"}async function E(e){const t=`${L}${N}?api_key=${$}`,a=await(await fetch(t)).json(),n=e.genre_ids.map(o=>{const i=a.genres.find(f=>f.id===o);return i?i.name:""}),{vote_average:c,vote_count:m,popularity:u,overview:g}=e,p=n.join(", "),d=document.getElementById("movies-container");d.innerHTML=`
     <div class="film-card">
     <div class="img-wrapper">
       <img class="upcoming-img" src="https://image.tmdb.org/t/p/original/${e.backdrop_path}" alt="${e.title}" />
-      <div class="img-container"></div>
+      <div class="img-gradient-container"></div>
       </div>
       <div class="film-details">
         <h2 class="upcoming-film-title">${e.title}</h2>
