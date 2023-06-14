@@ -191,7 +191,6 @@
   left: 1px;
   background-color: var(--primary-background-color);
   border-radius: 74px;
-  transition: all var(--animation-duration) var(--timing-function);
 }
 
 .modal-my-library-btn:hover,
@@ -212,6 +211,11 @@
 
 .remove-btn.hide,
 .add-btn.hide {
+  display: none;
+}
+
+.remove-btn-home.hide,
+.add-btn-home.hide {
   display: none;
 }
 

@@ -4,12 +4,10 @@ import { createMovieInfoPopUpMarkup } from './creatMovieInfoPopUpMarkup';
 
 const STORAGE_KEY = 'MY_LIBRARY';
 
+//  refs.detailsBtnModal.addEventListener('click', addModal);
+
 // add eventListeners for click in target element and click on close button
 refs.gallaryContainer.addEventListener('click', addModal);
-refs.closeModalBtn.addEventListener('click', removeModal);
-
-// add eventListener for backdrop click if it is backdrop - close modal
-refs.backdropMovieInfoContainer.addEventListener('click', onBackdropClick);
 
 // check if click on the backdrop and remove listener
 function onBackdropClick(event) {
@@ -22,8 +20,6 @@ function onBackdropClick(event) {
     );
   }
 }
-// add eventListener for window, check press ESCape button - close modal
-window.addEventListener('keydown', onCloseModalWithESC);
 
 // check if was press ESC button and remove listener
 function onCloseModalWithESC(e) {
@@ -41,6 +37,11 @@ async function addModal(e) {
   if (!isVideosIMG) {
     return;
   }
+
+  refs.backdropMovieInfoContainer.addEventListener('click', onBackdropClick);
+  window.addEventListener('keydown', onCloseModalWithESC);
+  refs.closeModalBtn.addEventListener('click', removeModal);
+
   const movieID = +e.target.dataset.id;
   const { data } = await moviesInfo(movieID);
   const movie = data;
@@ -137,6 +138,7 @@ function updateLocalStorageData(newData, oldData) {
 function removeModal() {
   refs.modal.classList.toggle('is-hidden');
   refs.movieInfoContainer.innerHTML = '';
+  refs.closeModalBtn.removeEventListener('click', removeModal);
 }
 
 // get movie by the ID

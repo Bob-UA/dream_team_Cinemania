@@ -3,6 +3,8 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 const UPCOMING_END_POINT = 'movie/upcoming';
 const GENRES_END_POINT = 'genre/movie/list';
 
+const STORAGE_KEY = 'MY_LIBRARY';
+
 async function getRandomFilm() {
   const upcomingURL = `${BASE_URL}${UPCOMING_END_POINT}?api_key=${API_KEY}`;
   const response = await fetch(upcomingURL);
@@ -24,19 +26,23 @@ function showNoFilmsMessage() {
     '<p>OOPS... We are very sorry!But we couldn’t find the film.</p>';
 }
 
-function toggleLibraryStatus(filmId, libraryButton) {
-  const myLibrary = JSON.parse(localStorage.getItem('myLibrary')) || {};
+// function toggleLibraryStatus(filmId, libraryButton) {
+//   const myLibrary = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
 
-  if (myLibrary[filmId]) {
-    delete myLibrary[filmId];
-    libraryButton.textContent = 'Add to my library';
-  } else {
-    myLibrary[filmId] = true;
-    libraryButton.textContent = 'Remove from my library';
-  }
+//   if (myLibrary[filmId]) {
+//     delete myLibrary[filmId];
+//     libraryButton.textContent = 'Add to my library';
+//     libraryButton.classList.add('add-btn');
+//     libraryButton.classList.remove('remove-btn');
+//   } else {
+//     myLibrary[filmId] = true;
+//     libraryButton.textContent = 'Remove from my library';
+//     libraryButton.classList.remove('add-btn');
+//     libraryButton.classList.add('remove-btn');
+//   }
 
-  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-}
+//   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+// }
 
 async function displayFilmInformation(film) {
   const genresURL = `${BASE_URL}${GENRES_END_POINT}?api_key=${API_KEY}`;
@@ -90,27 +96,116 @@ async function displayFilmInformation(film) {
         </ul>
         <p class="about-subtitle">About</p>
         <p class="item-description">${cutStrOverview(overview)}</p>
-        <button id="libraryButton" data-film-id="${
+        <button id="libraryButton" data-id="${
           film.id
-        }" class="btn my-library-btn" type="button">Add to my library</button>
-      </div>
+        }" class="btn my-library-btn add-btn-home" type="button">Add to my library</button>
+        <button class="btn my-library-btn remove-btn-home hide" type="button">
+                <span class="modal-btn-title">Remove from my library</span>
+        </button>
+      
+        </div>
     </div>
   `;
-  updateLibraryButton(film.id);
-  document.getElementById('libraryButton').onclick = function () {
-    toggleLibraryStatus(film.id, this);
+
+  const movie = film;
+  const btnRefs = {
+    addBtn: document.querySelector('.add-btn-home'),
+    removeBtm: document.querySelector('.remove-btn-home'),
   };
+
+  const dataFromStorage = getMoviesFromStorage(STORAGE_KEY);
+
+  if (dataFromStorage) {
+    dataFromStorage.map(movieData => {
+      if (movieData.id === movie.id) {
+        btnRefs.addBtn.classList.add('hide');
+        btnRefs.removeBtm.classList.remove('hide');
+        return;
+      }
+    });
+  }
+
+  // add listener for add movie to storage (library)
+  btnRefs.addBtn.addEventListener('click', () => {
+    let storageDataSTR = '';
+    if (dataFromStorage) {
+      const storageData = JSON.stringify(dataFromStorage);
+      storageDataSTR = convertArrObjectToStr(storageData);
+    }
+    const movieStr = JSON.stringify(movie);
+
+    const addMovie = updateLocalStorageData(movieStr, storageDataSTR);
+    btnRefs.addBtn.classList.toggle('hide');
+    btnRefs.removeBtm.classList.toggle('hide');
+    saveMovieInStorage(STORAGE_KEY, addMovie);
+  });
+
+  // add listener for remove movie from storage (library)
+  btnRefs.removeBtm.addEventListener('click', () => {
+    btnRefs.addBtn.classList.toggle('hide');
+    btnRefs.removeBtm.classList.toggle('hide');
+    const newDataRemove = dataFromStorage
+      .map(movieData => {
+        if (movieData.id === movie.id) {
+          return;
+        }
+        return movieData;
+      })
+      .filter(movieData => {
+        if (movieData) {
+          return movieData;
+        }
+      });
+    saveMovieInStorage(STORAGE_KEY, newDataRemove);
+  });
+
+  // updateLibraryButton(film.id);
+  // document.getElementById('libraryButton').onclick = function () {
+  //   toggleLibraryStatus(film.id, this);
+  // };
 }
 
-function updateLibraryButton(filmId) {
-  const myLibrary = JSON.parse(localStorage.getItem('myLibrary')) || {};
-  const libraryButton = document.getElementById('libraryButton');
+// function updateLibraryButton(filmId) {
+//   const myLibrary = JSON.parse(localStorage.getItem('myLibrary')) || {};
+//   const libraryButton = document.getElementById('libraryButton');
 
-  if (myLibrary[filmId]) {
-    libraryButton.textContent = 'Remove from my library';
-  } else {
-    libraryButton.textContent = 'Add to my library';
+//   if (myLibrary[filmId]) {
+//     libraryButton.textContent = 'Remove from my library';
+//   } else {
+//     libraryButton.textContent = 'Add to my library';
+//   }
+// }
+
+// get movies from storage
+function getMoviesFromStorage(key) {
+  try {
+    const serializedState = localStorage.getItem(key);
+    return serializedState === null ? undefined : JSON.parse(serializedState);
+  } catch (error) {
+    console.error('Get state error: ', error.message);
   }
+}
+
+// save movie in storage
+function saveMovieInStorage(key, value) {
+  try {
+    const serializedState = JSON.stringify(value);
+    localStorage.setItem(key, serializedState);
+  } catch (error) {
+    console.error('Set state error: ', error.message);
+  }
+}
+// delete brackets from the beginning and end of the string
+function convertArrObjectToStr(str) {
+  return str.slice(1, str.length - 1);
+}
+
+// create new object which join oldDate from storage and movie what was chosen
+function updateLocalStorageData(newData, oldData) {
+  if (oldData) {
+    return JSON.parse(`[${oldData}, ${newData}]`);
+  }
+  return JSON.parse(`[${newData}]`);
 }
 
 function formatDate(dateString) {
@@ -127,16 +222,16 @@ function formatPopularity(popularity) {
 
 function cutStringLength(str) {
   if (str.length > 30) {
-    return str.substring(0, 30)+"..."
-  };
-  return str
+    return str.substring(0, 30) + '...';
+  }
+  return str;
 }
 
 function cutStrOverview(str) {
   if (str.length > 420) {
     return str.substring(0, 420) + '...';
   }
-  return str
+  return str;
 }
 
 getRandomFilm();
