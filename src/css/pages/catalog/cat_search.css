@@ -29,7 +29,7 @@
   
 
   
-    @media screen and (min-width: 768px) {
+    @media screen and (max-width: 768px) {
         .catalog__form-input {
       width: 204px;
       height: 44px;
@@ -37,7 +37,7 @@
     }
 }
   
-@media screen and (min-width: 1280px) {
+@media screen and (max-width: 1280px) {
       .catalog__form-input {
       width: 334px;
       height: 48px;
@@ -51,24 +51,19 @@
     background: linear-gradient(141.22deg, #ffc226 9.4%, #f84119 91.91%);
     border-radius: 50%;
     margin-left: 6px;
+
+    width: 40px;
+    height: 40px;
    
   }
   
-    @media screen and (min-width: 767px) {
-        .catalog__form-button {
-      width: 40px;
-      height: 40px;
-        }
-    }
    
   
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
     .catalog__form-button {
       position: absolute;
       width: 40px;
       height: 40px;
-      background: linear-gradient(141.22deg, #ffc226 9.4%, #f84119 91.91%);
-      border-radius: 50%;
       margin-left: 16px;
     }
 }
@@ -102,9 +97,6 @@
   }
   
   
-  .catalog__icon :hover{
-    fill: var(--primary-text-color);
-  }
   .catalog__icon :hover{
     fill: var(--primary-text-color);
   }
