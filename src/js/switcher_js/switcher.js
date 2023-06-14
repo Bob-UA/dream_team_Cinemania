@@ -1,22 +1,23 @@
 // ==========================Активная страница=====================================================
 const navLinks = document.querySelectorAll('.nav_list');
 const mobNavLinks = document.querySelectorAll('.mobile-nav-list');
+const currentUrl = window.location.href;
 
 navLinks.forEach(link => {
-if (link.href === window.location.href) {
-link.classList.add('active');
-} else {
-link.classList.remove('active');
-}
+  if (link.href === currentUrl) {
+    link.classList.add('active');
+  } else {
+    link.classList.remove('active');
+  }
 });
 
 mobNavLinks.forEach(link => {
-  if (link.href === window.location.href) {
-  link.classList.add('active');
+  if (link.href === currentUrl) {
+    link.classList.add('active');
   } else {
-  link.classList.remove('active');
+    link.classList.remove('active');
   }
-  });
+});
 
 // ====================================Мобильное меню====================================
 
@@ -90,6 +91,24 @@ function setBackdropColor(theme) {
     backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
   }
 }
+
+// ============================Модалка Team-Modal==================================================
+const footerBtn = document.querySelector('.footer-btn');
+const backdropModal = document.querySelector('.backdrop-team-modal');
+const closeBtn = document.querySelector('.close-btn');
+
+function openModal() {
+  backdropModal.classList.add('show');
+}
+
+function closeModal() {
+  backdropModal.classList.remove('show');
+}
+footerBtn.addEventListener('click', openModal);
+closeBtn.addEventListener('click', closeModal);
+
+
+
 
 
 

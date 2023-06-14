@@ -15,6 +15,7 @@
 @import url('./layout/modal_oops.css');
 @import url('./layout/modal_movie_info.css');
 @import url('./layout/modal_videoplayer.css');
+@import url('./layout/team_modal.css');
 
 /* pages */
 /* catalog page */
@@ -23,10 +24,15 @@
 @import url('./pages/catalog/cat_search.css');
 @import url('./pages/catalog/movie_catalog.css');
 @import url('./pages/catalog/pagination.css');
+@import url('./pages/catalog/cat_team-modal.css');
 
 /* library page */
 @import url('./pages/library/lib_header.css');
 @import url('./pages/library/lib_hero.css');
 @import url('./pages/library/my_movies.css');
+@import url('./pages/library/lib_team-modal.css');
 
 @import url('./pages/catalog/starrating.css');
+
+
+
