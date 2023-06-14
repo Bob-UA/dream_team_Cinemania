@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Catalog</title>
     
-    <script type="module" crossorigin src="/dream_team_Cinemania/assets/catalog-aa2a59bd.js"></script>
-    <link rel="modulepreload" crossorigin href="/dream_team_Cinemania/assets/switcher-3337534c.js">
-    <link rel="modulepreload" crossorigin href="/dream_team_Cinemania/assets/catalog_hero-9a70a6f0.js">
-    <link rel="stylesheet" href="/dream_team_Cinemania/assets/switcher-e4e3784f.css">
+    <script type="module" crossorigin src="/dream_team_Cinemania/assets/catalog-163692d4.js"></script>
+    <link rel="modulepreload" crossorigin href="/dream_team_Cinemania/assets/switcher-8717d1fb.js">
+    <link rel="modulepreload" crossorigin href="/dream_team_Cinemania/assets/catalog_hero-e611c1fa.js">
+    <link rel="stylesheet" href="/dream_team_Cinemania/assets/switcher-6b3fc484.css">
   </head>
   <body>
     <section class="header">
@@ -18,7 +18,7 @@
       <div class="header-nav-wrap">
         <a href="./index.html" class="header-logo-box">
           <svg class="logo">
-          <use href="/dream_team_Cinemania/assets/sprite-3e19127a.svg#icon-Logo"></use>
+          <use href="/dream_team_Cinemania/assets/sprite-a3231389.svg#icon-Logo"></use>
           </svg>
           <span class="logo_text">Cinemania</span>
         </a>
@@ -33,10 +33,10 @@
     <div class="toggle">
       <div class="toggle-icon">
       <svg class="moon-icon">
-          <use href="/dream_team_Cinemania/assets/sprite-3e19127a.svg#icon-Moon"></use>
+          <use href="/dream_team_Cinemania/assets/sprite-a3231389.svg#icon-Moon"></use>
       </svg>
       <svg class="sun-icon">
-          <use href="/dream_team_Cinemania/assets/sprite-3e19127a.svg#icon-Sun"></use>
+          <use href="/dream_team_Cinemania/assets/sprite-a3231389.svg#icon-Sun"></use>
       </svg>
       </div>
     </div>
@@ -50,7 +50,7 @@
   <div class="modal-content">
     <a href="./index.html" class="modal-logo">
       <svg class="logo">
-        <use href="/dream_team_Cinemania/assets/sprite-3e19127a.svg#icon-Logo"></use>
+        <use href="/dream_team_Cinemania/assets/sprite-a3231389.svg#icon-Logo"></use>
       </svg>
     </a>
     <nav class="modal-nav">
@@ -74,13 +74,29 @@
 
     <section class="section">
     <div class="container">
-        <h1 class="title">
-        Тут має бути блок з пошуковою строкою
-        </h1>
-        <form class="search-movie" action="submit">
-            <input type="text" name="search" placeholder="Search">
-            <button>Search</button>
-        </form>
+        <form class="catalog__form" id="search-form">
+            <div class="catalog__form_wrapper">
+              <input
+                class="catalog__form-input"
+                type="text"
+                name="search"
+                id="searchQuery"
+                placeholder="Search"
+                autocomplete="off"
+              />
+      
+              <button
+                class="catalog__form-button"
+                type="submit"
+                aria-label="search button"
+              >
+        
+                <svg class="search__icon" width="18" height="18">
+                  <use href="/dream_team_Cinemania/assets/sprite-a3231389.svg#icon-searh_white" ></use>
+                </svg>
+              </button>
+            </div>
+          </form>
     </div>
 </section>
     <section class="section">
@@ -96,9 +112,9 @@
 
     <section class="section">
     <div class="container">
-        <h1 class="title">
-        Тут має бути блок з пагінацією
-        </h1>
+        <div id="tui-pagination-container" class="tui-pagination">
+    
+        </div>
     </div>
 </section>
     <section class="section">
