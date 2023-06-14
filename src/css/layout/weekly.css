@@ -7,7 +7,7 @@
 
 
 .section-weekly {
-    
+    padding-top: 40px;
 }
 
 .weekly {
@@ -82,6 +82,9 @@
 }
 
 @media (min-width: 768px) {
+    .section-weekly{
+        padding-top: 52px;
+    }
     .weekly-js-list {
         display: flex;
         gap: 16px;
@@ -126,6 +129,9 @@
 }
 
 @media (min-width: 1280px) {
+    .section-weekly{
+        padding-top: 80px;
+    }
     .weekly-js-list {
         
     }
