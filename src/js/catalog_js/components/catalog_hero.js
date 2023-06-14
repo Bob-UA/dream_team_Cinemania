@@ -13,6 +13,7 @@ const trailerRefs = {
   trailerBackdrop: document.querySelector('.player_backdrop'),
   trailerContainer: document.querySelector('.player_container'),
   textContainer: document.querySelector('.hero-container'),
+  trailerCloseBtn: document.querySelector('[data-modal-trailer-close]'),
 };
 
 const STORAGE_KEY = 'MY_LIBRARY';
@@ -47,12 +48,7 @@ async function showRandomMovie() {
 }
 
 function createMarkUpForTrailer(id) {
-  return `<button type="button" class="close-modal-oops" data-modal-oops-close>
-            <svg class="close-oops">
-              <use href="/images/icon.svg#icon-close" ></use>
-            </svg>
-          </button>
-          <iframe class="iframe_video_player" 
+  return `<iframe class="iframe_video_player" 
               src="https://www.youtube.com/embed/${id}" 
               title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay;
@@ -64,12 +60,8 @@ function createMarkUpForTrailer(id) {
 }
 
 function createMarkUpForError() {
-  return `<button type="button" class="close-modal-oops" data-modal-oops-close>
-      <svg class="close-oops">
-        <use href="/images/icon.svg#icon-close" ></use>
-      </svg>
-    </button>
-    <h1 class="text-modal-oops">
+  return `
+   <h1 class="text-modal-oops">
       OOPS... <br> We are very sorry! <br>
       But we couldn’t find the trailer.
     </h1>
@@ -131,17 +123,21 @@ const trailerBtnRef = document.querySelector('.js-trailer-btn');
 const detailsBtnRef = document.querySelector('.js-details-btn');
 
 trailerBtnRef.addEventListener('click', onShowTrailerModal);
-const trailerCloseBtn = document.querySelector('.close-modal-oops');
 
 async function onShowTrailerModal() {
   trailerRefs.trailerBackdrop.addEventListener('click', onBackdropClickTrailer);
   window.addEventListener('keydown', onCloseModalWithESCTrailer);
-  trailerCloseBtn.addEventListener('click', removeModalTrailer);
 
-  const treilerID = results[index].id;
+  //this is normal id for correct visibility of the trailer
+  //needs to be uncommented for notmal work
+
+  // const treilerID = results[index].id;
+
+  //this is TEST id for make server mistakes
+  const treilerID = 10000000;
   const getTrailerKey = await getMoviesVideos(treilerID);
   let trailerMarkup = '';
-  if (+getTrailerKey.status === 200) {
+  if (getTrailerKey) {
     const randomElement = getRandom(0, getTrailerKey.data.results.length - 1);
     trailerMarkup = createMarkUpForTrailer(
       getTrailerKey.data.results[randomElement].key
@@ -149,8 +145,9 @@ async function onShowTrailerModal() {
   } else {
     trailerMarkup = createMarkUpForError();
   }
-  trailerRefs.trailerContainer.innerHTML = trailerMarkup;
+  trailerRefs.trailerContainer.insertAdjacentHTML('beforeend', trailerMarkup);
   trailerRefs.trailerBackdrop.classList.toggle('is-hidden');
+  trailerRefs.trailerCloseBtn.addEventListener('click', removeModalTrailer);
 }
 
 detailsBtnRef.addEventListener('click', addModal);
@@ -336,10 +333,9 @@ function removeModal() {
 }
 
 function removeModalTrailer() {
-  trailerRefs.trailerBackdrop.classList.add('is-hidden');
+  trailerRefs.trailerBackdrop.classList.toggle('is-hidden');
   trailerRefs.trailerContainer.innerHTML = '';
-
-  trailerCloseBtn.removeEventListener('click', removeModalTrailer);
+  trailerRefs.trailerCloseBtn.removeEventListener('click', removeModalTrailer);
 }
 
 // get movie by the ID
