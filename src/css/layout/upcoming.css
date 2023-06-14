@@ -1,5 +1,4 @@
 .upcoming-title {
-  color: var(--primary-text-color);
   font-weight: 500;
   font-size: 16px;
   line-height: 1.1;
@@ -15,7 +14,6 @@
 }
 
 .upcoming-film-title {
-  color: var(--primary-text-color);
   font-weight: 500;
   font-size: 20px;
   line-height: 1.1;
@@ -81,7 +79,6 @@
 .info-data-item {
   font-size: 16px;
   line-height: 1.1;
-  color: #ffffff;
   width: 110px;
 }
 .about-subtitle {
@@ -107,10 +104,28 @@
     font-size: 24px;
   }
 
+  .img-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+      307.47deg,
+      rgba(0, 0, 0, 0.2) 23.85%,
+      rgba(0, 0, 0, 0) 47.27%
+    );
+    border-radius: 5px;
+  }
+
+  .img-wrapper {
+    position: relative;
+  }
+
   .upcoming-img {
+    position: relative;
     width: 704px;
     height: 400px;
-    margin-bottom: 32px;
   }
   .upcoming-film-title {
     margin-bottom: 24px;
