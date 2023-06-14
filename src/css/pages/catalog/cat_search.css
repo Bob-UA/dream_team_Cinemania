@@ -105,4 +105,6 @@
   .catalog__icon :hover{
     fill: var(--primary-text-color);
   }
-  
+  .catalog__icon :hover{
+    fill: var(--primary-text-color);
+  }
