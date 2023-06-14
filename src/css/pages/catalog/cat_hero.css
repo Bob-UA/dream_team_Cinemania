@@ -55,6 +55,9 @@
   margin-bottom: 8px;
   color: var(--secondary-text-color);
 }
+/* .white .hero-title {
+  color: #111111;
+} */
 
 .hero-text {
   line-height: 1.14;
@@ -66,6 +69,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/* .white .hero-text {
+  color: #111111;
+} */
 
 .hero-stars {
   margin-top: 5px;
@@ -96,6 +102,11 @@
   transition: color var(--animation-duration) var(--timing-function),
     border var(--animation-duration) var(--timing-function);
 }
+/* .white .btn-details {
+  background-color: #ffffff; 
+  color: #111111; 
+  border: 1px solid #111111;
+} */
 
 .btn-details:hover,
 .btn-details:focus {

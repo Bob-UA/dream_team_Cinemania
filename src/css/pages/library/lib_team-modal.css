@@ -1,0 +1,158 @@
+.backdrop-team-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 6546;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-out;
+    
+  }
+  .backdrop-team-modal.show {
+    transform: translateX(0);
+   
+  }
+  .backdrop-team-modal.hide {
+    display: none;
+  }
+  .modal-team {
+    width: 90%;
+    max-width: 300px;
+    background-color: var(--primary-background-color);
+    padding: 15px;
+    border-radius: 20px;
+    position: fixed;
+    top: 5%;
+    left:50%;
+    transform: translate(-50%);
+    box-shadow: 5px 5px 5px 5px #F87719;
+    transition: transform 0.7s ease-out;
+    }
+  
+  .modal-container {
+    margin-top: 20px;
+    max-height: 400px; 
+    overflow-y: auto;
+    padding-bottom: 10px;
+  }
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .close-icon {
+    width: 15px;
+    height: 15px;
+    fill: white;
+    transition:color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .close-icon:hover,
+  .close-icon:focus {
+        fill:#F87719;
+      }
+  
+  .team-name {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    transition:color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 5px 5px 5px white;
+    
+  }
+  
+  .team-name:hover,
+  .team-name:focus {
+    color:#F87719;
+  }
+  
+  .team-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-basis: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .card:hover,
+  .card:focus {
+    box-shadow: 5px 5px 5px 5px #F87719;
+  }
+  .card img {
+    width: 180px; 
+    height: 280px; 
+    object-fit: cover; 
+  }
+  
+  .full-name {
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: yellow;
+    text-shadow: 5px 5px 5px yellow;
+  }
+  
+  .team-position {
+    font-size: 18px;
+    color: blue;
+    text-shadow: 5px 5px 5px blue;
+  }
+  
+  /* ====================================Tablet================================================= */
+  @media screen and (min-width: 768px) {
+    .modal-team {
+      width: 90%;
+      max-width: 900px;
+    }
+  
+    .team-card {
+      gap: 25px; 
+    }
+    .card {
+      flex-basis: calc(50% - 25px);
+      box-shadow: 5px 5px 5px 5px #ffffff; 
+   }
+  }
+  /* =================================Desctop=================================================== */
+  
+  @media screen and (min-width: 1280px) {
+    .modal-team {
+      width: 90%;
+      max-width: 1280px;
+      box-shadow: 10px 10px 10px 10px #F87719 
+    }
+    .team-card {
+      gap: 25px; 
+    }
+  
+    .team-name {
+      font-size: 50px;
+    
+    }
+  
+    .modal-container {
+      max-height: 700px; 
+    }
+    .card {
+      flex-basis: calc(25% - 25px);
+      box-shadow: 5px 5px 5px 5px #ffffff; 
+    }
+    .team-card {
+      justify-content: center;
+    }
+    
+  }
+  
+  
