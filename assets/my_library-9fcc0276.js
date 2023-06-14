@@ -1,4 +1,4 @@
-import"./switcher-ab2f4541.js";function g(e,o,i,r,n){return`<li class="gallery-movies-item" data-id="${i}">
+import"./switcher-0dc0b702.js";function g(e,o,i,r,n){return`<li class="gallery-movies-item" data-id="${i}">
         <img class="gallery-movies-img" src="https://image.tmdb.org/t/p/original/${e}" alt="${o}" loading="lazy">
         <div class="gallery-movies-overlay"></div>
             <div class="gallery-movies-description">
