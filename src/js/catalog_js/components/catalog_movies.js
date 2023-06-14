@@ -2,13 +2,15 @@ import { getMoviesTrending, getMoviesGenres, getMoviesBySearch } from '../../api
 import { markup } from './movies_cards';
 import Pagination from 'tui-pagination';
 import '../../../css/pages/catalog/tui-pagination.css';
-// import 'tui-pagination/dist/tui-pagination.css'
 
 const formSearch = document.querySelector('.search-movie');
 const galleryMovies = document.querySelector('.gallery-movies');
 const containerResults = document.querySelector('.no-results');
-// const weeklyMovies = await getMoviesTrending();
+const containerPagination = document.getElementById('tui-pagination-container');
 let query;
+
+const genresData = await getMoviesGenres();
+const genresArr = genresData.data.genres;
 
 initializePage('weekly');
 
@@ -26,13 +28,6 @@ async function onSearchSubmit(evt) {
       return;
     }
 
-    const dataMovies = await getMoviesBySearch(query);
-    if(dataMovies.data.results.length == 0) {
-      containerResults.hidden = false;
-      formSearch.reset();
-      return;
-    }
-
     containerResults.hidden = true;
     initializePage('query', query);
     formSearch.reset();
@@ -42,7 +37,7 @@ async function createMarkupMovies(arr) {
   const moviesMarkupPromises = arr.map(
     async ({ poster_path, title, genre_ids, id, release_date }) => {
       const year = release_date.substr(0, 4);
-      const genres = await getGenresNames(genre_ids);
+      const genres = getGenresNames(genresArr, genre_ids);
       return markup(poster_path, title, id, genres, year);
     }
   );
@@ -51,23 +46,22 @@ async function createMarkupMovies(arr) {
   return moviesMarkup.join('');
 }
 
-async function getGenresNames(arr) {
-  const dataGenres = await getMoviesGenres();
-  const genres = [];
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < dataGenres.data.genres.length; j++) {
-      if (Object.values(dataGenres.data.genres[j])[0] == arr[i]) {
-        genres.push(Object.values(dataGenres.data.genres[j])[1]);
+function getGenresNames(genres, genre_ids) {
+  const genresArrays = [];
+  genre_ids.filter(genreID => {
+    genres.map(({ id, name }) => {
+      if (id === genreID) {
+        genresArrays.push(name);
       }
-    }
-  }
-
-  return genres;
+    });
+  });
+  return genresArrays;
 }
 
 async function initializePage(type, query) {
   let response;
-  let totalResults
+  let totalResults;
+
   if(type == 'weekly') {
     response = await getMoviesTrending();
     totalResults = response.data.total_results;
@@ -76,13 +70,19 @@ async function initializePage(type, query) {
     totalResults = response.data.total_results;
   }
 
+  if(type == 'query' && !totalResults) {
+    containerPagination.innerHTML = '';
+    containerResults.hidden = false;
+    formSearch.reset();
+    return;
+  }
+
   galleryMovies.innerHTML = await createMarkupMovies(response.data.results);  
 
   if (totalResults > 10000) {
     totalResults = 10000;
   }
 
-  const container = document.getElementById('tui-pagination-container');
   const options = {
     totalItems: totalResults,
     itemsPerPage: 20,
@@ -96,7 +96,7 @@ async function initializePage(type, query) {
       currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
       moveButton:
           '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
-              '<span class="tui-ico-{{type}}">{{type}}</span>' +
+              '<span class="tui-ico-{{type}}"></span>' +
           '</a>',
       disabledMoveButton:
           '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
@@ -104,13 +104,13 @@ async function initializePage(type, query) {
           '</span>',
       moreButton:
           '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
-              '<span class="tui-ico-ellip">...</span>' +
+              '<span class="tui-ico-ellip"></span>' +
           '</a>'
     },
   };
-  const instance = new Pagination(container, options);
+  const instance = new Pagination(containerPagination, options);
 
-  instance.on('beforeMove', async evt => {
+  instance.on('afterMove', async evt => {
     const { page } = evt;
 
     if(type == 'weekly') {
