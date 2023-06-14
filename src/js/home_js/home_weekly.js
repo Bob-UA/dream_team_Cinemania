@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getMoviesTrending } from '../api/ApiService';
+import { starRatingCalc } from './components';
 
 const GANRES_URL = 'https://api.themoviedb.org/3/genre/movie/list';
 const API_KEY = '9d709850c7590845ffb60644b29d6f51';
@@ -7,7 +8,9 @@ const API_KEY = '9d709850c7590845ffb60644b29d6f51';
 const list = document.querySelector('.weekly-js-list');
 const genresArr = await listOfGanresAPI();
 const genresTotalArray = genresArr.data.genres;
+
 const resp = await getMoviesTrending('week', 1);
+
 async function listOfGanresAPI() {
   return await axios.request({
     method: 'GET',
@@ -27,6 +30,7 @@ async function createMarkUp(arr) {
       const year = release_date.substr(0, 4);
       const namesOfGenres = genresNames(genresTotalArray, genre_ids);
       const genres = Object.values(namesOfGenres);
+      const starRating = starRatingCalc(vote_average);
       return `<li class="weekly-list">
     <img class="weekly-list-img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" data-id="${id}" loading="lazy">
       <div class="weekly-list-overlay">
