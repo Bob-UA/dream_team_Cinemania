@@ -91,7 +91,7 @@ const createHeroMarkup = ({
 }) => {
   return ` <div class="hero-content"><div class="hero-text-container">
     <h1 class="title hero-title">${title}</h1>
-    <img class="star-rating-hero" src=".${starRatingCalc(
+    <img class="star-rating-hero" src="${starRatingCalc(
       vote_average
     )}" alt="raiting" />
       <p class="text hero-text">
