@@ -64,7 +64,7 @@ async function displayFilmInformation(film) {
       <img class="upcoming-img" src="https://image.tmdb.org/t/p/original/${
         film.backdrop_path
       }" alt="${film.title}" />
-      <div class="img-container"></div>
+      <div class="img-gradient-container"></div>
       </div>
       <div class="film-details">
         <h2 class="upcoming-film-title">${film.title}</h2>

@@ -233,4 +233,3 @@ async function moviesInfo(movieID) {
   const movies = await getMoviesDetails(movieID);
   return movies;
 }
-й
