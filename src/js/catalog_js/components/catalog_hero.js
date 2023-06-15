@@ -67,10 +67,10 @@ function createMarkUpForError() {
       But we couldn’t find the trailer.
     </h1>
     <picture class="camera">
-      <source srcset="../../../images/modal-camera-mobile-1x.jpg 1x, ../../../images/modal-camera-mobile-2x.jpg 2x" media="(max-width: 767px)" />
-      <source srcset="../../../images/modal-camera-tablet-1x.jpg 1x, ../../../images/modal-camera-tablet-2x.jpg 2x" media="(min-width: 768px)" />
-      <source srcset="../../../images/modal-camera-desktop-1x.jpg 1x, ../../../images/modal-camera-desktop-2x.jpg 2x" media="(min-width: 1280px)" />
-      <img src="../../../images/modal-camera-mobile-1x.jpg" alt="camera" />
+      <source srcset="./images/modal-camera-mobile-1x.jpg 1x, ./images/modal-camera-mobile-2x.jpg 2x" media="(max-width: 767px)" />
+      <source srcset="./images/modal-camera-tablet-1x.jpg 1x, ./images/modal-camera-tablet-2x.jpg 2x" media="(min-width: 768px)" />
+      <source srcset="./images/modal-camera-desktop-1x.jpg 1x, ./images/modal-camera-desktop-2x.jpg 2x" media="(min-width: 1280px)" />
+      <img src="./images/modal-camera-mobile-1x.jpg" alt="camera" />
     </picture>
   </div>`;
 }
@@ -132,10 +132,10 @@ async function onShowTrailerModal() {
   //this is normal id for correct visibility of the trailer
   //needs to be uncommented for notmal work
 
-  // const treilerID = results[index].id;
+  const treilerID = results[index].id;
 
   //this is TEST id for make server mistakes
-  const treilerID = 10000000;
+  // const treilerID = 10000000;
   const getTrailerKey = await getMoviesVideos(treilerID);
   let trailerMarkup = '';
   if (getTrailerKey) {
