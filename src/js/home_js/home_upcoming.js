@@ -1,3 +1,5 @@
+import { arrayOfGenres, getMoviesUpcoming } from '../api/ApiService';
+
 const API_KEY = '9d709850c7590845ffb60644b29d6f51';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const UPCOMING_END_POINT = 'movie/upcoming';
@@ -8,16 +10,17 @@ let movie = {};
 
 async function getRandomFilm() {
   const upcomingURL = `${BASE_URL}${UPCOMING_END_POINT}?api_key=${API_KEY}`;
-  const response = await fetch(upcomingURL);
-  const data = await response.json();
+  // const response = await fetch(upcomingURL);
+  // const data = await response.json();
+  const response = await getMoviesUpcoming();
 
-  if (data.results.length === 0) {
+  if (response.data.results.length === 0) {
     showNoFilmsMessage();
     return;
   }
 
-  const randomIndex = Math.floor(Math.random() * data.results.length);
-  const film = data.results[randomIndex];
+  const randomIndex = Math.floor(Math.random() * response.data.results.length);
+  const film = response.data.results[randomIndex];
   displayFilmInformation(film);
 }
 
@@ -46,12 +49,13 @@ function showNoFilmsMessage() {
 // }
 
 async function displayFilmInformation(film) {
-  const genresURL = `${BASE_URL}${GENRES_END_POINT}?api_key=${API_KEY}`;
-  const genresResponse = await fetch(genresURL);
-  const genresData = await genresResponse.json();
+  // const genresURL = `${BASE_URL}${GENRES_END_POINT}?api_key=${API_KEY}`;
+  // const genresResponse = await fetch(genresURL);
+  // const genresData = await genresResponse.json();
 
   const genreNames = film.genre_ids.map(genreId => {
-    const genre = genresData.genres.find(g => g.id === genreId);
+    // const genre = genresData.genres.find(g => g.id === genreId);
+    const genre = arrayOfGenres.find(g => g.id === genreId);
     return genre ? genre.name : '';
   });
 
