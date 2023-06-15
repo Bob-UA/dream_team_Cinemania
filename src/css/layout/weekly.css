@@ -110,6 +110,12 @@
     display: none;
   }
 
+  .weekly-see-all:is(:hover, :focus, ) {
+    border-radius: 76px;
+    border: 1px solid #F87719;
+    transition: color var(--animation-duration) var(--timing-function), border var(--animation-duration) var(--timing-function);
+  } 
+
   .weekly-js-list {
     display: flex;
     gap: 16px;

@@ -21,8 +21,8 @@ const containerResults = document.querySelector('.no-results');
 const containerPagination = document.getElementById('tui-pagination-container');
 let query;
 
-const genresData = await getMoviesGenres();
-const genresArr = genresData.data.genres;
+// const genresData = await getMoviesGenres();
+// const genresArr = genresData.data.genres;
 
 initializePage('weekly');
 
@@ -45,22 +45,22 @@ function onClickClear() {
 }
 
 async function onSearchSubmit(evt) {
-    evt.preventDefault();
-    galleryMovies.innerHTML = '';
-    const { search } = evt.currentTarget.elements;
-    query = search.value.trim();
-    buttonClearInput.style.display = 'none';
-    
-    if (query == '' || !query) {
-      containerResults.hidden = false;
-      sectionPagination.style.display = 'none';
-      formSearch.reset();
-      return;
-    }
-    
-    containerResults.hidden = true;
-    initializePage('query', query);
+  evt.preventDefault();
+  galleryMovies.innerHTML = '';
+  const { search } = evt.currentTarget.elements;
+  query = search.value.trim();
+  buttonClearInput.style.display = 'none';
+
+  if (query == '' || !query) {
+    containerResults.hidden = false;
+    sectionPagination.style.display = 'none';
     formSearch.reset();
+    return;
+  }
+
+  containerResults.hidden = true;
+  initializePage('query', query);
+  formSearch.reset();
 }
 
 async function createMarkupMovies(arr) {
