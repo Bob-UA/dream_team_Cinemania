@@ -1,4 +1,4 @@
-import{r as i,c as _,d as k,b as B}from"./switcher-27652e0b.js";const d="MY_LIBRARY";let u={},c=null;i.libraryContainer.addEventListener("click",I);function f(e){if(e.genres){const{poster_path:t,title:o,id:s,genres:r,release_date:n}=e,a=r.map(g=>g.name),m=n?n.split("-")[0]:"";return`
+import{r as i,c as _,d as k,b as B}from"./switcher-a2a75825.js";const d="MY_LIBRARY";let u={},c=null;i.libraryContainer.addEventListener("click",I);function f(e){if(e.genres){const{poster_path:t,title:o,id:s,genres:r,release_date:n}=e,a=r.map(g=>g.name),m=n?n.split("-")[0]:"";return`
     <li class="gallery-movies-item" data-genres="${a.join(",")}">
       <img class="gallery-movies-img" src="https://image.tmdb.org/t/p/original/${t}" alt="${o}" loading="lazy">
       <div class="gallery-movies-overlay js-modal-info" data-id="${s}"></div>
