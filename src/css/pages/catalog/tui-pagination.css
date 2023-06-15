@@ -35,24 +35,24 @@
     
     font-size: 10px;
     line-height: 1;
-    color: #B7B7B7;
-    border: 1px solid #B7B7B7;
+    color: var(--grey-color);
+    border: 1px solid var(--grey-color);
     border-radius: 50%;
 }
 
 .tui-pagination .tui-page-btn:hover {
     border: 1px solid var(--primary-text-color);
     color: var(--primary-text-color);
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms var(--timing-function), border 250ms var(--timing-function);
 }
 
 .tui-pagination .tui-is-selected:hover {
     border: none;
-    color: #FFFFFF;
+    color: var(--primary-text-color);
 }
 
 .tui-pagination .tui-is-selected, .tui-pagination strong {
-    color: #FFFFFF;
+    color: var(--primary-text-color);
     background: linear-gradient(141.22deg, #FFC226 9.4%, #F84119 91.91%);;
     border: none;
     cursor: default;
@@ -62,40 +62,28 @@
     background-color: linear-gradient(141.22deg, #FFC226 9.4%, #F84119 91.91%);
 }
 
-.tui-pagination .tui-ico-first {
-    width: 14px;
-    height: 15px;
-    background-image: url(../../../images/pagination-icons/first.svg);
-    background-repeat: no-repeat;
+.tui-pagination .tui-ico-first,
+.tui-pagination .tui-ico-last {
+    width: 11px;
+    height: 11px;
+    fill: currentColor;
+    transition: color 250ms var(--timing-function);
 }
 
-.tui-pagination .tui-ico-prev {
+.tui-pagination .tui-ico-prev,
+.tui-pagination .tui-ico-next {
     width: 8px;
-    height: 15px;
-    background-image: url(../../../images/pagination-icons/prev.svg);
-    background-repeat: no-repeat;
+    height: 11px;
+    fill: currentColor;
+    transition: color 250ms var(--timing-function);
 }
 
 .tui-pagination .tui-ico-ellip {
     width: 10px;
     height: 2px;
     margin-top: 14px;
-    background-image: url(../../../images/pagination-icons/ellip.svg);
-    background-repeat: no-repeat;
-}
-
-.tui-pagination .tui-ico-next {
-    width: 8px;
-    height: 15px;
-    background-image: url(../../../images/pagination-icons/next.svg);
-    background-repeat: no-repeat;
-}
-
-.tui-pagination .tui-ico-last {
-    width: 14px;
-    height: 15px;
-    background-image: url(../../../images/pagination-icons/last.svg);
-    background-repeat: no-repeat;
+    fill: currentColor;
+    transition: color 250ms var(--timing-function);
 }
 
 .tui-pagination .tui-is-disabled {
@@ -105,6 +93,8 @@
 .tui-page-inputs .tui-page-current {
     background-color: linear-gradient(141.22deg, #FFC226 9.4%, #F84119 91.91%);
 }
+
+
 
 .tui-pagination .tui-first,
 .tui-pagination .tui-prev,
@@ -121,10 +111,6 @@
     border: none;
 }
 
-.tui-pagination .tui-first,
-.tui-pagination .tui-last {
-    padding: 1px;
-}
 
 @media screen and (min-width:768px) {
     .tui-pagination {
@@ -163,4 +149,12 @@
     .tui-pagination {
         padding-top: 60px;
     }
+}
+
+.tui-page-btn.custom-class {
+    color: var(--arrow-color);
+}
+
+.tui-page-btn.custom-class:hover {
+    color: var(--primary-text-color);
 }
