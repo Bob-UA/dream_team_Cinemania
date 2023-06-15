@@ -1,8 +1,9 @@
-import axios from 'axios';
+// import axios from 'axios';
 import refs from '../catalog_js/components/modal_movie_refs';
-import { getMoviesDetails } from '../api/ApiService';
+import { arrayOfGenres, getMoviesDetails } from '../api/ApiService';
 import { createMovieInfoPopUpMarkup } from '../catalog_js/components/creatMovieInfoPopUpMarkup';
-import { API_KEY } from '../api/ApiService';
+import { starRatingCalc } from '../home_js/components';
+//  import { API_KEY } from '../api/ApiService';
 const GANRES_URL = 'https://api.themoviedb.org/3/genre/movie/list';
 
 const STORAGE_KEY = 'MY_LIBRARY';
@@ -11,14 +12,16 @@ let movieID = null;
 
 let filterGenres = null;
 
-const genresArr = await listOfGanresAPI();
-const genresTotalArray = genresArr.data.genres;
+// const genresArr = await listOfGanresAPI();
+// const genresTotalArray = genresArr.data.genres;
 
 refs.libraryContainer.addEventListener('click', addModal);
 
 function markup(movie) {
-  if (movie.genres) {
-    const { poster_path, title, id, genres, release_date } = movie;
+  if (movie.genres)
+  {
+    //console.log(movie);
+    const { poster_path, title, id, genres, release_date, vote_average } = movie;
     const genreNames = genres.map(genre => genre.name);
     const year = release_date ? release_date.split('-')[0] : '';
 
@@ -28,13 +31,21 @@ function markup(movie) {
       <div class="gallery-movies-overlay js-modal-info" data-id="${id}"></div>
       <div class="gallery-movies-description">
         <h3 class="gallery-movies-title">${title}</h3>
+        
+        <div class="gallery-movies-wrap">
         <p class="gallery-movies-details">${genreNames.join(', ')} | ${year}</p>
+         <img src="${starRatingCalc(
+           vote_average
+         )}" alt="raiting" class="star-rating-card"/>
+          </div>
+
       </div>
     </li>
   `;
   } else if (movie.genre_ids) {
-    const { poster_path, title, id, genre_ids, release_date } = movie;
-    const namesOfGenres = genresNames(genresTotalArray, genre_ids);
+    const { poster_path, title, id, genre_ids, release_date, vote_average } =
+      movie;
+    const namesOfGenres = genresNames(arrayOfGenres, genre_ids);
     const genres = Object.values(namesOfGenres);
 
     const year = release_date ? release_date.split('-')[0] : '';
@@ -45,7 +56,14 @@ function markup(movie) {
       <div class="gallery-movies-overlay js-modal-info" data-id="${id}"></div>
       <div class="gallery-movies-description">
         <h3 class="gallery-movies-title">${title}</h3>
+        
+        <div class="gallery-movies-wrap">
         <p class="gallery-movies-details">${genres.join(', ')} | ${year}</p>
+         <img src="${starRatingCalc(
+           vote_average
+         )}" alt="raiting" class="star-rating-card"/>
+          </div>
+
       </div>
     </li>
   `;
@@ -359,16 +377,16 @@ async function moviesInfo(movieID) {
   return movies;
 }
 
-async function listOfGanresAPI() {
-  return await axios.request({
-    method: 'GET',
-    url: GANRES_URL,
-    params: {
-      api_key: API_KEY,
-      language: 'en',
-    },
-  });
-}
+// async function listOfGanresAPI() {
+//   return await axios.request({
+//     method: 'GET',
+//     url: GANRES_URL,
+//     params: {
+//       api_key: API_KEY,
+//       language: 'en',
+//     },
+//   });
+// }
 
 function genresNames(genres, genre_ids) {
   const genresArrays = [];
