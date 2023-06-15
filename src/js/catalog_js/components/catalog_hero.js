@@ -1,3 +1,4 @@
+import _ from 'lodash.debounce';
 import { defaultHeroStyles } from '../../utils';
 import { getMoviesTrending } from '../../api/ApiService';
 import { getMoviesVideos } from '../../api/ApiService';
@@ -142,8 +143,10 @@ async function onShowTrailerModal() {
     trailerMarkup = createMarkUpForTrailer(
       getTrailerKey.data.results[randomElement].key
     );
+    refs.closeModalOopsBtn.className = 'is-hidden';
   } else {
     trailerMarkup = createMarkUpForError();
+    refs.wrapperContainer.className = 'modal-oops';
   }
   trailerRefs.trailerContainer.insertAdjacentHTML('beforeend', trailerMarkup);
   trailerRefs.trailerBackdrop.classList.toggle('is-hidden');

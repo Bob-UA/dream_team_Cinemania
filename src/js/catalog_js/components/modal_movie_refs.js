@@ -9,6 +9,8 @@ const refs = {
   backdropMovieInfoDetailsCatalog: document.querySelector(
     '.backdrop-movie-info'
   ),
+  wrapperContainer: document.querySelector('.player_wraper'),
+  closeModalOopsBtn: document.querySelector('.close-modal-oops'),
 };
 
 export default refs;
