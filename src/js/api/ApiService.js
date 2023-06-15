@@ -5,7 +5,7 @@
 
 import axios from 'axios';
 
-export const API_KEY = '9d709850c7590845ffb60644b29d6f51';
+const API_KEY = '9d709850c7590845ffb60644b29d6f51';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const TRENDING_END_POINT = 'trending/movie/'; // end-point  трендовых фільмів за день/тиждень
 const UPCOMING_END_POINT = 'movie/upcoming'; // end-point  новінки
@@ -127,7 +127,7 @@ export function handlerError(error) {
 }
 
 //-----------------------------------------------------------------------запит на ым'я жанрів по їх id
-// let arrayOfGenres = (await getMoviesGenres()).data.genres;
+export const arrayOfGenres = (await getMoviesGenres()).data.genres;
 
 // export function getNameOfGenreById(array) {
 //   let res = [];
