@@ -80,6 +80,7 @@ if (savedMovies.length > 0) {
 
   function renderMovies(movies = savedMovies) {
     const moviesList = refs.libraryContainer.querySelector('.gallery-movies');
+    moviesList.innerHTML = '';
     const moviesToRender = movies.slice(0, currentPage * moviesPerPage);
     const movieLibraryMarkup = moviesToRender
       .map(movie => {
@@ -117,18 +118,51 @@ if (savedMovies.length > 0) {
 function onChoseFilterGenre(e) {
   const selectedGenre = e.target.value;
   if (selectedGenre === '') {
-    createNewMarkup('');
+    createNewMarkup();
   } else {
-    const filteredMovies = savedMovies.filter(movie =>
-      movie.genres.some(genre => genre.name === selectedGenre)
-    );
+    console.log(selectedGenre);
+    const filterArr = savedMovies.map(movie => {
+      if (movie.genres) {
+        const genres = movie.genres;
+        return genres
+          .map(genre => {
+            if (genre.name === selectedGenre) {
+              return movie;
+            }
+          })
+          .filter(movie => movie);
+      } else if (movie.genre_ids) {
+        const namesOfGenres = genresNames(genresTotalArray, movie.genre_ids);
+        const genresID = Object.values(namesOfGenres);
+        return genresID
+          .map(genreID => {
+            if (genreID.name === selectedGenre) {
+              return movie;
+            }
+          })
+          .filter(movie => movie);
+      }
+    });
+    const filteredMovies = filterArr
+      .map(arr => {
+        if (arr.length === 0) {
+          return;
+        } else {
+          return arr[0];
+        }
+      })
+      .filter(movie => movie);
+    console.log(filteredMovies);
     if (filteredMovies.length > 0) {
       currentPage = 1; // reset to page 1 for new filter
+
       createNewMarkup(filteredMovies);
+      console.log(1);
     } else {
+      console.log(2);
       refs.libraryContainer.innerHTML = `
     <select id="genre-filter" class="my-library__select">
-      <option value="">${selectedGenre}</option>
+      <option value="">Genre</option>
       <option value="Romance">Romance</option>
       <option value="Detective">Detective</option>
       <option value="Thriller">Thriller</option>
