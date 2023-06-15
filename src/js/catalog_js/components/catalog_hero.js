@@ -132,10 +132,10 @@ async function onShowTrailerModal() {
   //this is normal id for correct visibility of the trailer
   //needs to be uncommented for notmal work
 
-  // const treilerID = results[index].id;
+  const treilerID = results[index].id;
 
   //this is TEST id for make server mistakes
-  const treilerID = 10000000;
+  // const treilerID = 10000000;
   const getTrailerKey = await getMoviesVideos(treilerID);
   let trailerMarkup = '';
   if (getTrailerKey) {
