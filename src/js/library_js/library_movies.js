@@ -1,16 +1,16 @@
 import axios from 'axios';
 import refs from '../catalog_js/components/modal_movie_refs';
-import { getMoviesDetails } from '../api/ApiService';
+import { arrayOfGenres, getMoviesDetails } from '../api/ApiService';
 import { createMovieInfoPopUpMarkup } from '../catalog_js/components/creatMovieInfoPopUpMarkup';
-import { API_KEY } from '../api/ApiService';
-const GANRES_URL = 'https://api.themoviedb.org/3/genre/movie/list';
+//import { API_KEY } from '../api/ApiService';
+// const GANRES_URL = 'https://api.themoviedb.org/3/genre/movie/list';
 
 const STORAGE_KEY = 'MY_LIBRARY';
 let movie = {};
 let movieID = null;
 
-const genresArr = await listOfGanresAPI();
-const genresTotalArray = genresArr.data.genres;
+// const genresArr = await listOfGanresAPI();
+// const genresTotalArray = genresArr.data.genres;
 
 refs.libraryContainer.addEventListener('click', addModal);
 
@@ -32,7 +32,7 @@ function markup(movie) {
   `;
   } else if (movie.genre_ids) {
     const { poster_path, title, id, genre_ids, release_date } = movie;
-    const namesOfGenres = genresNames(genresTotalArray, genre_ids);
+    const namesOfGenres = genresNames(arrayOfGenres, genre_ids);
     const genres = Object.values(namesOfGenres);
 
     const year = release_date ? release_date.split('-')[0] : '';
@@ -308,16 +308,16 @@ async function moviesInfo(movieID) {
   return movies;
 }
 
-async function listOfGanresAPI() {
-  return await axios.request({
-    method: 'GET',
-    url: GANRES_URL,
-    params: {
-      api_key: API_KEY,
-      language: 'en',
-    },
-  });
-}
+// async function listOfGanresAPI() {
+//   return await axios.request({
+//     method: 'GET',
+//     url: GANRES_URL,
+//     params: {
+//       api_key: API_KEY,
+//       language: 'en',
+//     },
+//   });
+// }
 
 function genresNames(genres, genre_ids) {
   const genresArrays = [];
