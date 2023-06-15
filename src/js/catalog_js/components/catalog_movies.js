@@ -1,6 +1,5 @@
 import {
   getMoviesTrending,
-  getMoviesGenres,
   getMoviesBySearch,
   arrayOfGenres,
 } from '../../api/ApiService';
