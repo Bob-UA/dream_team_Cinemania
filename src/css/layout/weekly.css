@@ -1,55 +1,148 @@
 :root {
-    --primary-background-color: #111111;
-    --font-size-weekly-title: 16px;
-    --line-height-weekly-title: 1.18;
-}
-
-
-
-.section-weekly {
-    padding-top: 40px;
-}
-
-.weekly {
-     
-}
-
-.weekly-js-list{
-    
+  --primary-background-color: #111111;
+  --font-size-weekly-title: 16px;
+  --line-height-weekly-title: 1.18;
 }
 
 .weekly-list {
-    position: relative;
+  position: relative;
+}
+
+.weekly-list-desc {
+  display: none;
+}
+
+.weekly-list-tab {
+  display: none;
+}
+
+.mobile {
+  display: block;
+}
+
+.tablet {
+  display: none;
+}
+
+.desktop {
+  display: none;
 }
 
 .weekly-head {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
 }
 
 .weekly-title {
-    font-weight: var(--font-weight-medium);
-    font-size: var(--font-size-weekly-title);
-    line-height: var(--line-height-weekly-title);
-    color: var(--primary-text-color);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-weekly-title);
+  line-height: var(--line-height-weekly-title);
+  color: var(--primary-text-color);
 }
 
 .weekly-see-all {
-    font-weight: var(--font-weight-medium);
-    font-size: 16px;
-    line-height: 1.18;
-    color: #F87719;
+  font-weight: var(--font-weight-medium);
+  font-size: 16px;
+  line-height: 1.18;
+  color: #f87719;
 }
 
 .weekly-list-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.weekly-list-overlay {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 12px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 63.48%,
+    rgba(0, 0, 0, 0.9) 92.16%
+  );
+  border-radius: 4px;
+}
+
+.weekly-list-title {
+  font-size: 12px;
+  line-height: 1.66;
+  color: var(--primary-text-color);
+}
+
+.weekly-list-genre {
+  font-size: 12px;
+  line-height: 1.66;
+  color: #b7b7b7;
+}
+
+.weekly-list:not(:first-child) {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .tablet {
+    display: block;
+  }
+
+  .mobile {
+    display: none;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .weekly-list {
+    display: none;
+  }
+
+  .weekly-list-desc {
+    display: none;
+  }
+
+  .weekly-js-list {
+    display: flex;
+    gap: 16px;
+  }
+  .weekly-list-tab {
+    position: relative;
+  }
+
+  .weekly-head {
+    margin-top: 52px;
+    margin-bottom: 24px;
+  }
+
+  .weekly-title {
+    font-size: 24px;
+    line-height: 1.16;
+    font-weight: var(--font-weight-medium);
+    color: var(--primary-text-color);
+  }
+
+  .weekly-see-all-tab {
+    font-size: 24px;
+    line-height: 1.16;
+  }
+
+  .weekly-list-img-tab {
     display: block;
     max-width: 100%;
     height: auto;
     border-radius: 5px;
-}
+  }
 
-.weekly-list-overlay {
+  .weekly-list-overlay-tab {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -59,117 +152,102 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 63.48%, rgba(0, 0, 0, 0.9) 92.16%);
+    background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 63.48%,
+      rgba(0, 0, 0, 0.9) 92.16%
+    );
     border-radius: 4px;
-    
-}
+  }
 
-.weekly-list-title {
+  .weekly-list-title-tab {
     font-size: 12px;
-    line-height: 1.66;
-    color: var(--primary-text-color);
-}
+    line-height: 1.5;
+    color: #ffffff;
+  }
 
-.weekly-list-overlay-desc {
-    display: flex;
-    justify-content: space-between;
-}
-
-.weekly-list-genre {
+  .weekly-list-genre-tab {
     font-size: 12px;
-    line-height: 1.66;
-    color: #B7B7B7;
-}
-
-@media (min-width: 768px) {
-    .section-weekly{
-        padding-top: 52px;
-    }
-    .weekly-js-list {
-        display: flex;
-        gap: 16px;
-    }
-
-    .weekly-list {
-        
-    }
-    
-    .weekly-head {
-        margin-top: 52px;
-        margin-bottom: 24px;
-    }
-
-    .weekly-title {
-        font-size: 24px;
-        line-height: 1.16;
-    }
-
-    .weekly-see-all {
-        font-size: 24px;
-        line-height: 1.16;
-    }
-
-    .weekly-list-title {
-        font-size: 12px;
-        line-height: 1.5;
-        color: #FFFFFF;
-    }
-
-    .weekly-list-genre {
-        font-size: 12px;
-        line-height: 1.5;
-        color: #B7B7B7;
-    }
-
-    .weekly-list-raiting {
-        font-size: 12px;
-        line-height: 1.5;
-        color: #F87719;
-    }
+    line-height: 1.5;
+    color: #b7b7b7;
+  }
 }
 
 @media (min-width: 1280px) {
-    .section-weekly{
-        padding-top: 80px;
-    }
-    .weekly-js-list {
-        
-    }
+  .tablet {
+    display: none;
+  }
 
-    .weekly-list {
-        
-    }
+  .mobile {
+    display: none;
+  }
 
-    .weekly-head {
-        margin-top: 80px;
-        margin-bottom: 28px;
-    }
+  .desktop {
+    display: block;
+  }
 
-    .weekly-title {
-        font-size: 28px;
-        line-height: 1.17;
-    }
+  .weekly-list {
+    display: none;
+  }
 
-    .weekly-see-all {
-        font-size: 28px;
-        line-height: 1.17;
-    }
+  .weekly-list-desc {
+    position: relative;
+    display: flex;
+  }
 
-    .weekly-list-title {
-        font-size: 20px;
-        line-height: 1.15;
-        color: #FFFFFF;
-    }
+  .weekly-list-tab {
+    display: none;
+  }
 
-    .weekly-list-genre {
-        font-size: 20px;
-        line-height: 1.15;
-        color: #B7B7B7;
-    }
-    
-    .weekly-list-raiting {
-        font-size: 20px;
-        line-height: 1.15;
-        color: #F87719;
-    }
+  .weekly-head {
+    margin-top: 80px;
+    margin-bottom: 28px;
+  }
+
+  .weekly-title {
+    font-size: 28px;
+    line-height: 1.17;
+  }
+
+  .weekly-see-all {
+    font-size: 28px;
+    line-height: 1.17;
+  }
+
+  .weekly-list-title-desc {
+    font-size: 20px;
+    line-height: 1.15;
+    color: #ffffff;
+  }
+
+  .weekly-list-img-desc {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  .weekly-list-overlay-desc {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding: 12px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 63.48%,
+      rgba(0, 0, 0, 0.9) 92.16%
+    );
+    border-radius: 4px;
+  }
+
+  .weekly-list-genre-desc {
+    font-size: 20px;
+    line-height: 1.15;
+    color: #b7b7b7;
+  }
 }
