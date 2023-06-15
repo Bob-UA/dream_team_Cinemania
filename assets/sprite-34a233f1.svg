@@ -85,12 +85,8 @@
 <symbol id="icon-Moon" viewBox="0 0 32 32">
 <path fill="none" stroke="#fff" style="stroke: var(--color15, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.1333" d="M2.189 16.585c0.516 7.14 6.773 12.949 14.261 13.269 5.282 0.22 10.007-2.163 12.843-5.92 1.173-1.54 0.544-2.566-1.417-2.219-0.96 0.166-1.948 0.235-2.978 0.192-7.002-0.277-12.73-5.946-12.757-12.642-0-0.030-0-0.065-0-0.1 0-1.798 0.396-3.504 1.104-5.035l-0.031 0.074c0.772-1.717-0.158-2.537-1.948-1.801-5.67 2.315-9.549 7.846-9.077 14.18z"></path>
 </symbol>
-<symbol id="icon-close-pop-up" viewBox="0 0 32 32">
-<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.3333" d="M23 23l-14-14M23 9l-14 14"></path>
-</symbol>
-<symbol id="icon-searh_white" viewBox="0 0 32 32">
-<path fill="none" stroke="#fff" style="stroke: var(--color1, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.3111" d="M14.667 25.333c5.891 0 10.667-4.776 10.667-10.667s-4.776-10.667-10.667-10.667c-5.891 0-10.667 4.776-10.667 10.667s4.776 10.667 10.667 10.667z"></path>
-<path fill="none" stroke="#fff" style="stroke: var(--color1, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.3111" d="M28.001 28l-5.8-5.8"></path>
+<symbol id="icon-close" viewBox="0 0 32 32">
+<path d="M32 3.224l-3.224-3.224-12.776 12.776-12.776-12.776-3.224 3.224 12.776 12.776-12.776 12.776 3.224 3.224 12.776-12.776 12.776 12.776 3.224-3.224-12.776-12.776 12.776-12.776z"></path>
 </symbol>
 </defs>
 </svg>
