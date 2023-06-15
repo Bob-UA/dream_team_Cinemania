@@ -28,14 +28,14 @@
 
   font-size: 14px;
   line-height: 1.14;
-  border: 1px solid var(--primary-text-color);
+  border: 1px solid var(--grey-color);
   border-radius: 8px;
   background-color: transparent;
-  color: var(--primary-text-color);
+  color: var(--grey-color);
 }
 
 .catalog__form-input::placeholder {
-  color: #B7B7B7;
+  color: var(--grey-color);
 }
 
 @media screen and (min-width: 768px) {
@@ -54,6 +54,41 @@
 
     font-size: 16px;
     line-height: 1.19;
+  }
+}
+
+.input-container {
+  position: relative;
+}
+
+.clear__icon {
+  display: none;
+  position: absolute;
+  top: 11px;
+  right: 20px;
+  width: 18px;
+  height: 18px;
+
+  fill: var(--white-input-color);
+  transition: fill 250ms var(--timing-function);
+}
+
+.clear__icon:hover {
+  cursor: pointer;
+  fill: var(--primary-text-color);
+}
+
+@media screen and (min-width: 768px) {
+  .clear__icon {
+    top: 13px;
+    right: 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .clear__icon {
+    top: 15px;
+    right: 24px;
   }
 }
 

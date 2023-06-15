@@ -72,6 +72,9 @@ function enableLightTheme() {
   toggle.classList.add('active');
   document.documentElement.style.setProperty('--primary-background-color', '#111111');
   document.documentElement.style.setProperty('--primary-text-color', '#282828');
+  document.documentElement.style.setProperty('--grey-color', '#595959');
+  document.documentElement.style.setProperty('--white-input-color', '#595959');
+  document.documentElement.style.setProperty('--arrow-color', '#595959');
   setBackdropColor('light');
 }
 
@@ -80,6 +83,9 @@ function enableDarkTheme() {
   toggle.classList.remove('active');
   document.documentElement.style.setProperty('--secondary-background-color', '#ffffff');
   document.documentElement.style.setProperty('--primary-text-color', '#ffffff');
+  document.documentElement.style.setProperty('--grey-color', '#b7b7b7');
+  document.documentElement.style.setProperty('--white-input-color', '#ffffff');
+  document.documentElement.style.setProperty('--arrow-color', '#f8f8f8');
   setBackdropColor('dark');
 }
 

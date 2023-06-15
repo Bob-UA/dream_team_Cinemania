@@ -1,19 +1,25 @@
 <section class="section catalog-search">
     <div class="container">
         <form action="submit" class="catalog__form" id="search-form">
-              <input
-                class="catalog__form-input"
-                type="text"
-                name="search"
-                id="searchQuery"
-                placeholder="Search"
-                autocomplete="off"
-              />
-              <button class="catalog__form-button" aria-label="search button">
-                <svg class="search__icon">
-                  <use href="./images/sprite.svg#icon-searh_white" ></use>
-                </svg>
-              </button>
-          </form>
+          <div class="input-container">
+            <input
+              class="catalog__form-input"
+              type="text"
+              name="search"
+              id="searchQuery"
+              placeholder="Search"
+              autocomplete="off"
+            />
+            
+              <svg class="clear__icon">
+                <use href="../../images/sprite.svg#icon-clear-input" ></use>
+              </svg>
+          </div>
+          <button class="catalog__form-button" aria-label="search button">
+            <svg class="search__icon">
+              <use href="../../images/sprite.svg#icon-searh_white" ></use>
+            </svg>                
+          </button>
+        </form>
     </div>
 </section>
