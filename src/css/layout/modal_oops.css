@@ -42,6 +42,9 @@
   padding-bottom: 8px;
 }
 
+.modal-oops::-webkit-scrollbar {
+  display: none;
+}
 .close-modal-oops {
   position: absolute;
   top: 24px;
@@ -60,6 +63,13 @@
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 250ms;
 }
+
+.close-modal-oops:hover {
+  color: #f87719;
+}
+.close-oops {
+  fill: currentColor;
+}
 .camera {
   display: block;
   margin-left: auto;
@@ -75,8 +85,6 @@
   line-height: 1.17;
   width: 214px;
   height: 65px;
- 
-  
 }
 
 @media screen and (min-width: 768px) {
