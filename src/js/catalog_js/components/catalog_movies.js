@@ -1,9 +1,14 @@
 import { getMoviesTrending, getMoviesGenres, getMoviesBySearch } from '../../api/ApiService';
 import { starRatingCalc } from '../../home_js/components';
+import { debounce } from 'lodash';
 import { markup } from './movies_cards';
 import Pagination from 'tui-pagination';
 import '../../../css/pages/catalog/tui-pagination.css';
 
+const DEBOUNCE_DELAY = 300;
+
+const buttonClearInput = document.querySelector('.clear__icon');
+const inputSearch = document.querySelector('#searchQuery');
 const sectionPagination = document.querySelector('.pagination');
 const formSearch = document.querySelector('.catalog__form');
 const galleryMovies = document.querySelector('.gallery-movies');
@@ -16,7 +21,23 @@ const genresArr = genresData.data.genres;
 
 initializePage('weekly');
 
+inputSearch.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
+buttonClearInput.addEventListener('click', onClickClear);
 formSearch.addEventListener('submit', onSearchSubmit);
+
+function onInput(evt) {
+  if (evt.target.value) {
+    console.log(evt.target.value);
+    buttonClearInput.style.display = 'block';
+  } else {
+    buttonClearInput.style.display = 'none';
+  }
+}
+
+function onClickClear() {
+  buttonClearInput.style.display = 'none';
+  inputSearch.value = '';
+}
 
 async function onSearchSubmit(evt) {
     evt.preventDefault();
@@ -31,9 +52,10 @@ async function onSearchSubmit(evt) {
       formSearch.reset();
       return;
     }
-
+    
     containerResults.hidden = true;
     initializePage('query', query);
+    buttonClearInput.style.display = 'none';
     formSearch.reset();
 }
 
@@ -95,6 +117,31 @@ async function initializePage(type, query) {
     return;
   }
 
+  // const options = {
+  //   totalItems: totalResults,
+  //   itemsPerPage: 20,
+  //   visiblePages: 3,
+  //   page: 1,
+  //   centerAlign: false,
+  //   firstItemClassName: 'tui-first-child',
+  //   lastItemClassName: 'tui-last-child',
+  //   template: {
+  //     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+  //     currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+  //     moveButton:
+  //         '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
+  //             '<span class="tui-ico-{{type}}"></span>' +
+  //         '</a>',
+  //     disabledMoveButton:
+  //         '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
+  //             '<span class="tui-ico-{{type}}">{{type}}</span>' +
+  //         '</span>',
+  //     moreButton:
+  //         '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
+  //             '<span class="tui-ico-ellip"></span>' +
+  //         '</a>'
+  //   },
+  // };
   const options = {
     totalItems: totalResults,
     itemsPerPage: 20,
@@ -107,19 +154,24 @@ async function initializePage(type, query) {
       page: '<a href="#" class="tui-page-btn">{{page}}</a>',
       currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
       moveButton:
-          '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
-              '<span class="tui-ico-{{type}}"></span>' +
+          '<a href="#" class="tui-page-btn tui-{{type}} custom-class">' +  
+              '<svg class="tui-ico-{{type}}">' +
+                '<use href="../../images/sprite.svg#icon-{{type}}"></use>' +
+              '</svg>' +
           '</a>',
       disabledMoveButton:
-          '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
+          '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
               '<span class="tui-ico-{{type}}">{{type}}</span>' +
           '</span>',
       moreButton:
-          '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
-              '<span class="tui-ico-ellip"></span>' +
+          '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+          '<svg class="tui-ico-ellip">' +
+          '<use href="../../images/sprite.svg#icon-ellip"></use>' +
+        '</svg>' +
           '</a>'
     },
   };
+
   const instance = new Pagination(containerPagination, options);
 
   instance.on('afterMove', async evt => {
