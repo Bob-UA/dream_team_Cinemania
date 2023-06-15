@@ -103,12 +103,12 @@ const footerBtn = document.querySelector('.footer-btn');
 const backdropModal = document.querySelector('.backdrop-team-modal');
 const closeBtn = document.querySelector('.close-btn');
 function openModal() {
-  backdropModal.classList.add('show');
+  backdropModal.classList.remove('is-hidden');
   document.addEventListener('keydown', closeModalOnEscape);
   backdropModal.addEventListener('click', closeModalOnClickOutside);
 }
 function closeModal() {
-  backdropModal.classList.remove('show');
+  backdropModal.classList.add('is-hidden');
   document.removeEventListener('keydown', closeModalOnEscape);
   backdropModal.removeEventListener('click', closeModalOnClickOutside);
 }

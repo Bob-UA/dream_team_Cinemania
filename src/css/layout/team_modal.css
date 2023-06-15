@@ -5,12 +5,12 @@
     z-index: 6546;
     width: 100%;
     height: 100%;
-    transform: translateX(-100%);
-    transition: transform 0.5s ease-out;
+    transform: scale(1);
+    transition: transform 300 ease-out;
     
   }
-  .backdrop-team-modal.show {
-    transform: translateX(0);
+  .backdrop-team-modal.is-hidden {
+    transform: scale(0.7);
    
   }
   .backdrop-team-modal.hide {
