@@ -1,4 +1,4 @@
-import{r as i,c as _,d as k,e as I,A as T}from"./switcher-d8a0ba9d.js";const B="https://api.themoviedb.org/3/genre/movie/list",d="MY_LIBRARY";let u={},c=null;const E=await H(),C=E.data.genres;i.libraryContainer.addEventListener("click",$);function f(e){if(e.genres){const{poster_path:t,title:o,id:s,genres:r,release_date:n}=e,a=r.map(g=>g.name),m=n?n.split("-")[0]:"";return`
+import{r as i,c as _,d as k,e as I,A as T}from"./switcher-bbd2f469.js";const B="https://api.themoviedb.org/3/genre/movie/list",d="MY_LIBRARY";let u={},c=null;const E=await H(),C=E.data.genres;i.libraryContainer.addEventListener("click",$);function f(e){if(e.genres){const{poster_path:t,title:o,id:s,genres:r,release_date:n}=e,a=r.map(g=>g.name),m=n?n.split("-")[0]:"";return`
     <li class="gallery-movies-item" data-genres="${a.join(",")}">
       <img class="gallery-movies-img" src="https://image.tmdb.org/t/p/original/${t}" alt="${o}" loading="lazy">
       <div class="gallery-movies-overlay js-modal-info" data-id="${s}"></div>
