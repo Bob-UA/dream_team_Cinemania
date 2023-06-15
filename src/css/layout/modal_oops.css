@@ -77,6 +77,7 @@
   width: 159px;
   height: 153px;
   z-index: -1;
+
 }
 
 .text-modal-oops {
@@ -86,7 +87,57 @@
   width: 214px;
   height: 65px;
 }
+@media screen and (max-width: 768px){
+.camera{
+  background-image: url(../../images/modal_oops_img/modal-camera-mobile-1x.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}}
 
+
+@media screen and (max-width: 767px) and (min-device-pixel-ratio: 2), screen and (max-width: 767px) and (min-resolution: 192dpi), screen and (max-width: 767px) and (min-resolution: 2dppx){
+.camera{
+  background-image: url(../../images/modal_oops_img/modal-camera-mobile-2x.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+}
+@media screen and (max-width: 767px){
+.camera{
+  background-image: url(../../images/modal_oops_img/modal-camera-mobile-1x.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}}
+
+@media screen and (min-width: 768px) and (max-width: 1279px){
+.camera{
+  background-image: url(../../images/modal_oops_img/modal-camera-tablet-1x.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) and (min-device-pixel-ratio: 2), screen and (min-width: 768px) and (max-width: 1279px) and (min-resolution: 192dpi), screen and (min-width: 768px) and (max-width: 1279px) and (min-resolution: 2dppx){
+.camera{
+  background-image: url(../../images/modal_oops_img/modal-camera-tablet-2x.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}}
+
+@media screen and (min-width: 1280px){
+.camera{
+  background-image: url(../../images/modal_oops_img/modal-camera-desktop-1x.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}}
+
+@media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2), screen and (min-width: 1280px) and (min-resolution: 192dpi), screen and(min-width: 1280px) and (min-resolution: 2dppx){
+.camera{
+  background-image: url(../../images/modal_oops_img/modal-camera-desktop-2x.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+}
 @media screen and (min-width: 768px) {
   .camera {
     position: absolute;
