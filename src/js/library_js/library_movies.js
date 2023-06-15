@@ -16,9 +16,7 @@ refs.libraryContainer.addEventListener('click', addModal);
 
 function markup(movie) {
   if (movie.genres) {
-    console.log(movie.genres);
     const { poster_path, title, id, genres, release_date } = movie;
-    console.log(genres);
     const genreNames = genres.map(genre => genre.name);
     const year = release_date ? release_date.split('-')[0] : '';
 
@@ -34,7 +32,6 @@ function markup(movie) {
   `;
   } else if (movie.genre_ids) {
     const { poster_path, title, id, genre_ids, release_date } = movie;
-    console.log(genre_ids);
     const namesOfGenres = genresNames(genresTotalArray, genre_ids);
     const genres = Object.values(namesOfGenres);
 
@@ -80,7 +77,6 @@ if (savedMovies.length > 0) {
   const loadMoreBtn = document.getElementById('load-more');
 
   function renderMovies(movies = savedMovies) {
-    console.log(movies);
     const moviesList = refs.libraryContainer.querySelector('.gallery-movies');
     const moviesToRender = movies.slice(0, currentPage * moviesPerPage);
     const movieLibraryMarkup = moviesToRender
