@@ -1,16 +1,18 @@
 import axios from 'axios';
 import refs from '../catalog_js/components/modal_movie_refs';
-import { arrayOfGenres, getMoviesDetails } from '../api/ApiService';
+import { getMoviesDetails } from '../api/ApiService';
 import { createMovieInfoPopUpMarkup } from '../catalog_js/components/creatMovieInfoPopUpMarkup';
-//import { API_KEY } from '../api/ApiService';
-// const GANRES_URL = 'https://api.themoviedb.org/3/genre/movie/list';
+import { API_KEY } from '../api/ApiService';
+const GANRES_URL = 'https://api.themoviedb.org/3/genre/movie/list';
 
 const STORAGE_KEY = 'MY_LIBRARY';
 let movie = {};
 let movieID = null;
 
-// const genresArr = await listOfGanresAPI();
-// const genresTotalArray = genresArr.data.genres;
+let filterGenres = null;
+
+const genresArr = await listOfGanresAPI();
+const genresTotalArray = genresArr.data.genres;
 
 refs.libraryContainer.addEventListener('click', addModal);
 
@@ -32,7 +34,7 @@ function markup(movie) {
   `;
   } else if (movie.genre_ids) {
     const { poster_path, title, id, genre_ids, release_date } = movie;
-    const namesOfGenres = genresNames(arrayOfGenres, genre_ids);
+    const namesOfGenres = genresNames(genresTotalArray, genre_ids);
     const genres = Object.values(namesOfGenres);
 
     const year = release_date ? release_date.split('-')[0] : '';
@@ -78,6 +80,7 @@ if (savedMovies.length > 0) {
 
   function renderMovies(movies = savedMovies) {
     const moviesList = refs.libraryContainer.querySelector('.gallery-movies');
+    moviesList.innerHTML = '';
     const moviesToRender = movies.slice(0, currentPage * moviesPerPage);
     const movieLibraryMarkup = moviesToRender
       .map(movie => {
@@ -97,30 +100,8 @@ if (savedMovies.length > 0) {
       renderMovies();
     });
   }
-
-  document.querySelector('#genre-filter').addEventListener('change', e => {
-    const selectedGenre = e.target.value;
-    if (selectedGenre === '') {
-      renderMovies();
-    } else {
-      const filteredMovies = savedMovies.filter(movie => {
-        return movie.genres.some(genre => genre.name === selectedGenre);
-      });
-      if (filteredMovies.length > 0) {
-        currentPage = 1; // reset to page 1 for new filter
-        renderMovies(filteredMovies);
-      } else {
-        refs.libraryContainer.innerHTML = `
-        <div class=library__block-no-results>
-          <p class="library__text-no-results">OOPS...</p>
-          <p class="library__text-no-results">We are very sorry!</p>
-          <p class="library__text-no-results">There are no movies of selected genre in your library.</p>
-          <button class="btn" onclick="window.location.href='../../index.html'">Search movie</button>
-          </div>
-        `;
-      }
-    }
-  });
+  filterGenres = document.getElementById('genre-filter');
+  filterGenres.addEventListener('change', onChoseFilterGenre);
 
   renderMovies();
 } else {
@@ -132,6 +113,76 @@ if (savedMovies.length > 0) {
   <button class="btn" onclick="window.location.href='../../index.html'">Search movie</button>
   </div>
   `;
+}
+
+function onChoseFilterGenre(e) {
+  const selectedGenre = e.target.value;
+  if (selectedGenre === '') {
+    createNewMarkup();
+  } else {
+    console.log(selectedGenre);
+    const filterArr = savedMovies.map(movie => {
+      if (movie.genres) {
+        const genres = movie.genres;
+        return genres
+          .map(genre => {
+            if (genre.name === selectedGenre) {
+              return movie;
+            }
+          })
+          .filter(movie => movie);
+      } else if (movie.genre_ids) {
+        const namesOfGenres = genresNames(genresTotalArray, movie.genre_ids);
+        const genresID = Object.values(namesOfGenres);
+        return genresID
+          .map(genreID => {
+            if (genreID.name === selectedGenre) {
+              return movie;
+            }
+          })
+          .filter(movie => movie);
+      }
+    });
+    const filteredMovies = filterArr
+      .map(arr => {
+        if (arr.length === 0) {
+          return;
+        } else {
+          return arr[0];
+        }
+      })
+      .filter(movie => movie);
+    console.log(filteredMovies);
+    if (filteredMovies.length > 0) {
+      currentPage = 1; // reset to page 1 for new filter
+
+      createNewMarkup(filteredMovies);
+      console.log(1);
+    } else {
+      console.log(2);
+      refs.libraryContainer.innerHTML = `
+    <select id="genre-filter" class="my-library__select">
+      <option value="">Genre</option>
+      <option value="Romance">Romance</option>
+      <option value="Detective">Detective</option>
+      <option value="Thriller">Thriller</option>
+      <option value="Action">Action</option>
+      <option value="Documentary">Documentary</option>
+      <option value="Horror">Horror</option>
+    </select>
+    <ul class="gallery-movies"></ul>
+ 
+        <div class=library__block-no-results>
+          <p class="library__text-no-results">OOPS...</p>
+          <p class="library__text-no-results">We are very sorry!</p>
+          <p class="library__text-no-results">There are no movies of selected genre in your library.</p>
+          <button class="btn" onclick="window.location.href='../../index.html'">Search movie</button>
+          </div>
+        `;
+      const newFilterGenres = document.getElementById('genre-filter');
+      newFilterGenres.addEventListener('change', onChoseFilterGenre);
+    }
+  }
 }
 
 // check if click on the backdrop and remove listener
@@ -213,12 +264,11 @@ function onAddMovieToStorage() {
   }
   const movieStr = JSON.stringify(movie);
 
-  const addMovie = updateLocalStorageData(movieStr, storageDataSTR);
+  savedMovies = updateLocalStorageData(movieStr, storageDataSTR);
   btnRefs.addBtn.classList.toggle('hide');
   btnRefs.removeBtm.classList.toggle('hide');
-  saveMovieInStorage(STORAGE_KEY, addMovie);
-  // btnRefs.addBtn.removeEventListener('click', onAddMovieToStorage);
-  // btnRefs.removeBtm.addEventListener('click', onRemoveMovieFromStorage);
+  saveMovieInStorage(STORAGE_KEY, savedMovies);
+  createNewMarkup(savedMovies);
 }
 
 function onRemoveMovieFromStorage() {
@@ -234,17 +284,18 @@ function onRemoveMovieFromStorage() {
 
   saveMovieInStorage(STORAGE_KEY, savedMovies);
 
+  createNewMarkup(savedMovies);
+}
+
+function createNewMarkup(movies) {
   const moviesList = refs.libraryContainer.querySelector('.gallery-movies');
-  const moviesToRender = savedMovies.slice(0, currentPage * moviesPerPage);
+  const moviesToRender = movies.slice(0, currentPage * moviesPerPage);
   const movieLibraryMarkup = moviesToRender
     .map(movie => {
       return markup(movie);
     })
     .join('');
   moviesList.innerHTML = movieLibraryMarkup;
-
-  // btnRefs.removeBtm.removeEventListener('click', onRemoveMovieFromStorage);
-  // btnRefs.addBtn.addEventListener('click', onAddMovieToStorage);
 }
 
 //get new data from storage after adding or removing
@@ -308,16 +359,16 @@ async function moviesInfo(movieID) {
   return movies;
 }
 
-// async function listOfGanresAPI() {
-//   return await axios.request({
-//     method: 'GET',
-//     url: GANRES_URL,
-//     params: {
-//       api_key: API_KEY,
-//       language: 'en',
-//     },
-//   });
-// }
+async function listOfGanresAPI() {
+  return await axios.request({
+    method: 'GET',
+    url: GANRES_URL,
+    params: {
+      api_key: API_KEY,
+      language: 'en',
+    },
+  });
+}
 
 function genresNames(genres, genre_ids) {
   const genresArrays = [];

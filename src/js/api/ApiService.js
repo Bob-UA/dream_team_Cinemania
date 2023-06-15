@@ -5,7 +5,7 @@
 
 import axios from 'axios';
 
-const API_KEY = '9d709850c7590845ffb60644b29d6f51';
+export const API_KEY = '9d709850c7590845ffb60644b29d6f51';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const TRENDING_END_POINT = 'trending/movie/'; // end-point  трендовых фільмів за день/тиждень
 const UPCOMING_END_POINT = 'movie/upcoming'; // end-point  новінки
