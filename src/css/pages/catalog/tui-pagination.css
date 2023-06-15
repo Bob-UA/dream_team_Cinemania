@@ -94,8 +94,6 @@
     background-color: linear-gradient(141.22deg, #FFC226 9.4%, #F84119 91.91%);
 }
 
-
-
 .tui-pagination .tui-first,
 .tui-pagination .tui-prev,
 .tui-pagination .tui-next,
@@ -116,8 +114,6 @@
     .tui-pagination {
         padding-top: 44px;
         column-gap: 16px;
-        padding-right: 150px;
-        justify-content: right;
     }
     
 
