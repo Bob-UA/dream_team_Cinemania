@@ -1,18 +1,17 @@
- //-----------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
 
 // Ключ API
 // 9d709850c7590845ffb60644b29d6f51
 
 import axios from 'axios';
 
-const API_KEY = '9d709850c7590845ffb60644b29d6f51';
+export const API_KEY = '9d709850c7590845ffb60644b29d6f51';
 const BASE_URL = 'https://api.themoviedb.org/3/';
-const TRENDING_END_POINT = 'trending/movie/';                     // end-point  трендовых фільмів за день/тиждень
-const UPCOMING_END_POINT = 'movie/upcoming';                     // end-point  новінки
-const SEARCH_END_POINT = 'search/movie';                         // end-point  фільми за ключовим словом (+ рік)
-const DETAILS_END_POINT = 'movie/';                              // end-point детальна інформація про фільм
-const GENRES_END_POINT = 'genre/movie/list';                      // end-point жанрів
-
+const TRENDING_END_POINT = 'trending/movie/'; // end-point  трендовых фільмів за день/тиждень
+const UPCOMING_END_POINT = 'movie/upcoming'; // end-point  новінки
+const SEARCH_END_POINT = 'search/movie'; // end-point  фільми за ключовим словом (+ рік)
+const DETAILS_END_POINT = 'movie/'; // end-point детальна інформація про фільм
+const GENRES_END_POINT = 'genre/movie/list'; // end-point жанрів
 
 //-----------------------------------------------------------------------запит на трендові фільми
 //-----------------------------------------------------------------------timeWindow = 'week'/'day'
@@ -46,7 +45,7 @@ export async function getMoviesUpcoming(page = 1) {
 }
 //-----------------------------------------------------------------------запит на детальну інформацію про фільм
 //-----------------------------------------------------------------------якщо рік не вказувати - за весь доступний період
-export async function getMoviesBySearch(query='', page = 1, year='') {
+export async function getMoviesBySearch(query = '', page = 1, year = '') {
   try {
     return await axios(`${BASE_URL}${SEARCH_END_POINT}?api_key=${API_KEY}`, {
       params: {
@@ -124,7 +123,7 @@ export function handlerError(error) {
   }
   console.log(error.config);
 
-//alert('there`s something wrong, please see the messages in the console');
+  //alert('there`s something wrong, please see the messages in the console');
 }
 
 //-----------------------------------------------------------------------запит на ым'я жанрів по їх id
@@ -137,12 +136,10 @@ export function handlerError(error) {
 //       if (gen.id === item) res.push(gen.name)
 //     });
 //   })
-  
+
 // //  console.log(res);
 //   return (res);
 // }
-
-
 
 // API з фільмами (потрібно зареєструватися щоб отримати api_key):	 https://www.themoviedb.org/
 // Документація	https://developer.themoviedb.org/docs
@@ -159,10 +156,8 @@ export function handlerError(error) {
 // Фільми за ключовим словом ( + за роком)	https://developers.themoviedb.org/3/search/search-movies
 // https://api.themoviedb.org/3/search/movie
 
-
 // Детальна інформація про фільм	https://developers.themoviedb.org/3/movies/get-movie-details
 // https://api.themoviedb.org/3/movie/{movie_id}
-
 
 // Повна інформація про можливий трейлер фільма на YouTube	https://developers.themoviedb.org/3/movies/get-movie-videos
 //  https://api.themoviedb.org/3/movie/{movie_id}/videos
@@ -179,11 +174,9 @@ export function handlerError(error) {
 // const resp5 = await getMoviesVideos(2023);                   // resp.data.results   не массив!!!
 // const resp6 = await getMoviesGenres();                       // resp.data.genres    масив
 
-
 // console.log(resp1)
 // console.log(resp2);
 // console.log(resp3);
 // console.log(resp4);
 // console.log(resp5);
 // console.log(resp6);
-
