@@ -30,24 +30,26 @@
   z-index: -1;
 }
 
-.hero {
-  padding-top: 0;
+.hero-content-wrap {
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+  z-index: 1;
 }
 
 .hero-container {
   position: relative;
-  padding-top: 40px;
+  height: 380px;
 }
 
 .hero-content {
-  position: absolute;
-  z-index: 1;
+  max-width: 242px;
+  max-height: 300px;
 }
 
 .hero-text-container {
-  max-width: 177px;
+  max-width: 235px;
   margin-bottom: 20px;
-  z-index: 100;
 }
 
 .hero-title {
@@ -61,7 +63,7 @@
   margin-bottom: 20px;
   color: var(--secondary-text-color);
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -82,6 +84,9 @@
   padding: 12px 24px;
   border: none;
   border-radius: 74px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.16;
   color: #111111;
   background: linear-gradient(141.22deg, #ffc226 9.4%, #f84119 91.91%);
   transition: all var(--animation-duration) var(--timing-function);
@@ -89,6 +94,11 @@
 
 .btn-details {
   padding: 12px 24px;
+  max-width: 117px;
+  max-height: 38px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.16;
   border-radius: 74px;
   border: 1px solid #ffffff;
   background: transparent;
@@ -142,6 +152,16 @@
     max-width: 768px;
   }
 
+  .hero-content-wrap{
+    top: 32px;
+    bottom: 32px;
+  }
+
+  .hero-content {
+    max-width: 350px;
+    max-height: 306px;
+  }
+
   .img-container {
     background-image: linear-gradient(
       81.57deg,
@@ -158,16 +178,13 @@
     object-position: 40%;
   }
 
-  .hero-container {
-    padding-top: 62px;
-  }
-
   .hero-text-container {
-    max-width: 295px;
+    max-width: 350px;
   }
 
   .hero-text {
     margin-bottom: 28px;
+    -webkit-line-clamp: 4;
   }
 
   .hero-stars {
@@ -179,7 +196,22 @@
 
 @media screen and (min-width: 1280px) {
   .hero-text-container {
-    max-width: 385px;
+    max-width: 500px;
+  }
+
+  .hero {
+    height: 432px;
+    max-width: 768px;
+  }
+
+  .hero-content-wrap{
+    top: 118px;
+    bottom: 118px;
+  }
+
+  .hero-content {
+    max-width: 500px;
+    max-height: 424px;
   }
 
   .hero-text {

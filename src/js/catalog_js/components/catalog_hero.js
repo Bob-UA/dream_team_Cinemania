@@ -76,11 +76,11 @@ const createHeroMarkup = ({
   overview,
   id,
 }) => {
-  return ` <div class="hero-content"><div class="hero-text-container">
+  return ` <div class="hero-content-wrap"><div class="hero-content"><div class="hero-text-container">
     <h1 class="title hero-title">${title}</h1>
     <img class="star-rating-hero" src="${starRatingCalc(
-      vote_average
-    )}" alt="raiting" />
+    vote_average
+  )}" alt="raiting" />
       <p class="text hero-text">
         ${overview}
       </p>
@@ -92,7 +92,7 @@ const createHeroMarkup = ({
          <li>
          <button class="btn-details js-details-btn" data-id="${id}">More details</button>
         </li>
-      </ul></div>
+      </ul></div></div>
       <div class="img-container"><img class="hero-img" src="${IMG_URL}${backdrop_path}" alt="${title}"></div>
       `;
 };

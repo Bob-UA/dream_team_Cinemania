@@ -25,7 +25,7 @@
   }
 }
 
-.hero {
+.lib-hero {
   padding-top: 0;
 }
 
@@ -38,7 +38,7 @@
   max-width: 240px;
 }
 
-.hero-title {
+.lib-hero-title {
   line-height: 1.18;
   margin-bottom: 8px;
   color: var(--secondary-text-color);
@@ -102,7 +102,7 @@
     padding: 169px 85px 0 85px;
   }
 
-  .hero-title {
+  .lib-hero-title {
     margin-bottom: 16px;
   }
 
