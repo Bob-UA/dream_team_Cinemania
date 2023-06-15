@@ -134,10 +134,10 @@ max-width: 357px;
       But we couldn’t find the trailer.
     </h1>
     <picture class="camera">
-      <source srcset="../images/modal_oops_img/modal-camera-mobile-1x.jpg 1x, ../images/modal_oops_img/modal-camera-mobile-2x.jpg 2x" media="(max-width: 767px)" />
-      <source srcset="../images/modal_oops_img/modal-camera-tablet-1x.jpg 1x, ../images/modal_oops_img/modal-camera-tablet-2x.jpg 2x" media="(min-width: 768px and max-width: 1279px)" />
-      <source srcset="../images/modal_oops_img/modal-camera-desktop-1x.jpg 1x, ../images/modal_oops_img/modal-camera-desktop-2x.jpg 2x" media="(min-width: 1280px)" />
-      <img src="../images/modal_oops_img/modal-camera-mobile-1x.jpg" alt="camera" />
+      <source srcset="../../images/modal_oops_img/modal-camera-mobile-1x.jpg 1x, ../../images/modal_oops_img/modal-camera-mobile-2x.jpg 2x" media="(max-width: 767px)" />
+      <source srcset="../../images/modal_oops_img/modal-camera-tablet-1x.jpg 1x, ../../images/modal_oops_img/modal-camera-tablet-2x.jpg 2x" media="(min-width: 768px and max-width: 1279px)" />
+      <source srcset="../../images/modal_oops_img/modal-camera-desktop-1x.jpg 1x, ../../images/modal_oops_img/modal-camera-desktop-2x.jpg 2x" media="(min-width: 1280px)" />
+      <img src="../../images/modal_oops_img/modal-camera-mobile-1x.jpg" alt="camera" />
     </picture>
   </div>`}const In=({backdrop_path:e,title:t,vote_average:n,overview:r,id:o})=>` <div class="hero-content"><div class="hero-text-container">
     <h1 class="title hero-title">${t}</h1>
