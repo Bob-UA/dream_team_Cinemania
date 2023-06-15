@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'roboto';
-    src: url('roboto-regular.woff2?#iefix') format('woff2'),
+    src: url('roboto-regular.woff2') format('woff2'),
          url('roboto-regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: 'roboto';
-    src: url('roboto-bold.woff2?#iefix') format('woff2'),
+    src: url('roboto-bold.woff2') format('woff2'),
          url('roboto-bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
@@ -18,7 +18,7 @@
 
 @font-face {
     font-family: 'roboto';
-    src: url('roboto-medium.woff2?#iefix') format('woff2'),
+    src: url('roboto-medium.woff2') format('woff2'),
          url('roboto-medium.woff') format('woff');
     font-weight: medium;
     font-style: normal;
