@@ -139,7 +139,7 @@ async function initializePage(type, query) {
       moveButton:
           '<a href="#" class="tui-page-btn tui-{{type}} custom-class">' +  
             '<svg class="tui-ico-{{type}}">' +
-              '<use href="images/sprite.svg#icon-{{type}}"></use>' +
+              '<use href="sprite.svg#icon-{{type}}"></use>' +
             '</svg>' +
           '</a>',
       disabledMoveButton:
@@ -149,7 +149,7 @@ async function initializePage(type, query) {
       moreButton:
           '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
             '<svg class="tui-ico-ellip">' +
-              '<use href="images/sprite.svg#icon-ellip"></use>' +
+              '<use href="sprite.svg#icon-ellip"></use>' +
             '</svg>' +
           '</a>'
     },
