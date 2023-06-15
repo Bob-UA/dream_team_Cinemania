@@ -1,4 +1,9 @@
-import { getMoviesTrending, getMoviesGenres, getMoviesBySearch } from '../../api/ApiService';
+import {
+  getMoviesTrending,
+  getMoviesGenres,
+  getMoviesBySearch,
+  arrayOfGenres,
+} from '../../api/ApiService';
 import { starRatingCalc } from '../../home_js/components';
 import { debounce } from 'lodash';
 import { markup } from './movies_cards';
@@ -60,9 +65,16 @@ async function onSearchSubmit(evt) {
 
 async function createMarkupMovies(arr) {
   const moviesMarkupPromises = arr.map(
-    async ({ poster_path, title, genre_ids, id, release_date, vote_average }) => {
+    async ({
+      poster_path,
+      title,
+      genre_ids,
+      id,
+      release_date,
+      vote_average,
+    }) => {
       const year = release_date.substr(0, 4);
-      const genres = getGenresNames(genresArr, genre_ids);
+      const genres = getGenresNames(arrayOfGenres, genre_ids);
       const starRating = starRatingCalc(vote_average);
       return markup(poster_path, title, id, genres, year, starRating);
     }
@@ -86,9 +98,9 @@ function getGenresNames(genres, genre_ids) {
 
 async function initializePage(type, query) {
   let response;
-  let totalResults;  
+  let totalResults;
 
-  if(type == 'weekly') {
+  if (type == 'weekly') {
     response = await getMoviesTrending();
     totalResults = response.data.total_results;
   } else if (type == 'query') {
@@ -96,7 +108,7 @@ async function initializePage(type, query) {
     totalResults = response.data.total_results;
   }
 
-  if(type == 'query' && !totalResults) {
+  if (type == 'query' && !totalResults) {
     sectionPagination.style.display = 'none';
     containerResults.hidden = false;
     formSearch.reset();
@@ -105,7 +117,7 @@ async function initializePage(type, query) {
     sectionPagination.style.display = 'block';
   }
 
-  galleryMovies.innerHTML = await createMarkupMovies(response.data.results);  
+  galleryMovies.innerHTML = await createMarkupMovies(response.data.results);
 
   if (totalResults > 10000) {
     totalResults = 10000;
@@ -127,19 +139,19 @@ async function initializePage(type, query) {
       currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
       moveButton:
           '<a href="#" class="tui-page-btn tui-{{type}} custom-class">' +  
-              '<svg class="tui-ico-{{type}}">' +
-                '<use href="../../images/sprite.svg#icon-{{type}}"></use>' +
-              '</svg>' +
+            '<svg class="tui-ico-{{type}}">' +
+              '<use href="../../images/sprite.svg#icon-{{type}}"></use>' +
+            '</svg>' +
           '</a>',
       disabledMoveButton:
           '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-              '<span class="tui-ico-{{type}}">{{type}}</span>' +
+            '<span class="tui-ico-{{type}}">{{type}}</span>' +
           '</span>',
       moreButton:
           '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-          '<svg class="tui-ico-ellip">' +
-          '<use href="../../images/sprite.svg#icon-ellip"></use>' +
-        '</svg>' +
+            '<svg class="tui-ico-ellip">' +
+              '<use href="../../images/sprite.svg#icon-ellip"></use>' +
+            '</svg>' +
           '</a>'
     },
   };
@@ -149,7 +161,7 @@ async function initializePage(type, query) {
   instance.on('afterMove', async evt => {
     const { page } = evt;
 
-    if(type == 'weekly') {
+    if (type == 'weekly') {
       response = await getMoviesTrending('week', page);
     } else if (type == 'query') {
       response = await getMoviesBySearch(query, page);
@@ -161,4 +173,4 @@ async function initializePage(type, query) {
       return false;
     }
   });
-} 
+}
