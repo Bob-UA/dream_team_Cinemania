@@ -1,4 +1,4 @@
-import"./switcher-d26ae38d.js";function p(t,o,n,i,e){const r=i.map(c=>c.name),l=e?e.split("-")[0]:"";return`
+import"./switcher-bb20b602.js";function p(t,o,n,i,e){const r=i.map(c=>c.name),l=e?e.split("-")[0]:"";return`
     <li class="gallery-movies-item" data-id="${n}" data-genres="${r.join(",")}">
       <img class="gallery-movies-img" src="https://image.tmdb.org/t/p/original/${t}" alt="${o}" loading="lazy">
       <div class="gallery-movies-overlay"></div>
