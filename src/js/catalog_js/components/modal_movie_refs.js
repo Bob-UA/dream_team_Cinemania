@@ -12,6 +12,10 @@ const refs = {
 
   libraryContainer: document.getElementById('my-library'),
 
+  weeklyContainer: document.querySelector('.weekly-js-list'),
+
+  upcomingContainer: document.querySelector('.img-gradient-container'),
+
   wrapperContainer: document.querySelector('.player_wraper'),
   closeModalOopsBtn: document.querySelector('.close-modal-oops'),
 };
