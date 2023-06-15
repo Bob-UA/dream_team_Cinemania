@@ -4,7 +4,7 @@
 }
 
 .no-results {
-    padding-top: 48px;
+    padding-top: 32px;
     text-align: center;
 }
 
@@ -96,7 +96,7 @@
     }
 
     .no-results {
-        padding-top: 80px;
+        padding-top: 44px;
     }
 
     .text-no-results {
@@ -133,7 +133,7 @@
     }
 
     .no-results {
-        padding-top: 120px;
+        padding-top: 72px;
     }
 
     .text-no-results {
