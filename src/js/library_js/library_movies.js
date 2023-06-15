@@ -7,7 +7,7 @@ function markup(poster_path, title, id, genres, release_date) {
     ','
   )}">
       <img class="gallery-movies-img" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" loading="lazy">
-      <div class="gallery-movies-overlay"></div>
+      <div class="gallery-movies-overlay js-modal-info"></div>
       <div class="gallery-movies-description">
         <h3 class="gallery-movies-title">${title}</h3>
         <p class="gallery-movies-details">${genreNames.join(', ')} | ${year}</p>
@@ -24,7 +24,7 @@ const savedMovies = JSON.parse(localStorage.getItem('MY_LIBRARY')) || [];
 
 if (savedMovies.length > 0) {
   libraryElement.innerHTML = `
-    <select id="genre-filter">
+    <select id="genre-filter" class="my-library__select">
       <option value="">Genre</option>
       <option value="Romance">Romance</option>
       <option value="Detective">Detective</option>
@@ -36,7 +36,7 @@ if (savedMovies.length > 0) {
     <ul class="gallery-movies"></ul>
     ${
       savedMovies.length > moviesPerPage
-        ? '<button class="btn" id="load-more">Load More</button>'
+        ? '<button class="btn library__load-more" id="load-more">Load More</button>'
         : ''
     }
   `;
@@ -78,8 +78,12 @@ if (savedMovies.length > 0) {
         renderMovies(filteredMovies);
       } else {
         libraryElement.innerHTML = `
-          <p>OOPS... We are very sorry! There are no movies of selected genre in your library.</p>
+        <div class=library__block-no-results>
+          <p class="library__text-no-results">OOPS...</p>
+          <p class="library__text-no-results">We are very sorry!</p>
+          <p class="library__text-no-results">There are no movies of selected genre in your library.</p>
           <button class="btn" onclick="window.location.href='../../index.html'">Search movie</button>
+          </div>
         `;
       }
     }
@@ -88,7 +92,11 @@ if (savedMovies.length > 0) {
   renderMovies();
 } else {
   libraryElement.innerHTML = `
-    <p>OOPS... We are very sorry! You don’t have any movies at your library.</p>
-    <button class="btn" onclick="window.location.href='search.html'">Search movie</button>
+  <div class=library__block-no-results>
+  <p class="library__text-no-results">OOPS...</p>
+  <p class="library__text-no-results">We are very sorry!</p>
+  <p class="library__text-no-results">There are no movies of selected genre in your library.</p>
+  <button class="btn" onclick="window.location.href='../../index.html'">Search movie</button>
+  </div>
   `;
 }
