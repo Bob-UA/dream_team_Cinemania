@@ -1,4 +1,4 @@
-import{f as E,r as o,c as C,d as T,g as j}from"./switcher-007e3da1.js";var u=typeof globalThis<"u"?globalThis:typeof window<"u"?window:typeof global<"u"?global:typeof self<"u"?self:{};function P(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var I=typeof u=="object"&&u&&u.Object===Object&&u,O=typeof self=="object"&&self&&self.Object===Object&&self;I||O||Function("return this")();const R=`
+import{f as E,r as o,c as C,d as T,g as j}from"./switcher-ef53ed9e.js";var u=typeof globalThis<"u"?globalThis:typeof window<"u"?window:typeof global<"u"?global:typeof self<"u"?self:{};function P(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var I=typeof u=="object"&&u&&u.Object===Object&&u,O=typeof self=="object"&&self&&self.Object===Object&&self;I||O||Function("return this")();const R=`
   .hero-text{
     max-height: 80px;
     max-width: 160px;
