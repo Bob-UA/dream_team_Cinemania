@@ -1,4 +1,4 @@
-import"./switcher-6259cc41.js";import{g as k,a as b,s as B,r as a,c as I,b as w}from"./catalog_hero-d86ae247.js";function E(e){return e.length>20?e.substring(0,20)+"...":e}function C(e,t,n,r,o,i){if(!e)return;let s="";return r.length?s=E(r.slice(0,2).join(", ")):s="There are no genres",`<li class="gallery-movies-item" data-id="${n}">
+import"./switcher-6259cc41.js";import{g as k,a as b,s as B,r as a,c as I,b as w}from"./catalog_hero-17c83743.js";function E(e){return e.length>20?e.substring(0,20)+"...":e}function C(e,t,n,r,o,i){if(!e)return;let s="";return r.length?s=E(r.slice(0,2).join(", ")):s="There are no genres",`<li class="gallery-movies-item" data-id="${n}">
         <img class="gallery-movies-img" src="https://image.tmdb.org/t/p/original/${e}" alt="${t}" loading="lazy">
         <div class="gallery-movies-overlay js-modal-info" data-id="${n}"></div>
             <div class="gallery-movies-description">
