@@ -49,6 +49,7 @@ async function onSearchSubmit(evt) {
       containerResults.hidden = false;
       // containerPagination.innerHTML = '';
       sectionPagination.style.display = 'none';
+      buttonClearInput.style.display = 'none';
       formSearch.reset();
       return;
     }
