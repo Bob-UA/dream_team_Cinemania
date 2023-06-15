@@ -2,6 +2,11 @@
   color: #b7b7b7;
   text-align: center;
 }
+.footer-section{
+  padding-top: 40px;
+  padding-bottom: 28px;
+}
+
 .footer-mobile {
   display: flex;
   align-items: center;
@@ -28,4 +33,15 @@
     display: flex;
     justify-content: center;
   }
+.footer-section{
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+}
+
+@media screen and (min-width: 1280px) {
+.footer-section{
+  padding-top: 96px;
+  padding-bottom: 80px;
+}
 }
