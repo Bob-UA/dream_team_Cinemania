@@ -2,7 +2,7 @@ function cutStringLength(str) {
   if (str.length > 20 ) {
     return str.substring(0, 20)+"..."
   };
-  return str
+  return str;
 }
 
 export function markup(poster_path, title, id, genres, year, starRating) {
