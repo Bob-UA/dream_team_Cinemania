@@ -116,8 +116,11 @@
     .tui-pagination {
         padding-top: 44px;
         column-gap: 16px;
+        padding-right: 150px;
+        justify-content: right;
     }
     
+
     .tui-pagination .tui-page-btn {
         width: 40px;
         height: 40px;
