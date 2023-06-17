@@ -53,7 +53,7 @@ background-color: #FFFFFF;
     background-color: #ffffff;
     color: #111111;
 }
-.white .modal-team{
+.white .modal-team, .white .iframe_video_player{
         box-shadow: 1px 1px 14px 4px rgba(0, 0, 0, 0.22);
 
 }
