@@ -36,7 +36,7 @@ body{
 .white .film-details .item-description, .white .modal-rating, .white .modal-info-data-item{
     color: #282828;
 }
-.white .text-footer, .white .nav_list{
+.white .text-footer, .white .nav_list, .white .menu{
     color: #595959;
 }
 .white .modal-movie-info{
@@ -52,6 +52,10 @@ background-color: #FFFFFF;
 .white .my-library__select{
     background-color: #ffffff;
     color: #111111;
+}
+.white .gallery-movies-item:hover{
+      box-shadow: 1px 1px 14px 4px rgba(0, 0, 0, 0.22);
+
 }
 
 

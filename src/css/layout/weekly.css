@@ -70,6 +70,7 @@
     rgba(0, 0, 0, 0) 63.48%,
     rgba(0, 0, 0, 0.9) 92.16%
   );
+  box-shadow: 1px 1px 14px 4px rgba(0, 0, 0, 0.22);
   border-radius: 4px;
 }
 
@@ -79,6 +80,9 @@
   color: var(--primary-text-color);
 }
 
+.weekly{
+  padding-top: 40px;
+}
 .weekly-list-genre {
   font-size: 12px;
   line-height: 1.66;
