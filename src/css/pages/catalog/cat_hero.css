@@ -1,21 +1,19 @@
 /* -----------MOBILE------------ */
 .hero {
   margin: 0 auto;
-  height: 380px;
   max-width: 320px;
 }
 
-.img-container {
+.gradient-container {
   position: absolute;
-  background-image: linear-gradient(
-    87.41deg,
-    #111111 33.93%,
-    rgba(17, 17, 17, 0) 78.91%
-  );
+  z-index: -1;
+  background-image: linear-gradient(86.47deg, #111111 33.63%, rgba(17, 17, 17, 0) 76.86%);
   width: 320px;
-  height: 380px;
+  height: 100%;
   right: 0px;
   top: 0px;
+  border: 0;
+  outline: none;
 }
 
 .hero-img {
@@ -23,11 +21,12 @@
   top: 0;
   right: 0;
   width: 320px;
-  height: 380px;
-  border: 1px solid #111111;
+  height: 100%;
   object-fit: cover;
   object-position: 18%;
   z-index: -1;
+  outline: none;
+  border: 0;
 }
 
 .hero {
@@ -37,11 +36,11 @@
 .hero-container {
   position: relative;
   padding-top: 40px;
+  padding-bottom: 130px;
 }
 
 .hero-content {
-  position: absolute;
-  z-index: 1;
+
 }
 
 .hero-text-container {
@@ -138,26 +137,46 @@
 /* ------------------TABLET-------------------- */
 @media screen and (min-width: 768px) {
   .hero {
-    height: 432px;
     max-width: 768px;
   }
 
-  .img-container {
-    background-image: linear-gradient(
-      81.57deg,
-      #111111 12.76%,
-      rgba(17, 17, 17, 0) 72.65%
-    );
+  .image-container{
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 482px;
-    height: 432px;
+    height: 100%;
+  }
+
+  .gradient-container {
+    z-index: -1;
+    background-image: linear-gradient(
+      81.57deg, #111111 12.76%, rgba(17, 17, 17, 0) 72.65%);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    border:none;
+    outline: none;
   }
 
   .hero-img {
-    width: 482px;
-    height: 432px;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
     object-position: 40%;
+    border:none;
+    outline: none;
   }
-
+.background-container{
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  background-color: #111111;
+}
   .hero-container {
     padding-top: 62px;
   }
@@ -178,6 +197,9 @@
 /* ---------------------DESKTOP--------------- */
 
 @media screen and (min-width: 1280px) {
+  .hero-container{
+    padding-bottom: 100px;
+  }
   .hero-text-container {
     max-width: 385px;
   }
@@ -188,22 +210,19 @@
 
   .hero-container {
     padding-top: 118px;
-    height: 720px;
   }
-
-  .img-container {
+  .image-container{
+  width: 802px;
+  }
+  .gradient-container {
     background-image: linear-gradient(
       83.06deg,
       #111111 11.91%,
       rgba(17, 17, 17, 0) 73.11%
     );
-    width: 802px;
-    height: 720px;
   }
 
   .hero-img {
-    width: 802px;
-    height: 720px;
     object-position: 33%;
   }
 
@@ -212,7 +231,6 @@
   }
 
   .hero {
-    height: 720px;
     max-width: 1280px;
   }
 

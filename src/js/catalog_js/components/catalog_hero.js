@@ -76,7 +76,7 @@ const createHeroMarkup = ({
   overview,
   id,
 }) => {
-  return ` <div class="hero-content"><div class="hero-text-container">
+  return ` <div class="image-container"><img class="hero-img" src="${IMG_URL}${backdrop_path}" alt="${title}"><div class="gradient-container"></div></div><div class="hero-content"><div class="hero-text-container">
     <h1 class="title hero-title">${title}</h1>
     <img class="star-rating-hero" src="${starRatingCalc(
       vote_average
@@ -92,8 +92,8 @@ const createHeroMarkup = ({
          <li>
          <button class="btn-details js-details-btn" data-id="${id}">More details</button>
         </li>
-      </ul></div>
-      <div class="img-container"><img class="hero-img" src="${IMG_URL}${backdrop_path}" alt="${title}"></div>
+      </ul><div class="background-container"></div></div>
+      
       `;
 };
 
