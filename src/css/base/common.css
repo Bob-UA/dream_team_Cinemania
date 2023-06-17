@@ -30,15 +30,30 @@ body{
 .white {
     background-color: var(--secondary-background-color);
 }
-.white .card-subtitle, .white .about-subtitle{
+.white .card-subtitle, .white .about-subtitle, .white .modal-card-title, .white .modal-card-subtitle, .white .modal-about-subtitle, .white .modal-item-description, .white .modal-my-library-btn{
     color: #111111;
 }
-.white .film-details .item-description{
+.white .film-details .item-description, .white .modal-rating, .white .modal-info-data-item{
     color: #282828;
 }
 .white .text-footer, .white .nav_list{
     color: #595959;
 }
+.white .modal-movie-info{
+    background-color: #F5F5F5;
+    box-shadow: 1px 1px 14px 4px rgba(0, 0, 0, 0.22);
+}
+.white .modal-my-library-btn::after{
+background-color: #FFFFFF;
+}
+.white .modal-my-library-btn:hover{
+    background-color: #111111;
+}
+.white .my-library__select{
+    background-color: #ffffff;
+    color: #111111;
+}
+
 
 .title {
     font-weight: 700;
