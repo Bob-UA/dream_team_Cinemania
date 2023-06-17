@@ -30,7 +30,15 @@ body{
 .white {
     background-color: var(--secondary-background-color);
 }
-
+.white .card-subtitle, .white .about-subtitle{
+    color: #111111;
+}
+.white .film-details .item-description{
+    color: #282828;
+}
+.white .text-footer, .white .nav_list{
+    color: #595959;
+}
 
 .title {
     font-weight: 700;
