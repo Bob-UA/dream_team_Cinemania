@@ -36,11 +36,14 @@ body{
 .white .film-details .item-description, .white .modal-rating, .white .modal-info-data-item{
     color: #282828;
 }
+.white .modal-rating{
+    background-color: #F5F5F5;
+}
 .white .text-footer, .white .nav_list, .white .menu{
     color: #595959;
 }
 .white .modal-movie-info{
-    background-color: #F5F5F5;
+    background-color: #FFFFFF;
     box-shadow: 1px 1px 14px 4px rgba(0, 0, 0, 0.22);
 }
 .white .modal-my-library-btn::after{
@@ -61,6 +64,7 @@ background-color: #FFFFFF;
       box-shadow: 1px 1px 14px 4px rgba(0, 0, 0, 0.22);
 
 }
+
 
 
 .title {
