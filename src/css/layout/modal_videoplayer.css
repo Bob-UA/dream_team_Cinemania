@@ -41,7 +41,6 @@
   .iframe_video_player {
     max-width: 704px;
     max-height: 488px;
-    padding: 44px;
   }
 }
 
@@ -49,6 +48,5 @@
  .iframe_video_player  {
     max-width: 846px;
     max-height: 598px;
-    padding: 60px;
   }
 }
