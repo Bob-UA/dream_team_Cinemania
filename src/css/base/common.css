@@ -49,9 +49,13 @@ background-color: #FFFFFF;
 .white .modal-my-library-btn:hover{
     background-color: #111111;
 }
-.white .my-library__select{
+.white .my-library__select, .white .modal-team{
     background-color: #ffffff;
     color: #111111;
+}
+.white .modal-team{
+        box-shadow: 1px 1px 14px 4px rgba(0, 0, 0, 0.22);
+
 }
 .white .gallery-movies-item:hover{
       box-shadow: 1px 1px 14px 4px rgba(0, 0, 0, 0.22);
