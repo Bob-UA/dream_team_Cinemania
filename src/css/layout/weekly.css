@@ -89,8 +89,11 @@
   color: #b7b7b7;
 }
 
+@media(max-width:767px){
 .weekly-list:not(:first-child) {
   display: none;
+}
+
 }
 
 @media (min-width: 768px) {
@@ -103,10 +106,6 @@
   }
 
   .desktop {
-    display: none;
-  }
-
-  .weekly-list {
     display: none;
   }
 
@@ -184,29 +183,9 @@
 }
 
 @media (min-width: 1280px) {
-  .tablet {
-    display: none;
-  }
-
-  .mobile {
-    display: none;
-  }
-
-  .desktop {
-    display: block;
-  }
-
-  .weekly-list {
-    display: none;
-  }
-
   .weekly-list-desc {
     position: relative;
     display: flex;
-  }
-
-  .weekly-list-tab {
-    display: none;
   }
 
   .weekly-head {

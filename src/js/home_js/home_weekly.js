@@ -8,6 +8,7 @@ import { getMoviesDetails } from '../api/ApiService';
 import { createMovieInfoPopUpMarkup } from '../catalog_js/components/creatMovieInfoPopUpMarkup';
 
 import refs from '../catalog_js/components/modal_movie_refs';
+import { indexOf } from 'lodash';
 
 const GANRES_URL = 'https://api.themoviedb.org/3/genre/movie/list';
 const API_KEY = '9d709850c7590845ffb60644b29d6f51';
@@ -33,10 +34,32 @@ const resp = await getMoviesTrending('week', 1);
 //   });
 // }
 
-list.innerHTML = await createMarkUp(resp.data.results.slice(0, 3));
+function getRandom(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+const data = await (resp.data.results);
+
+list.innerHTML = await createMarkUp(data);
+
 
 async function createMarkUp(arr) {
-  const moviesMarkupPromises = arr.map(
+  let currentArr = arr;
+  let newArr = []
+  let el = {};
+  let indexOfDuplicate;
+
+  for (let i = 1; newArr.length < 3; i++) {
+    el = currentArr[getRandom(0, currentArr.length - 1)];
+    indexOfDuplicate = newArr.findIndex(option => option === el);
+    if (indexOfDuplicate !== -1 || indexOfDuplicate === 0) {
+      newArr = [];
+    }
+    newArr.push(el);
+  }
+  const moviesMarkupPromises = newArr.map(
     async ({
       poster_path,
       title,
@@ -58,34 +81,9 @@ async function createMarkUp(arr) {
           <img src="${starRating}" alt="raiting" class="star-rating-card"/>
           </div>
       </div>
-    </li>
-    <li class="weekly-list-tab tablet ">
-    <img class="weekly-list-img-tab tablet " src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" data-id="${id}" loading="lazy">
-      <div class="weekly-list-overlay-tab tablet js-modal-info" data-id="${id}">
-          <h3 class="weekly-list-title-tab tablet">${title}</h3>
-          <div class="gallery-movies-wrap">
-          <p class="weekly-list-genre-tab tablet ">${genres.join(
-            ', '
-          )} | ${year}</p>
-          <img src="${starRating}" alt="raiting" class="star-rating-card"/>
-          </div>
-      </div>
-    </li>
-    <li class="weekly-list-desc desktop">
-    <img class="weekly-list-img-desc desktop" src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${title}" data-id="${id}" loading="lazy">
-      <div class="weekly-list-overlay-desc desktop js-modal-info" data-id="${id}">
-          <h3 class="weekly-list-title-desc desktop">${title}</h3>
-          <div class="gallery-movies-wrap">
-          <p class="weekly-list-genre-desc desktop">${genres.join(
-            ', '
-          )} | ${year}</p>
-          <img src="${starRating}" alt="raiting" class="star-rating-card"/>
-          </div>
-      </div>
     </li>`;
     }
   );
-
   const moviesMarkup = await Promise.all(moviesMarkupPromises);
   return moviesMarkup.join('');
 }
